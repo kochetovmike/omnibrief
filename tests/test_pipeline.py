@@ -204,7 +204,7 @@ def test_hub_shows_global_critical_feed_status_and_health(cfg, tmp_path, env):
     _, _, opts = go(cfg, tmp_path, [FakeSource("nvd", "nvd", [nginx, nvd_rec(1), evil])], env)
     hub = (opts.site_dir / "index.html").read_text(encoding="utf-8")
     # 1) Global Critical hero: its alerts, subscribe + view links
-    assert "Global Critical</h1>" in hub and "1 active · 14 days" in hub
+    assert "Global Critical</h1>" in hub and "1 critical · 14 days" in hub
     assert '<ol class="alerts">' in hub and "CVE-2026-0500" in hub
     assert 'href="feeds/vulns-global-critical.atom">Subscribe' in hub
     assert "CVE-2026-0001" not in hub.split('<ol class="alerts">')[1].split("</ol>")[0]  # widget item isn't global

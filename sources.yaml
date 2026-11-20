@@ -37,8 +37,18 @@ topics:
       # - { id: cvelist,type: cvelist,  repo: "CVEProject/cvelistV5", role: nvd_fallback, enabled: false }
     enrichment:
       - { id: epss,     type: epss,     url: "https://api.first.org/data/v1/epss", batch_size: 100 }
-    publishers: [atom]   # telegram, bluesky, threads: added in Phases 3b/3c
+    publishers: [atom, telegram]   # telegram is used only if its env vars are set
 
 publishers:
   atom:
     type: atom           # always enabled; no configuration required
+  telegram:
+    type: telegram                        # Global Critical only: instant alerts + Global brief 08:00/20:00
+    bot_token_env: TELEGRAM_BOT_TOKEN     # Actions secret
+    chat_id_env: TELEGRAM_CHAT_ID         # Actions variable, e.g. "@vulnerabilitiesbrief"
+    max_message_chars: 4000               # Telegram's limit is 4096; keep headroom
+    min_interval_seconds: 1.1             # stay under ~1 message/second per chat
+    disable_link_previews: true
+    deliver_window_hours: 24              # never send alerts older than this (no flood after outages)
+    brief_max_items: 10
+    brief_grace_hours: 6                  # skip a brief if its window closed longer ago than this

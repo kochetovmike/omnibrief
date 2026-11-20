@@ -38,6 +38,10 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("validate-config", help="validate sources.yaml and NOTICE.md coverage")
 
+    p_deliver = sub.add_parser("deliver", help="send pending messages via push publishers (Telegram)")
+    p_deliver.add_argument("--data", required=True, type=Path)
+    p_deliver.add_argument("--test", action="store_true", help="also send a test message to each channel")
+
     p_render = sub.add_parser("render-only", help="rebuild the site from existing data, no fetching")
     p_render.add_argument("--data", required=True, type=Path)
     p_render.add_argument("--site", required=True, type=Path)
@@ -58,6 +62,13 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "validate-config":
         log.info("config OK: %d topic(s)", len(cfg.topics))
+        return 0
+
+    if args.cmd == "deliver":
+        from omnibrief.pipeline import deliver
+
+        for pid, status in deliver(cfg, args.data, dict(os.environ), test=args.test).items():
+            log.info("deliver %s: %s", pid, status)
         return 0
 
     if args.cmd == "render-only":

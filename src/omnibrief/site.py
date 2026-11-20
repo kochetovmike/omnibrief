@@ -228,6 +228,7 @@ xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5
 .alerts .what{color:#cfc7ef;font-size:.88rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .alerts .score{font-family:var(--mono);font-weight:300;font-size:.8rem;color:var(--c);text-shadow:0 0 8px var(--c)}
 .more-link{font-family:var(--mono);font-size:.8rem}
+.brief-note{font-family:var(--mono);font-weight:300;font-size:.78rem;color:var(--muted);margin:0 0 20px}
 @media (max-width:760px){.alerts li{grid-template-columns:56px 1fr auto}
   .alerts .what{grid-column:1/-1;white-space:normal}}
 .feeds{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
@@ -587,7 +588,7 @@ def write_index(
         title = "Omnibrief — vulnerability war room" + ("" if slug is None else f" — {label}")
         html = _page(title, "".join(parts), head=head, script=True)
         (site_dir / page_path(slug)).write_text(html, encoding="utf-8")
-    _write_hub(cfg, site_dir, topic.id, items, categories, by_cat, health, now)
+    _write_hub(cfg, site_dir, topic.id, items, categories, by_cat, health, now, telegram_url(cfg, env))
     # Pages for categories removed from the watchlist must not linger (matters for render-only).
     keep = {page_path(c.slug) for c in categories}
     for old in site_dir.glob("cat-*.html"):
@@ -649,11 +650,24 @@ def _alert_row(b: BoardItem) -> str:
     )
 
 
-def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem], categories: list,
-               by_cat: dict[str, list[BoardItem]], health: dict | None, now: datetime) -> None:
-    from omnibrief.global_critical import SLUG as GC
+def telegram_url(cfg: Config, env: Mapping[str, str]) -> str | None:
+    """t.me link for a public channel configured as TELEGRAM_CHAT_ID="@name" (None otherwise)."""
+    for pcfg in cfg.publishers.values():
+        if pcfg.type == "telegram":
+            chat = (env.get(pcfg.option("chat_id_env", "TELEGRAM_CHAT_ID")) or "").strip()
+            if chat.startswith("@") and chat[1:].replace("_", "").isalnum():
+                return f"https://t.me/{chat[1:]}"
+    return None
 
-    critical = by_cat.get(GC, [])
+
+def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem], categories: list,
+               by_cat: dict[str, list[BoardItem]], health: dict | None, now: datetime,
+               telegram: str | None = None) -> None:
+    from omnibrief.global_critical import SLUG as GC
+    from omnibrief.global_critical import item_tier
+
+    critical = [b for b in by_cat.get(GC, []) if item_tier(b.item) == "critical"]
+    notable = sum(1 for b in by_cat.get(GC, []) if item_tier(b.item) == "notable")
     active = len(critical)
     rows = "".join(_alert_row(b) for b in critical[:HUB_ALERTS])
     alerts = (f'<ol class="alerts">{rows}</ol>' if critical else
@@ -668,10 +682,15 @@ def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem
         '<p class="hero-sub">The few vulnerabilities everyone has to act on — OpenSSL, OpenSSH, Log4j, '
         "nginx, the Linux kernel, Windows, Chrome, edge VPNs and firewalls.</p>"
         f'<div class="hero-actions"><span class="pill {"st-failed" if active else "st-ok"}">'
-        f'{active} active · {BOARD_DAYS} days</span>'
-        f'<a class="btn" href="{feed_path(topic_id, GC)}">Subscribe · Atom</a>'
+        f'{active} critical · {BOARD_DAYS} days</span>'
+        + (f'<a class="btn" href="{escape(telegram)}" rel="noopener">Telegram ↗</a>' if telegram else "")
+        + f'<a class="btn" href="{feed_path(topic_id, GC)}">Subscribe · Atom</a>'
         f'<a class="btn ghost" href="{page_path(GC)}">Open view</a></div>'
-        f"{alerts}{more}</section>"
+        f"{alerts}{more}"
+        f'<p class="brief-note"><span class="tag upd">Global brief</span> {notable} more high-severity '
+        "vulnerabilit" + ("y" if notable == 1 else "ies") + " in fundamental technologies · summarised at "
+        "08:00 &amp; 20:00 (Vienna)" + (" in the feed and on Telegram" if telegram else " in the feed") + "</p>"
+        "</section>"
     )
     tiles = [_feed_tile("General — all", None, items, topic_id, now, "accent")]
     tiles += [_feed_tile(c.label, c.slug, by_cat[c.slug], topic_id, now, "exploited" if c.slug == GC else "accent")

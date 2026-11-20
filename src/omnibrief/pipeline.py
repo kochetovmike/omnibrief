@@ -27,7 +27,7 @@ from omnibrief.llm import LLMProvider, build_provider
 from omnibrief.merge import merge
 from omnibrief.models import PublisherStatus, RunRecord, SourceStatus, Vuln, make_run_id, utcnow
 from omnibrief.publishers.base import PublisherContext
-from omnibrief.publishers.registry import build_publishers
+from omnibrief.publishers.registry import PUBLISHER_TYPES, build_publishers
 from omnibrief.sources import Source, SourceContext, Window, build_source
 from omnibrief.state import Store
 
@@ -176,11 +176,20 @@ def _publish_static(cfg: Config, topic: TopicConfig, store: Store, opts: RunOpti
     ctx = PublisherContext(cfg=cfg, topic=topic, site_dir=opts.site_dir, env=opts.env, now=run.started_utc)
     publishers, statuses = build_publishers(ctx)
     run.publishers.update(statuses)
+    # Push publishers run in a later job that has their credentials; report their last delivery.
+    for pid in topic.publishers:
+        if PUBLISHER_TYPES[cfg.publishers[pid].type].kind == "push":
+            last = store.load_delivery(pid)
+            if last.get("status"):
+                run.publishers[pid] = PublisherStatus(status=last["status"], reason=last.get("reason"))
     digests = store.recent_digests(topic.id, HISTORY_DIGESTS)
     for pub in publishers:
         if pub.kind != "static":
-            # Push publishers run later, in `deliver`, after state is pushed (design §3).
-            run.publishers[pub.id] = PublisherStatus(status="pending")
+            # Push publishers run later, in `deliver`, after state is pushed (design §3);
+            # report how the last delivery went.
+            last = store.load_delivery(pub.id)
+            run.publishers[pub.id] = PublisherStatus(status=last.get("status") or "pending",
+                                                     reason=last.get("reason"))
             continue
         try:
             result = pub.publish(digests)
@@ -188,6 +197,47 @@ def _publish_static(cfg: Config, topic: TopicConfig, store: Store, opts: RunOpti
         except Exception as e:
             log.warning("publisher %s: failed (%s)", pub.id, _err(e))
             run.publishers[pub.id] = PublisherStatus(status="failed", reason=_err(e))
+
+
+DELIVER_LOOKBACK_DIGESTS = 24 * 3  # enough for a 24 h alert window plus the brief's 12 h window
+
+
+def deliver(cfg: Config, data_dir: Path, env: Mapping[str, str], now: datetime | None = None,
+            client: httpx.Client | None = None, test: bool = False) -> dict[str, str]:
+    """Run every enabled push publisher (after state was pushed). Returns {publisher id: status}.
+    Disabled publishers are recorded as such, so the hub can show it; nothing fails the run."""
+    now = now or utcnow()
+    store = Store(data_dir)
+    statuses: dict[str, str] = {}
+    own_client = client is None
+    client = client or make_client(cfg)
+    try:
+        for topic in cfg.topics:
+            ctx = PublisherContext(cfg=cfg, topic=topic, site_dir=data_dir, env=env, now=now)
+            enabled, disabled = build_publishers(ctx)
+            for pid, st in disabled.items():
+                if cfg.publishers[pid].type != "atom":
+                    store.save_delivery(pid, {**store.load_delivery(pid), "status": "disabled", "reason": st.reason})
+                    statuses[pid] = "disabled"
+            digests = store.recent_digests(topic.id, DELIVER_LOOKBACK_DIGESTS)
+            for pub in enabled:
+                if pub.kind != "push":
+                    continue
+                state = store.load_delivery(pub.id)
+                try:
+                    if test:
+                        pub.send_test(client)
+                        log.info("%s: test message sent", pub.id)
+                    _, state = pub.deliver(digests, state, client, now)
+                except Exception as e:  # a push publisher must never fail the workflow
+                    log.warning("publisher %s: failed (%s)", pub.id, _err(e))
+                    state = {**state, "status": "failed", "reason": _err(e), "last_attempt_utc": now.isoformat()}
+                store.save_delivery(pub.id, state)
+                statuses[pub.id] = state.get("status", "ok")
+    finally:
+        if own_client:
+            client.close()
+    return statuses
 
 
 def render_site(

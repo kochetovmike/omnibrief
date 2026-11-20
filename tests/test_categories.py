@@ -74,7 +74,7 @@ def test_one_feed_per_category_plus_general(cfg, tmp_path):
     lang, lang_ids = ids("vulns-programming-languages.atom")
     assert len(g_ids) == 3  # 2 alerts (critical, exploited) + 1 roundup (high npm item)
     assert ms_ids == ["urn:omnibrief:vulns:alert:20261120T151700Z:CVE-2026-0101"]
-    assert lang_ids == ["urn:omnibrief:vulns:programming-languages:roundup:20261120T0600Z"]
+    assert lang_ids == ["urn:omnibrief:vulns:programming-languages:roundup:20261120T0700Z"]
     assert ms.findtext(f"{ATOM}id") == "urn:omnibrief:vulns:microsoft"
     assert ms.findtext(f"{ATOM}title").endswith("· microsoft")
     assert "Roundup · programming languages" in lang.find(f"{ATOM}entry").findtext(f"{ATOM}title")

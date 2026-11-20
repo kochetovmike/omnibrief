@@ -5,7 +5,7 @@ so re-running a window never duplicates anything):
 
   alert    one entry per vulnerability that is CRITICAL or ACTIVELY EXPLOITED (CISA KEV),
            published as soon as a run finds it. Re-emitted ("updated") items get a new alert.
-  roundup  one entry per 12-hour window (07:00–19:00 and 19:00–07:00, site timezone) listing
+  roundup  one entry per 12-hour window (08:00–20:00 and 20:00–08:00, site timezone) listing
            every other included vulnerability (high / medium / low). Published only once the
            window has closed, so a reader sees at most two roundups a day.
 
@@ -27,11 +27,12 @@ from zoneinfo import ZoneInfo
 
 from omnibrief.attribution import short_rights
 from omnibrief.categories import Category, categories_for
+from omnibrief.global_critical import SLUG as GC_SLUG
 from omnibrief.models import Digest, DigestItem, severity_rank
 from omnibrief.publishers.base import Publisher, PublishResult
 
 ATOM_NS = "http://www.w3.org/2005/Atom"
-ROLLUP_HOURS_LOCAL = (7, 19)  # 12-hour roundup windows start at these local hours
+ROLLUP_HOURS_LOCAL = (8, 20)  # 12-hour roundup windows (and the Telegram Global brief) start here
 FEED_DAYS = 14  # entries older than this drop out of the feed
 TITLE_CHARS = 70
 _LI = re.compile(r"<li>(.*?)</li>", re.DOTALL)
@@ -184,7 +185,8 @@ class AtomPublisher(Publisher):
                 f"12-hour window.</p><ul>{lis}</ul>" + self._footer(entry_anchor(last_run)))
         return Entry(
             id=f"{self._feed_id(category)}:roundup:{start:%Y%m%dT%H%MZ}",
-            title=f"🟠 Roundup{' · ' + category.label if category else ''} · {span} · {summary}",
+            title=(f"🟣 Global brief · {span} · {summary}" if category is not None and category.slug == GC_SLUG
+                   else f"🟠 Roundup{' · ' + category.label if category else ''} · {span} · {summary}"),
             published=end,
             html=html,
             alternate=f"{self.ctx.cfg.site.base}{page_path(category.slug if category else None)}",

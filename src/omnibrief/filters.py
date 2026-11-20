@@ -7,7 +7,7 @@ from datetime import date, datetime, timedelta
 
 from omnibrief.categories import compile_terms, parse_categories, vuln_text
 from omnibrief.config import FilterConfig
-from omnibrief.global_critical import is_global_critical
+from omnibrief.global_critical import is_global_critical, is_global_notable
 from omnibrief.models import Vuln, severity_rank
 from omnibrief.state import SeenEntry
 
@@ -29,6 +29,8 @@ class Filter:
             return "eu_exploited"
         if is_global_critical(v):
             return "global_critical"
+        if is_global_notable(v):
+            return "global_notable"
         if (
             self._pattern is not None
             and v.cvss is not None

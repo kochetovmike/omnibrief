@@ -3,6 +3,7 @@
 Layout:
   state/seen/{topic}.json                 key -> SeenEntry (only records that were emitted)
   state/sources/{topic}.json              source id -> last successful discovery (catch-up window)
+  state/deliveries/{publisher}.json      push publishers: what was sent (idempotent retry)
   state/health.json                       last_success_utc carried between runs
   digests/{topic}/{yyyy}/{mm}/{runId}.json
   runs/{yyyy}/{mm}/{runId}.json
@@ -76,6 +77,17 @@ class Store:
     def save_watermarks(self, topic: str, marks: dict[str, datetime]) -> None:
         data = {k: v.isoformat() for k, v in sorted(marks.items())}
         _write_json(self._watermark_path(topic), json.dumps(data, indent=1))
+
+    # --- push-publisher delivery records -------------------------------------------------------
+    def _delivery_path(self, publisher_id: str) -> Path:
+        return self.root / "state" / "deliveries" / f"{publisher_id}.json"
+
+    def load_delivery(self, publisher_id: str) -> dict:
+        path = self._delivery_path(publisher_id)
+        return json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+
+    def save_delivery(self, publisher_id: str, state: dict) -> None:
+        _write_json(self._delivery_path(publisher_id), json.dumps(state, indent=1, sort_keys=True))
 
     # --- digests ----------------------------------------------------------------------------
     def digest_path(self, topic: str, run_id: str) -> Path:

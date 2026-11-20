@@ -368,6 +368,14 @@ class Publisher(Protocol):
 As specified in §7. No configuration needed. It's the baseline, and the canonical archive the other channels link back to.
 
 ### Telegram (`push`, optional)
+> **Built 2026-11-20 — scope changed (Mike's decision):** the channel (t.me/vulnerabilitiesbrief) carries the
+> **Global Critical** category only, not every digest: one **alert** per critical-tier item, plus the
+> **Global brief** (notable tier: fundamental technology at CVSS 7–8.9) after 08:00 and 20:00 local, empty
+> windows skipped. Delivery records live in `state/deliveries/telegram.json` (keyed per alert / per window),
+> not in `Digest.deliveries`. Workflow: `deliver` (contents: read + bot token) → `push-deliveries`
+> (contents: write, no secrets, no project code). Manual test message via the workflow_dispatch input.
+> The points below still apply where they don't conflict.
+
 - **Enabled only if both** `TELEGRAM_BOT_TOKEN` (secret) and `TELEGRAM_CHAT_ID` (variable) are non-empty. If either is missing → disabled, run continues normally. CI and local runs work with neither set.
 - Setup (documented in README, done once by Mike): create a bot with @BotFather; create a **public channel**; add the bot as channel admin with **only** the "Post messages" right; set the two values in GitHub.
 - Sending: Bot API `sendMessage` to the channel with `parse_mode=HTML` and link previews disabled. One post per digest; Telegram fans it out to all subscribers at no cost.

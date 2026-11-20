@@ -9,10 +9,15 @@ A record qualifies only if BOTH hold:
      that merely *mentions* nginx doesn't count; and
   2. it is SEVERE — actively exploited (CISA KEV) or critical (CVSS >= 9.0 / severity "critical").
 
-Global-critical records are always included by the filter (watchlist or not). Every one of them is
-an alert (critical or exploited), so its feed carries instant alerts only. This feed is meant to
-drive a high-signal public channel, so the list is deliberately conservative: when in doubt, leave
-a technology out. Edit FUNDAMENTALS to tune it; the tests pin the intended behaviour.
+A second, lower tier — GLOBALLY NOTABLE — is a fundamental technology at high severity
+(CVSS 7.0–8.9 or severity "high"/"critical") that is not severe enough for the first tier.
+
+The Global Critical view/feed/Telegram channel carries both tiers:
+  critical tier  → an instant alert each (it is critical or exploited, so `is_alert` is true);
+  notable tier   → the twice-daily "Global brief" (08:00 and 20:00 local, the roundup windows).
+Both tiers are always included by the filter (watchlist or not). This drives a high-signal public
+channel, so the list is deliberately conservative: when in doubt, leave a technology out. Edit
+FUNDAMENTALS to tune it; the tests pin the intended behaviour.
 """
 
 from __future__ import annotations
@@ -25,6 +30,7 @@ from omnibrief.models import DigestItem, Vuln
 SLUG = "global-critical"
 LABEL = "Global Critical"
 MIN_CVSS = 9.0
+NOTABLE_MIN_CVSS = 7.0
 
 # Whole-word, case-insensitive. Prefer specific product names over generic words
 # ("apache http server", not "apache"; "openjdk", not "java"; no "php"/"python"/"git"/"wordpress",
@@ -93,19 +99,41 @@ def is_severe(kev: bool, cvss: float | None, severity: str | None) -> bool:
     return kev or (cvss is not None and cvss >= MIN_CVSS) or (cvss is None and (severity or "").lower() == "critical")
 
 
+def is_high(cvss: float | None, severity: str | None) -> bool:
+    if cvss is not None:
+        return cvss >= NOTABLE_MIN_CVSS
+    return (severity or "").lower() in ("high", "critical")
+
+
 def is_global_critical(v: Vuln) -> bool:
     return is_severe(v.kev or v.eu_exploited, v.cvss, v.severity) and touches_fundamental(core_text(v))
 
 
+def is_global_notable(v: Vuln) -> bool:
+    """Fundamental technology at high severity, but not global-critical (→ twice-daily brief)."""
+    kev = v.kev or v.eu_exploited
+    return (not is_severe(kev, v.cvss, v.severity) and is_high(v.cvss, v.severity)
+            and touches_fundamental(core_text(v)))
+
+
+def item_tier(item: DigestItem) -> str | None:
+    """'critical' | 'notable' | None for a digest item (uses the stored core_text)."""
+    text = item.core_text or f"{item.product}\n{item.title}"
+    if not touches_fundamental(text):
+        return None
+    if is_severe(item.kev, item.cvss, item.severity):
+        return "critical"
+    return "notable" if is_high(item.cvss, item.severity) else None
+
+
 class GlobalCriticalCategory(Category):
-    """Hardcoded category; decides on severity + fundamental technology, not on the watchlist."""
+    """Hardcoded category: both tiers (critical → alerts, notable → the twice-daily brief)."""
 
     def __init__(self) -> None:
         super().__init__(slug=SLUG, label=LABEL, terms=[])
 
     def matches_item(self, item: DigestItem) -> bool:
-        text = item.core_text or f"{item.product}\n{item.title}"
-        return is_severe(item.kev, item.cvss, item.severity) and touches_fundamental(text)
+        return item_tier(item) is not None
 
 
 GLOBAL_CRITICAL = GlobalCriticalCategory()

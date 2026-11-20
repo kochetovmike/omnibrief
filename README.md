@@ -71,6 +71,30 @@ python -m omnibrief render-only --data ./data --site ./site   # rebuild the site
 4. Run **Actions → collect → Run workflow** once. The first run creates the orphan `data` branch.
 5. Optional: protect `main` (PRs only).
 
+## Telegram channel (optional)
+
+Posts **Global Critical only** to a public channel (here: t.me/vulnerabilitiesbrief):
+
+- **Alert** — one message per Global Critical vulnerability (fundamental technology + exploited or
+  CVSS ≥ 9), sent by the hourly run that finds it.
+- **Global brief** — after 08:00 and 20:00 (Vienna): the high-severity (CVSS 7–8.9) vulnerabilities in
+  fundamental technologies from the 12 hours that just ended. Empty windows post nothing.
+
+Setup, once:
+1. @BotFather → `/newbot` → copy the token. Optional: `/setjoingroups` → Disable.
+2. Channel → Manage channel → Administrators → add the bot with **only** "Post Messages".
+3. Repo → Settings → Secrets and variables → Actions: secret `TELEGRAM_BOT_TOKEN`, variable
+   `TELEGRAM_CHAT_ID` = `@vulnerabilitiesbrief`.
+4. Channel description (attribution): *Automated alerts for global-critical vulnerabilities. Data: CISA KEV,
+   NVD, GitHub Advisory Database, EPSS. Sources & licences: https://kochetovmike.github.io/omnibrief/about.html.
+   This product uses the NVD API but is not endorsed or certified by the NVD.*
+5. Actions → collect → Run workflow → tick **"Also send a test message"** to check the wiring.
+
+Without the two values the channel is simply disabled; nothing fails. Each message is recorded in
+`state/deliveries/telegram.json` on the `data` branch, so re-runs never post twice; only alerts from the
+last 24 h are ever sent, so enabling the channel or recovering from an outage doesn't flood it.
+Status shows in `health.json` and on the hub (`publishers.telegram`).
+
 ## Rotating keys
 
 Replace the secret value under **Settings → Secrets and variables → Actions**; the next run picks it up.

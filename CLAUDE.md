@@ -96,6 +96,12 @@ secrets and write permissions out of the job that runs pip-installed code.
   includes these. Keep the list conservative and specific (no bare "php"/"java"/"httpd"/"jenkins": they
   pull in plugins and embedded devices); `tests/test_global_critical.py` pins what must and must not match.
   It feeds the planned Telegram channel.
+- **Telegram** (`publishers/telegram.py`, push): Global Critical only. `item_tier` = "critical" → one
+  alert each; "notable" (fundamental tech, CVSS 7–8.9) → the Global brief for the 12-hour window that just
+  closed (08:00/20:00 local, same `rollup_window` as Atom roundups). `plan()` is pure (what's due),
+  `deliver()` sends + records in `state/deliveries/telegram.json`; `python -m omnibrief deliver` runs in its
+  own workflow job after state is pushed. The bot token is in the API URL: never log URLs or put them in
+  errors. Collect-time health reads push status from the delivery record (the collect job has no token).
 - The Atom feed is a **message feed**, not the digests (`publishers/atom.py`): one alert entry per
   critical-or-KEV item (`is_alert`), and one roundup per closed 12-hour window (07/19 local,
   `rollup_window`) for everything else. It is a pure function of the digest history + run time

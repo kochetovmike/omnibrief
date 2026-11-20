@@ -11,10 +11,11 @@ import logging
 from omnibrief.models import PublisherStatus
 from omnibrief.publishers.atom import AtomPublisher
 from omnibrief.publishers.base import Publisher, PublisherContext
+from omnibrief.publishers.telegram import TelegramPublisher
 
 log = logging.getLogger(__name__)
 
-PUBLISHER_TYPES: dict[str, type[Publisher]] = {cls.type: cls for cls in (AtomPublisher,)}
+PUBLISHER_TYPES: dict[str, type[Publisher]] = {cls.type: cls for cls in (AtomPublisher, TelegramPublisher)}
 
 
 def build_publishers(ctx: PublisherContext) -> tuple[list[Publisher], dict[str, PublisherStatus]]:

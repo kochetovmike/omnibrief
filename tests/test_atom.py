@@ -35,13 +35,13 @@ def entries(feed):
     return [(e.findtext(f"{ATOM}id"), e.findtext(f"{ATOM}title"), e) for e in feed.findall(f"{ATOM}entry")]
 
 
-def test_rollup_windows_are_07_and_19_vienna_time_dst_safe():
+def test_rollup_windows_are_08_and_20_vienna_time_dst_safe():
     winter = datetime(2026, 11, 20, 10, 0, tzinfo=UTC)  # 11:00 CET
-    assert rollup_window(winter, TZ) == (datetime(2026, 11, 20, 6, tzinfo=UTC), datetime(2026, 11, 20, 18, tzinfo=UTC))
-    night = datetime(2026, 11, 20, 3, 0, tzinfo=UTC)  # 04:00 CET -> window started 19:00 the day before
-    assert rollup_window(night, TZ) == (datetime(2026, 11, 19, 18, tzinfo=UTC), datetime(2026, 11, 20, 6, tzinfo=UTC))
+    assert rollup_window(winter, TZ) == (datetime(2026, 11, 20, 7, tzinfo=UTC), datetime(2026, 11, 20, 19, tzinfo=UTC))
+    night = datetime(2026, 11, 20, 3, 0, tzinfo=UTC)  # 04:00 CET -> window started 20:00 the day before
+    assert rollup_window(night, TZ) == (datetime(2026, 11, 19, 19, tzinfo=UTC), datetime(2026, 11, 20, 7, tzinfo=UTC))
     summer = datetime(2026, 7, 1, 10, 0, tzinfo=UTC)  # CEST
-    assert rollup_window(summer, TZ)[0] == datetime(2026, 7, 1, 5, tzinfo=UTC)
+    assert rollup_window(summer, TZ)[0] == datetime(2026, 7, 1, 6, tzinfo=UTC)  # 08:00 CEST
 
 
 def test_one_alert_per_critical_or_exploited_vulnerability(cfg, tmp_path):
@@ -59,19 +59,19 @@ def test_one_alert_per_critical_or_exploited_vulnerability(cfg, tmp_path):
 
 
 def test_moderate_items_batched_into_one_roundup_after_window_closes(cfg, tmp_path):
-    a = digest(datetime(2026, 11, 20, 6, 17, tzinfo=UTC), item("CVE-10", "high", 8.0))
+    a = digest(datetime(2026, 11, 20, 7, 17, tzinfo=UTC), item("CVE-10", "high", 8.0))
     b = digest(datetime(2026, 11, 20, 9, 17, tzinfo=UTC), item("CVE-11", "medium", 5.4), item("CVE-12", "high", 7.2))
-    c = digest(datetime(2026, 11, 20, 18, 17, tzinfo=UTC), item("CVE-13", "low", 3.1))  # next window
-    feed = publish(cfg, tmp_path, [a, b, c], now=datetime(2026, 11, 20, 18, 17, tzinfo=UTC))
+    c = digest(datetime(2026, 11, 20, 19, 17, tzinfo=UTC), item("CVE-13", "low", 3.1))  # next window
+    feed = publish(cfg, tmp_path, [a, b, c], now=datetime(2026, 11, 20, 19, 17, tzinfo=UTC))
     got = entries(feed)
     assert len(got) == 1
     entry_id, title, entry = got[0]
-    assert entry_id == "urn:omnibrief:vulns:roundup:20261120T0600Z"
-    assert title.startswith("🟠 Roundup · 20 Nov, 07:00–19:00") and "2 high" in title and "1 medium" in title
+    assert entry_id == "urn:omnibrief:vulns:roundup:20261120T0700Z"
+    assert title.startswith("🟠 Roundup · 20 Nov, 08:00–20:00") and "2 high" in title and "1 medium" in title
     html = entry.findtext(f"{ATOM}content")
     assert html.index("CVE-10") < html.index("CVE-11")  # highest severity first
     assert "CVE-13" not in html
-    assert entry.findtext(f"{ATOM}published") == "2026-11-20T18:00:00Z"
+    assert entry.findtext(f"{ATOM}published") == "2026-11-20T19:00:00Z"
 
 
 def test_feed_is_rebuilt_without_old_or_stale_entries(cfg, tmp_path):
