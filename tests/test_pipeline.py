@@ -216,6 +216,12 @@ def test_hub_shows_global_critical_feed_status_and_health(cfg, tmp_path, env):
     assert 'href="feeds/vulns-oracle.atom">Atom' in hub and 'href="cat-oracle.html">View' in hub
     # 3) system health
     assert 'id="status-pill"' in hub and "Last success" in hub
+    # site icon: written, linked from every page, referenced by the feeds
+    assert (opts.site_dir / "favicon.svg").read_text().startswith("<svg")
+    for page in ("index.html", "general.html", "about.html", "cat-global-critical.html"):
+        assert 'rel="icon" type="image/svg+xml" href="favicon.svg"' in (opts.site_dir / page).read_text("utf-8")
+    feed = (opts.site_dir / "feeds" / "vulns.atom").read_text("utf-8")
+    assert "<icon>https://kochetovmike.github.io/omnibrief/favicon.svg</icon>" in feed
     # the hub is minimal: no lanes, timeline or digest log; untrusted text escaped
     assert 'class="lanes"' not in hub and 'class="log"' not in hub and "<script>alert" not in hub
 

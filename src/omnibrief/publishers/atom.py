@@ -241,6 +241,7 @@ class AtomPublisher(Publisher):
             type="text/html")
         _el(feed, "rights", short_rights(topic.source_types()))
         _el(feed, "generator", "Omnibrief")
+        _el(feed, "icon", f"{base}favicon.svg")
 
         for e in entries:
             entry = _el(feed, "entry")

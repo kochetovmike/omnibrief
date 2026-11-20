@@ -497,6 +497,7 @@ def _page(title: str, body: str, head: str = "", script: bool = False) -> str:
         "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\">"
         "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
         "<meta name=\"theme-color\" content=\"#05030b\">"
+        "<link rel=\"icon\" type=\"image/svg+xml\" href=\"favicon.svg\">"
         f"<title>{escape(title)}</title>{FONTS}<style>{CSS}</style>{head}</head><body>"
         '<div class="top"><div class="wrap"><div class="brand"><span class="mark"></span>OMNIBRIEF'
         "<small>vulnerability war room</small></div><nav>"
@@ -727,6 +728,18 @@ def write_health(site_dir: Path, data: dict) -> None:
     (site_dir / "health.json").write_text(json.dumps(data, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
 
+# Site icon: the header's brand mark (violet diamond outline, cyan core) on the dark background.
+FAVICON_SVG = (
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">'
+    '<rect width="64" height="64" rx="14" fill="#05030b"/>'
+    '<path d="M32 9 55 32 32 55 9 32Z" fill="none" stroke="#c77dff" stroke-width="5" stroke-linejoin="round"/>'
+    '<path d="M32 23 41 32 32 41 23 32Z" fill="#00f0ff"/>'
+    "</svg>\n"
+)
+FAVICON = "favicon.svg"
+
+
 def write_static(site_dir: Path) -> None:
     # Serve files as-is (no Jekyll processing on Pages).
     (site_dir / ".nojekyll").write_text("", encoding="utf-8")
+    (site_dir / FAVICON).write_text(FAVICON_SVG, encoding="utf-8")
