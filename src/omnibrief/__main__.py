@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 from omnibrief.config import ConfigError, check_notice, load_config
-from omnibrief.pipeline import RunOptions, render_site
+from omnibrief.pipeline import HISTORY_DIGESTS, RunOptions, render_site
 from omnibrief.pipeline import run as run_pipeline
 from omnibrief.state import Store
 
@@ -68,7 +68,7 @@ def main(argv: list[str] | None = None) -> int:
         args.site.mkdir(parents=True, exist_ok=True)
         for topic in cfg.topics:
             pubs, _ = build_publishers(PublisherContext(cfg, topic, args.site, dict(os.environ)))
-            digests = store.recent_digests(topic.id, cfg.site.entries_per_feed)
+            digests = store.recent_digests(topic.id, HISTORY_DIGESTS)
             for pub in pubs:
                 if pub.kind == "static":
                     pub.publish(digests)

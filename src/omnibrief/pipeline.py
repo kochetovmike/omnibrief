@@ -34,6 +34,7 @@ from omnibrief.state import Store
 log = logging.getLogger(__name__)
 
 SEEN_RETENTION_DAYS = 90
+HISTORY_DIGESTS = 8 * 14  # up to 8 runs/day for the 14 days the feed and dashboard show
 MAX_CATCHUP = timedelta(days=7)
 CATCHUP_OVERLAP = timedelta(hours=1)
 
@@ -172,10 +173,10 @@ def run_topic(
 
 
 def _publish_static(cfg: Config, topic: TopicConfig, store: Store, opts: RunOptions, run: RunRecord) -> None:
-    ctx = PublisherContext(cfg=cfg, topic=topic, site_dir=opts.site_dir, env=opts.env)
+    ctx = PublisherContext(cfg=cfg, topic=topic, site_dir=opts.site_dir, env=opts.env, now=run.started_utc)
     publishers, statuses = build_publishers(ctx)
     run.publishers.update(statuses)
-    digests = store.recent_digests(topic.id, cfg.site.entries_per_feed)
+    digests = store.recent_digests(topic.id, HISTORY_DIGESTS)
     for pub in publishers:
         if pub.kind != "static":
             # Push publishers run later, in `deliver`, after state is pushed (design §3).
@@ -191,7 +192,7 @@ def _publish_static(cfg: Config, topic: TopicConfig, store: Store, opts: RunOpti
 
 def render_site(cfg: Config, store: Store, site_dir: Path, runs: list[RunRecord] | None = None) -> None:
     site_dir.mkdir(parents=True, exist_ok=True)
-    digests = {t.id: store.recent_digests(t.id, cfg.site.entries_per_feed) for t in cfg.topics}
+    digests = {t.id: store.recent_digests(t.id, HISTORY_DIGESTS) for t in cfg.topics}
     site_mod.write_static(site_dir)
     # The full health record is persisted so `render-only` can redraw the dashboard without a run.
     health = site_mod.health(runs, store.load_health_state()) if runs else store.load_health_state()

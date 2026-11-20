@@ -1,7 +1,9 @@
 # Omnibrief
 
 A hub for alerts: openly licensed vulnerability sources in → one merged, filtered, summarised
-digest out. Runs every 3 hours on GitHub Actions and publishes a public Atom feed on GitHub Pages.
+digest out. Runs every 3 hours on GitHub Actions and publishes a dashboard and a public Atom alert feed on
+GitHub Pages: one short entry per critical or actively exploited vulnerability, plus a 12-hour roundup
+(07:00 and 19:00 Vienna time) for everything else.
 Costs €0: GitHub Free, the Gemini API free tier, and public data APIs. See [design.md](design.md).
 
 **Feed:** <https://kochetovmike.github.io/omnibrief/feeds/vulns.atom> ·

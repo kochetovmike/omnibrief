@@ -450,8 +450,8 @@ def write_index(
                 for d in digests
             )
             parts.append(
-                f'<section class="log"><h2>Digest log <span class="hint">· also in the '
-                f'<a href="{href}">Atom feed</a></span></h2>{log}</section>'
+                f'<section class="log"><h2>Digest log <span class="hint">· full digests; the '
+                f'<a href="{href}">Atom feed</a> carries short alerts and 12-hour roundups</span></h2>{log}</section>'
             )
     parts.append("</main>")
     html = _page("Omnibrief — vulnerability war room", "".join(parts), head="".join(feeds), script=True)

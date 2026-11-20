@@ -27,7 +27,7 @@ class Defaults(BaseModel):
 class SiteConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
     base_url: HttpUrl
-    entries_per_feed: int = Field(50, ge=1, le=500)
+    entries_per_feed: int = Field(40, ge=1, le=500)
     timezone: str = "Europe/Vienna"
 
     @property

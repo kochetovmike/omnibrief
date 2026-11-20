@@ -9,11 +9,12 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 from typing import Literal
 
 from omnibrief.config import Config, PublisherConfig, TopicConfig
-from omnibrief.models import Digest
+from omnibrief.models import Digest, utcnow
 
 
 @dataclass
@@ -29,6 +30,7 @@ class PublisherContext:
     topic: TopicConfig
     site_dir: Path
     env: Mapping[str, str]
+    now: datetime = field(default_factory=utcnow)  # run time; static outputs are a function of it
 
 
 class Publisher:

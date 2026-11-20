@@ -319,8 +319,11 @@ Records (JSON):
 
 ### Atom
 - Feed `site/feeds/vulns.atom` at `{base_url}feeds/vulns.atom`; feed id `urn:omnibrief:vulns`.
-- One entry per run with output: `id = urn:omnibrief:vulns:{runId}`, `title = "Vulnerability digest — {local datetime Europe/Vienna}"`, `content type="html"` = sanitised digest, plus `<link rel="related">` per record (capped at 20).
-- Rebuilt every run from the last 50 digest files on the `data` branch. No read-modify-write on XML.
+- **Message-style alert feed** (changed 2026-11-20, replaces one-entry-per-run digests):
+  - **Alert:** one entry per vulnerability that is critical *or* actively exploited (CISA KEV), as soon as a run finds it. `id = urn:omnibrief:vulns:alert:{runId}:{vulnId}`, title e.g. `🚨 Exploited · CVE-… · product`, short content (LLM sentence if available, facts, links, attribution footer).
+  - **Roundup:** one entry per 12-hour window (07:00–19:00 / 19:00–07:00 Europe/Vienna) listing every other included vulnerability, published once the window has closed. `id = urn:omnibrief:vulns:roundup:{windowStartUtc}`.
+  - Full digests stay on the dashboard (digest log); the feed only carries short messages.
+- Rebuilt every run from the last 14 days of digest files on the `data` branch (max `entries_per_feed` entries). No read-modify-write on XML.
 - Validates with the W3C feed validator. Confirm Pages serves `.atom` with an Atom/XML content type; if not, publish as `.xml` and document why.
 
 ### Attribution (mandatory, generated from `NOTICE.md`)

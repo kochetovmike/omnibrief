@@ -75,7 +75,7 @@ def test_two_consecutive_runs_no_duplicates(cfg, tmp_path, env):
     assert len(store.recent_digests("vulns", 50)) == 1
 
     feed = ET.parse(opts.site_dir / "feeds" / "vulns.atom").getroot()
-    assert len(feed.findall(f"{ATOM}entry")) == 1
+    assert len(feed.findall(f"{ATOM}entry")) == 2  # one alert per critical vulnerability, no repeats
 
 
 def test_kev_addition_for_seen_cve_re_emits_as_updated(cfg, tmp_path, env):
@@ -114,10 +114,11 @@ def test_feed_rights_entry_shape_and_site_attribution(cfg, tmp_path, env):
     assert feed.findtext(f"{ATOM}id") == "urn:omnibrief:vulns"
     assert "not endorsed or certified by the NVD" in feed.findtext(f"{ATOM}rights")
     entry = feed.find(f"{ATOM}entry")
-    assert entry.findtext(f"{ATOM}id").startswith("urn:omnibrief:vulns:20261120T151700Z")
+    assert entry.findtext(f"{ATOM}id") == "urn:omnibrief:vulns:alert:20261120T151700Z:CVE-2026-0001"
+    assert entry.findtext(f"{ATOM}title").startswith("🔴 Critical · CVE-2026-0001")
     assert entry.find(f"{ATOM}content").get("type") == "html"
-    rels = [link.get("rel") for link in entry.findall(f"{ATOM}link")]
-    assert "related" in rels and "alternate" in rels
+    alt = entry.find(f"{ATOM}link[@rel='alternate']")
+    assert alt.get("href") == "https://nvd.nist.gov/vuln/detail/CVE-2026-0001"
     about = (opts.site_dir / "about.html").read_text(encoding="utf-8")
     assert "creativecommons.org/licenses/by/4.0" in about and "See EPSS at" in about
     index = (opts.site_dir / "index.html").read_text(encoding="utf-8")
