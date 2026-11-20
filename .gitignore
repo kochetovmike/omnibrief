@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Pipeline outputs — never committed to main:
+#   data/  is the `data` branch checked out as a worktree (state, digests, run records)
+#   site/  is the generated GitHub Pages site (deployed via actions/deploy-pages)
+#   raw/   is the raw merged-record archive (uploaded as an Actions artifact)
+/data/
+/site/
+/raw/
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+.claude/settings.local.json
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
