@@ -1,0 +1,16 @@
+id: tenders
+title: "Public tenders — IT & data (AT, DE, CH)"
+description: "New EU public procurement notices (TED) for IT services, software, data and cloud, in Austria, Germany and Switzerland."
+kind: digest
+cadence: { every: 1d, window: 2d, not_before: "09:30", business_days: true }
+render: { mode: llm_digest, prompt: tenders, hashtags: ["#tender", "#procurement"], max_input_items: 40 }
+sources:
+  - id: ted
+    type: ted
+    params:
+      countries: [AUT, DEU, CHE]
+      cpv: [72000000, 48000000, 72300000, 72500000]   # IT services, software packages, data services, computer-related services
+      limit: 100
+filters: {}
+material_fields: [deadline, estimated_value]
+attribution: [ted]

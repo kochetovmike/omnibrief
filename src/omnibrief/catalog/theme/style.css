@@ -1,0 +1,57 @@
+/* Omnibrief default theme — dark, minimal, thin type. Override any file from instance/site/. */
+:root{
+  --bg:#05030b;--panel:rgba(16,10,30,.78);--panel-2:rgba(28,16,52,.7);--line:rgba(176,38,255,.22);
+  --fg:#e9e4ff;--muted:#8d82b3;--accent:#c77dff;--accent-strong:#b026ff;--cyan:#00f0ff;
+  --ok:#00ffa3;--warn:#ffb000;--bad:#ff2a6d;--tg:#2aabee;--cut:10px;
+  --sans:"Segoe UI Light","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,monospace;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;color:var(--fg);font:300 15px/1.55 var(--sans);
+  background:radial-gradient(900px 420px at 88% -8%,rgba(176,38,255,.2),transparent 65%),
+    linear-gradient(rgba(176,38,255,.05) 1px,transparent 1px) 0 0/100% 32px,
+    linear-gradient(90deg,rgba(176,38,255,.05) 1px,transparent 1px) 0 0/32px 100%,var(--bg)}
+a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,240,255,.3)}
+a:hover{color:#fff;border-bottom-color:var(--cyan)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.narrow{max-width:46rem}
+.mono{font-family:var(--mono)}
+.label{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.top{border-bottom:1px solid var(--line);background:rgba(5,3,11,.75);position:sticky;top:0;z-index:5}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:56px;flex-wrap:wrap}
+.brand{letter-spacing:.42em;color:#fff;text-shadow:0 0 12px rgba(176,38,255,.9);border:0;display:flex;gap:12px;align-items:center}
+.brand .mark{width:11px;height:11px;border:1px solid var(--accent);transform:rotate(45deg);box-shadow:0 0 12px var(--accent-strong)}
+.top nav{margin-left:auto;display:flex;gap:18px;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;flex-wrap:wrap}
+.top nav a{color:var(--muted);border:0}.top nav a:hover{color:var(--accent)}
+.hero{padding:34px 0 10px}
+.hero h1{font-weight:300;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:.24em;text-transform:uppercase;margin:6px 0;
+  color:#fff;text-shadow:0 0 18px rgba(176,38,255,.6)}
+.hero p{color:var(--muted);max-width:44rem}
+h2{font-size:.74rem;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin:30px 0 14px;
+  display:flex;gap:12px;align-items:center}
+h2::before{content:"//";color:var(--cyan);letter-spacing:0}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card,.panel{background:var(--panel);border:1px solid var(--line);padding:16px 18px;
+  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,var(--cut) 100%,0 calc(100% - var(--cut)))}
+.card h3{margin:4px 0 6px;font-weight:400;font-size:1.05rem;color:#fff;letter-spacing:.04em}
+.card h3 a{color:#fff;border:0}.card h3 a:hover{color:var(--cyan)}
+.card p.desc{color:var(--muted);font-size:.86rem;margin:0 0 10px}
+.meta{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.dot{display:inline-block;width:7px;height:7px;margin-right:6px;background:currentColor;box-shadow:0 0 8px currentColor}
+.st-ok{color:var(--ok)}.st-degraded,.st-pending,.st-skipped{color:var(--warn)}.st-failed{color:var(--bad)}.st-disabled{color:var(--muted)}
+.latest{list-style:none;margin:10px 0;padding:0;border-top:1px solid var(--line)}
+.latest li{padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.84rem;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em}
+.links a.tg{color:#7fd3ff;border-bottom-color:rgba(42,171,238,.5)}
+.entry{margin-bottom:12px}
+.entry h3{font-weight:400;font-size:.98rem;margin:4px 0 6px;color:#fff}
+.entry li{margin:.3rem 0}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:400;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-size:.68rem}
+.prose{background:var(--panel);border:1px solid var(--line);padding:8px 26px 20px;margin:26px 0}
+.prose li{margin:.5rem 0}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:18px 0 30px;color:var(--muted);font-size:.78rem}

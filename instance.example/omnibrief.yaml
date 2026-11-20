@@ -1,0 +1,43 @@
+# Example instance (design-v2 §4). Copy this directory to `instance/` in YOUR FORK of the engine.
+# Only env var NAMES go here — never secret values (validate-config rejects token-like strings).
+schema_version: 2
+
+site:
+  base_url: https://kochetovmike.github.io/omnibrief/   # your fork's Pages URL
+  title: "Omnibrief"
+  tagline: "Licence-clean alerts and digests, delivered everywhere."
+  language: en
+  timezone: Europe/Vienna
+  theme: default                 # "instance" = use only instance/site/
+
+llm:
+  provider: gemini
+  model: gemini-flash-lite-latest   # Flash-Lite free tier (~500 requests/day); pin an exact id if preferred
+  api_key_env: GEMINI_API_KEY
+  max_calls_per_run: 6           # hard cap; extra digest topics fall back to titles + links
+  max_calls_per_day: 40          # tracked in state/llm_budget.json
+
+topics:                          # which catalogue topics are on, and where they go
+  vulns:         { enabled: true, publish_to: [feed, tg_security] }
+  tenders:       { enabled: true, publish_to: [feed, tg_tenders] }
+  arxiv_ai:      { enabled: true, publish_to: [feed] }
+  safety_gate:   { enabled: true, publish_to: [feed, tg_alerts] }
+  space_weather: { enabled: true, publish_to: [feed, tg_alerts] }
+  earthquakes:   { enabled: true, publish_to: [feed, tg_alerts] }
+  weather_at:    { enabled: true, publish_to: [feed, tg_alerts] }
+
+channels:                        # named channel instances; each switches on only when its env vars exist
+  feed:        { type: feed }    # Atom + RSS per topic, combined feed, OPML; always on
+  tg_security: { type: telegram, bot_token_env: TELEGRAM_BOT_TOKEN, chat_id_env: TELEGRAM_CHAT_ID,
+                 url: "https://t.me/vulnerabilitiesbrief" }
+  tg_tenders:  { type: telegram, bot_token_env: TELEGRAM_BOT_TOKEN, chat_id_env: TG_TENDERS_CHAT_ID }
+  tg_alerts:   { type: telegram, bot_token_env: TELEGRAM_BOT_TOKEN, chat_id_env: TG_ALERTS_CHAT_ID,
+                 max_posts_per_run: 10, quiet_hours: "23:00-06:00" }
+  # bluesky / threads: planned (design-v2 §9), not in this engine version yet
+
+storage:
+  primary: { type: git_branch, branch: data }
+  sinks:
+    - { type: artifact }
+    - { type: jsonl_git, branch: archive }
+    # - { type: s3, … } / { type: azure_blob, … }: planned, off by default

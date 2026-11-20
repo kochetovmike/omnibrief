@@ -1,115 +1,106 @@
 # Omnibrief
 
-A hub for alerts: openly licensed vulnerability sources in → one merged, filtered, summarised
-digest out. Runs every hour on GitHub Actions and publishes to GitHub Pages:
+A hub for licence-clean alerts and digests: many openly licensed sources in → filtered, de-duplicated,
+optionally AI-summarised → many channels out (Atom/RSS feeds, a website, Telegram channels).
+One hourly GitHub Actions run; a planner decides which topics are due. Costs €0: GitHub Free,
+the Gemini API free tier, public data APIs. Design: [design-v2](design-v2%20(2).md) (supersedes [design.md](design.md)).
 
-- **Hub** (`index.html`): the built-in **Global Critical** feed, the status of every feed, and system health.
-- **Dashboards** (`general.html`, `cat-<name>.html`): everything, or one category, by criticality and date.
-- **Atom feeds**: one per view — one short entry per critical or actively exploited vulnerability, plus a
-  12-hour roundup (07:00 and 19:00 Vienna time) for everything else.
-Costs €0: GitHub Free, the Gemini API free tier, and public data APIs. See [design.md](design.md).
+| Topic | Kind | Cadence | Source |
+|---|---|---|---|
+| `vulns` | digest + Global Critical alerts | hourly | CISA KEV, NVD, GitHub Advisory DB, EPSS |
+| `tenders` | AI digest | daily ≥ 09:30, business days | EU TED (AT, DE, CH; IT/data CPV codes) |
+| `arxiv_ai` | AI digest (top 10 picks) | daily ≥ 07:00 | arXiv API (cs.AI, cs.LG, cs.CL + keywords) |
+| `safety_gate` | AI digest | daily (new report each Friday) | EU Safety Gate weekly report |
+| `space_weather` | template alerts | hourly | NOAA SWPC (G2 / Kp 6 or stronger) |
+| `earthquakes` | template alerts | hourly | USGS (M4+ Europe & Alps, M3+ Austria) |
+| `weather_at` | template alerts | hourly | GeoSphere Austria (orange/red) |
 
-**Feed:** <https://kochetovmike.github.io/omnibrief/feeds/vulns.atom> ·
-**Sources & licences:** [NOTICE.md](NOTICE.md)
+Alert topics never call the AI; digest topics make at most one call per run, under a per-run and
+per-day budget. Without an AI key everything still publishes, digests as titles + links.
 
-## How it works
+## Engine vs instance
 
-```
-CISA KEV ─┐
-NVD      ─┼─► merge per CVE → EPSS + KEV enrichment → dedupe → filter → Gemini digest ─► Atom feed
-GHSA     ─┘                                                                             (Pages)
-```
+This repo is the **engine**: code, the topic catalogue (`src/omnibrief/catalog/`), the default theme,
+workflows and tests. It contains **no secrets and no `instance/`**, so its hourly workflow does nothing.
+An **instance** is a **fork** that adds `instance/` and its own secrets; that's what runs and publishes.
 
-A record is included if it is **actively exploited** (CISA KEV), **or** it has CVSS ≥ 7.0 **and**
-matches the watchlist, **or** its EPSS percentile is ≥ 0.99. A record already published comes back
-only on a material change (added to KEV, severity raised, fix released), marked "updated".
-If Gemini is unavailable, the digest is still published, unsummarised.
+Instances customise only through `instance/`, never engine files, so `git merge upstream/<release-tag>`
+(or GitHub's "Sync fork") never conflicts:
+
+| `instance/…` | Purpose |
+|---|---|
+| `omnibrief.yaml` | which topics are on, where each goes (channels), sinks, site settings — see `instance.example/` |
+| `topics/<id>.yaml` | deep-merged over the catalogue topic (thresholds, CPV codes, keywords…), or a new topic |
+| `prompts/<name>.md` | replaces a catalogue prompt |
+| `templates/<name>.{html,telegram}.j2` | replaces an alert template |
+| `site/<file>` | replaces any theme file (`index.html.j2`, `style.css`, …); extra files (e.g. `CNAME`) are copied |
+| `NOTICE.md` | replaces the attribution page text (validate-config checks it still credits every source) |
+
+### Create your instance (checklist)
+
+1. **Fork** this repo (it stays public: free Actions minutes and Pages). In the fork, **enable Actions**
+   (GitHub doesn't run workflows in a new fork until you do; scheduled ones need this explicitly).
+2. Copy `instance.example/` to `instance/`, set `site.base_url` to your fork's Pages URL, choose topics and
+   channels. Commit. (`engine-guard` allows `instance/` because the repo is a fork.)
+3. **Settings → Pages → Source: GitHub Actions.**
+4. **Settings → Secrets and variables → Actions**, as needed (everything is optional):
+   - Secrets: `GEMINI_API_KEY` (AI digests), `NVD_API_KEY` (faster NVD), `TELEGRAM_BOT_TOKEN`.
+   - Variables: `VULNS_WATCHLIST` (vulns categories, see below), `ARXIV_KEYWORDS` (extra keywords),
+     one chat id per Telegram channel you configured, e.g. `TELEGRAM_CHAT_ID=@vulnerabilitiesbrief`,
+     `TG_ALERTS_CHAT_ID`, `TG_TENDERS_CHAT_ID`. Names come from your `instance/omnibrief.yaml`; the workflow
+     passes all secrets/variables through, so you never edit the workflow.
+5. **Actions → run → Run workflow** with `topics = all` (and tick the Telegram test if you set channels).
+   The first run creates the `data` (state) and `archive` (JSONL history) branches.
+6. Upgrades: merge an engine **release tag** into your fork; CI runs `validate-config` on your instance.
+
+## Channels
+
+- **Feeds (always on):** `feeds/<topic>.atom` + `.rss` per topic, `feeds/all.atom`/`.rss` (latest 100 across
+  topics), `feeds/omnibrief.opml` (subscribe to everything). `vulns` additionally has one feed per watchlist
+  category and `feeds/vulns-global-critical.atom`.
+- **Telegram (optional):** any number of named channels sharing one bot; each topic lists the channels it
+  goes to. Per channel: `max_posts_per_run` (overflow → one "+N more" post) and `quiet_hours`
+  (non-critical posts wait). Alerts post one message each; digests post once per run. `vulns` posts
+  Global Critical alerts + the twice-daily Global brief (08:00/20:00). Delivery records in
+  `state/deliveries/<channel>.json` make re-runs idempotent; only the last 24 h is ever sent.
+  Bot setup: @BotFather `/newbot`; add the bot to each channel as admin with **only** "Post Messages".
+  Set each channel's description to credit its sources and link `about.html`.
+- **Bluesky, Threads, S3/Azure sinks:** in the design, not built yet (validate-config says so).
+
+### vulns: watchlist categories and Global Critical
+`VULNS_WATCHLIST` = comma-separated categories, each a term (`microsoft`) or `label=t1|t2`
+(`programming languages=python|pip|npm|maven|rust`). Each category gets a dashboard view and a feed;
+**category names are public** — keep them broad. **Global Critical** is built in: fundamental
+technologies (OpenSSL, Log4j, nginx, Linux kernel, Windows, Chrome, edge VPNs…) that are exploited or
+CVSS ≥ 9 (`src/omnibrief/global_critical.py`).
 
 ## Local development
 
 ```bash
-py -3.12 -m venv .venv            # or python3.12 -m venv .venv
-.venv/Scripts/activate            # Linux/macOS: source .venv/bin/activate
+py -3.12 -m venv .venv && .venv/Scripts/activate      # Linux/macOS: python3.12 -m venv .venv; source .venv/bin/activate
 pip install -e ".[dev]"
-
-pytest                            # offline; tests never hit the network
+pytest                                                # offline; tests never hit the network
 ruff check .
-python -m omnibrief validate-config
-
-# A real run against live sources, writing into throwaway folders:
-VULNS_WATCHLIST="microsoft,cisco,wordpress" GEMINI_API_KEY=... \
-  python -m omnibrief run --data ./data --site ./site --raw ./raw
-# Without GEMINI_API_KEY (or with --no-llm) you get un-summarised fallback digests.
-
-python -m omnibrief render-only --data ./data --site ./site   # rebuild the site from existing data
+python -m omnibrief --instance instance.example validate-config
+python -m omnibrief --instance instance.example plan --data ./data
+# Live run of every topic into throwaway folders (no AI key → un-summarised digests):
+python -m omnibrief --instance instance.example run --data ./data --site ./site --out ./out --archive ./archive --topics all
+python -m omnibrief --instance instance.example render-only --data ./data --site ./site
+python -m omnibrief --instance instance.example deliver --data ./data --test   # needs Telegram env vars
 ```
 
-`data/`, `site/` and `raw/` are git-ignored on `main`.
+## Adding a topic or source
 
-## One-time GitHub setup
-
-1. Repo must be **public** (free Pages and Actions minutes).
-2. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-3. **Settings → Secrets and variables → Actions:**
-   - Secret `GEMINI_API_KEY` — from Google AI Studio (free tier).
-   - Secret `NVD_API_KEY` — optional, free from NVD; raises the rate limit from 5 to 50 requests / 30 s.
-   - Variable `VULNS_WATCHLIST` — comma-separated **categories**. Each entry is either a single term
-     (`microsoft`) or a label with several terms (`programming languages=python|pip|npm|maven|rust`).
-     Terms match case-insensitively on whole words against title, description, product and package
-     (`ecosystem name`) text. Example:
-     `microsoft,oracle,google,apache,wordpress,programming languages=python|pip|npm|java|maven|golang|rust`
-     Each category gets its own dashboard view (dropdown on the dashboards, `cat-<name>.html`) and its
-     own Atom feed (`feeds/vulns-<name>.atom`); **General** (`feeds/vulns.atom`) always carries everything,
-     including actively exploited items that match no category. Changing the variable re-sorts the last
-     14 days on the next run. **The category names are public** (feed URLs, dropdown) — keep them broad.
-   - Built in, independent of the watchlist: **Global Critical** (`cat-global-critical.html`,
-     `feeds/vulns-global-critical.atom`) — vulnerabilities in fundamental technologies (OpenSSL/OpenSSH,
-     Log4j, Spring, nginx, Linux kernel, Windows, Chrome, edge VPNs/firewalls, …) that are actively
-     exploited or CVSS ≥ 9.0. Always collected, even if nothing on the watchlist matches; every entry is an
-     instant alert (≈ 2–3 a week). Intended as the source for a Telegram channel. Tune the technology list
-     in `src/omnibrief/global_critical.py`.
-4. Run **Actions → collect → Run workflow** once. The first run creates the orphan `data` branch.
-5. Optional: protect `main` (PRs only).
-
-## Telegram channel (optional)
-
-Posts **Global Critical only** to a public channel (here: t.me/vulnerabilitiesbrief):
-
-- **Alert** — one message per Global Critical vulnerability (fundamental technology + exploited or
-  CVSS ≥ 9), sent by the hourly run that finds it.
-- **Global brief** — after 08:00 and 20:00 (Vienna): the high-severity (CVSS 7–8.9) vulnerabilities in
-  fundamental technologies from the 12 hours that just ended. Empty windows post nothing.
-
-Setup, once:
-1. @BotFather → `/newbot` → copy the token. Optional: `/setjoingroups` → Disable.
-2. Channel → Manage channel → Administrators → add the bot with **only** "Post Messages".
-3. Repo → Settings → Secrets and variables → Actions: secret `TELEGRAM_BOT_TOKEN`, variable
-   `TELEGRAM_CHAT_ID` = `@vulnerabilitiesbrief`.
-4. Channel description (attribution): *Automated alerts for global-critical vulnerabilities. Data: CISA KEV,
-   NVD, GitHub Advisory Database, EPSS. Sources & licences: https://kochetovmike.github.io/omnibrief/about.html.
-   This product uses the NVD API but is not endorsed or certified by the NVD.*
-5. Actions → collect → Run workflow → tick **"Also send a test message"** to check the wiring.
-
-Without the two values the channel is simply disabled; nothing fails. Each message is recorded in
-`state/deliveries/telegram.json` on the `data` branch, so re-runs never post twice; only alerts from the
-last 24 h are ever sent, so enabling the channel or recovering from an outage doesn't flood it.
-Status shows in `health.json` and on the hub (`publishers.telegram`).
-
-## Rotating keys
-
-Replace the secret value under **Settings → Secrets and variables → Actions**; the next run picks it up.
-A missing or invalid `GEMINI_API_KEY` never fails a run — digests are published un-summarised and
-`health.json` reports `llm: fallback` / `not_configured`.
-
-## Adding a source
-
-1. Check its licence explicitly allows reuse and republication (design §5); add it to
-   `SOURCE_LICENCES` in `src/omnibrief/attribution.py` with the phrases NOTICE.md must contain.
-2. Write an adapter in `src/omnibrief/sources/` (subclass `Source`, implement `discover` and/or
-   `enrich`), register it in `sources/__init__.py`, add offline tests with saved fixtures.
-3. Add an entry to `sources.yaml` and the attribution to `NOTICE.md`. `validate-config` enforces both.
+1. Check the licence explicitly allows reuse and republication; add the source type to `SOURCE_LICENCES`
+   in `src/omnibrief/attribution.py` with the phrases the NOTICE must contain, and the text to
+   `src/omnibrief/catalog/NOTICE.md`.
+2. New source: an adapter in `src/omnibrief/engine/sources/` returning `Item`s, registered in its
+   `__init__.py`, with a saved live sample in `tests/fixtures/<source>/` and offline tests.
+3. New topic: `src/omnibrief/catalog/topics/<id>.yaml` (sources, cadence, filters, material fields,
+   render mode) plus templates (alerts) or a prompt (digests). An instance can add a topic with just
+   `instance/topics/<id>.yaml`.
 
 ## Health
 
-`https://kochetovmike.github.io/omnibrief/health.json` — last run/success times, status
-(`ok` / `degraded`), failing sources, LLM status and per-publisher status.
+`<site>/status.html` and `health.json`: last run, per-topic status and last success, per-channel status,
+sinks, and AI calls used today vs the budget.

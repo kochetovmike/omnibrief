@@ -1,0 +1,13 @@
+id: earthquakes
+title: "Earthquakes — Europe & Alps"
+description: "USGS-located earthquakes of magnitude 4+ in Europe and the Alps, and 3+ in Austria."
+kind: alert
+cadence: { every: 1h, window: 3h }
+render: { mode: template, template: earthquake, hashtags: ["#earthquake"] }
+sources:
+  - { id: usgs, type: usgs_fdsn, params: { minmagnitude: 3.0, bbox: [34, -11, 72, 40] } }   # [min_lat, min_lon, max_lat, max_lon]
+filters:
+  min_fields: { magnitude: 4.0 }
+  always_include: { in_fields: { country: [Austria] }, min_fields: { magnitude: 3.0 } }
+material_fields: [magnitude, place, tsunami_flag]
+attribution: [usgs_fdsn]

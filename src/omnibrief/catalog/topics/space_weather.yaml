@@ -1,0 +1,14 @@
+id: space_weather
+title: "Space weather & aurora"
+description: "NOAA SWPC geomagnetic storm alerts and warnings at G2 (Kp 6) or stronger — the ones that can bring aurora to Central Europe."
+kind: alert
+cadence: { every: 1h, window: 3h }
+render: { mode: template, template: space_weather, hashtags: ["#spaceweather", "#aurora"] }
+sources:
+  - { id: swpc, type: noaa_swpc }
+filters:
+  any_of:
+    - { min_fields: { g_scale: 2 } }
+    - { min_fields: { kp: 6 } }
+material_fields: [code, serial]
+attribution: [noaa_swpc]

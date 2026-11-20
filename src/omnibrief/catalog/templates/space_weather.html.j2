@@ -1,0 +1,5 @@
+<p><strong>{{ item.title }}</strong></p>
+<p>Issued {{ item.published | local }}{% if f.kp %} · K-index {{ f.kp }}{% endif %}{% if f.g_scale %} · NOAA scale G{{ f.g_scale }}{% endif %}</p>
+{% if item.summary %}<p>{{ item.summary | clip(600) }}</p>{% endif %}
+<p><a href="{{ item.url }}">NOAA SWPC alerts, watches and warnings</a></p>
+<p><small>Data: NOAA Space Weather Prediction Center · <a href="{{ base }}about.html">Sources &amp; licences</a></small></p>

@@ -1,0 +1,6 @@
+🌌 <b>{{ item.title }}</b>
+Issued {{ item.published | local("%d %b, %H:%M %Z") }}{% if f.kp %} · K-index {{ f.kp }}{% endif %}{% if f.g_scale >= 2 %}
+Aurora may be visible further south than usual — look north after dark.{% endif %}
+
+<a href="{{ item.url }}">NOAA SWPC</a>
+<i>Data: NOAA SWPC · <a href="{{ base }}about.html">Sources &amp; licences</a></i>

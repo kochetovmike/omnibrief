@@ -552,8 +552,9 @@ def write_index(
     health: dict | None = None,
     now: datetime | None = None,
     env: Mapping[str, str] | None = None,
+    hub_path: str = "index.html",
 ) -> None:
-    """Writes the hub (index.html), general.html (everything) and cat-<slug>.html per category."""
+    """Writes the hub (index.html; vulns.html under the v2 engine), general.html and cat-<slug>.html."""
     now = now or utcnow()
     env = env or {}
     tz = cfg.site.timezone
@@ -599,7 +600,7 @@ def write_index(
         title = "Omnibrief — vulnerability war room" + ("" if slug is None else f" — {label}")
         html = _page(title, "".join(parts), head=head, script=True)
         (site_dir / page_path(slug)).write_text(html, encoding="utf-8")
-    _write_hub(cfg, site_dir, topic.id, items, categories, by_cat, health, now, telegram_url(cfg, env))
+    _write_hub(cfg, site_dir, topic.id, items, categories, by_cat, health, now, telegram_url(cfg, env), hub_path)
     # Pages for categories removed from the watchlist must not linger (matters for render-only).
     keep = {page_path(c.slug) for c in categories}
     for old in site_dir.glob("cat-*.html"):
@@ -691,7 +692,7 @@ def _telegram_callout(url: str) -> str:
 
 def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem], categories: list,
                by_cat: dict[str, list[BoardItem]], health: dict | None, now: datetime,
-               telegram: str | None = None) -> None:
+               telegram: str | None = None, hub_path: str = "index.html") -> None:
     from omnibrief.global_critical import SLUG as GC
     from omnibrief.global_critical import item_tier
 
@@ -736,7 +737,7 @@ def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem
     )
     html = _page("Omnibrief — vulnerability war room", f'<main class="wrap hub">{hero}{feeds}{system}</main>',
                  head=head, script=True)
-    (site_dir / "index.html").write_text(html, encoding="utf-8")
+    (site_dir / hub_path).write_text(html, encoding="utf-8")
 
 
 def write_about(cfg: Config, site_dir: Path) -> None:

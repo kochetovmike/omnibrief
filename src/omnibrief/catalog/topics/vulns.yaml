@@ -1,0 +1,32 @@
+# Vulnerabilities: the v1 pipeline as a plugin (merge KEV/NVD/GHSA + EPSS, watchlist categories,
+# Global Critical, message-style feeds, war-room dashboards, Telegram alerts + Global brief).
+id: vulns
+title: "Vulnerability digest"
+description: "Openly licensed vulnerability data (CISA KEV, NVD, GitHub Advisory Database, EPSS), merged per CVE, filtered and summarised. Includes the Global Critical feed."
+kind: digest
+plugin: vulns
+cadence: { every: 1h, window: 6h }      # hourly (Mike's choice, 2026-11-20); design-v2 table says 3h
+render: { mode: llm_digest, prompt: vulns, hashtags: ["#CVE", "#vulnerability"] }
+attribution: [cisa_kev, nvd, ghsa, epss]
+options:                                 # v1 settings, consumed by the vulns plugin
+  defaults: { timeout_seconds: 20, user_agent: "Omnibrief/0.2 (+https://github.com/kochetovmike/omnibrief)" }
+  entries_per_feed: 40
+  max_input_items: 40
+  filters:
+    min_cvss: 7.0
+    watchlist_env: VULNS_WATCHLIST       # Actions variable; categories = public feeds (see README)
+    always_include_if: [kev, eu_exploited]
+    epss_percentile_override: 0.99
+  discovery:
+    - { id: cisa-kev, type: cisa_kev, url: "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json", lookback_days: 2 }
+    - { id: nvd,      type: nvd,      url: "https://services.nvd.nist.gov/rest/json/cves/2.0", lookback_hours: 6, api_key_env: NVD_API_KEY }
+    - { id: ghsa,     type: ghsa,     url: "https://api.github.com/advisories", advisory_type: reviewed, lookback_hours: 6, token_env: GITHUB_TOKEN }
+  enrichment:
+    - { id: epss,     type: epss,     url: "https://api.first.org/data/v1/epss", batch_size: 100 }
+  telegram:                              # Global Critical alerts + Global brief (08:00/20:00)
+    max_message_chars: 4000
+    min_interval_seconds: 1.1
+    disable_link_previews: true
+    deliver_window_hours: 24
+    brief_max_items: 10
+    brief_grace_hours: 6

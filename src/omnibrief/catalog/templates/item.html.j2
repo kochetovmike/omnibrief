@@ -1,0 +1,4 @@
+<p><strong>{{ item.title }}</strong>{% if item.status == "updated" %} <em>(updated)</em>{% endif %}</p>
+{% if item.summary %}<p>{{ item.summary | clip(400) }}</p>{% endif %}
+<p><a href="{{ item.url }}">{{ item.url | host }}</a> · {{ item.published | local }}</p>
+<p><small><a href="{{ base }}about.html">Sources &amp; licences</a></small></p>

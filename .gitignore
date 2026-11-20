@@ -23,9 +23,12 @@ htmlcov/
 #   data/  is the `data` branch checked out as a worktree (state, digests, run records)
 #   site/  is the generated GitHub Pages site (deployed via actions/deploy-pages)
 #   raw/   is the raw merged-record archive (uploaded as an Actions artifact)
+#   out/   is the v2 artifact sink output; archive/ is the `archive` branch checkout (jsonl_git sink)
 /data/
 /site/
 /raw/
+/out/
+/archive/
 
 # Secrets and local settings
 .env

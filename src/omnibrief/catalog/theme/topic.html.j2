@@ -1,0 +1,18 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ card.title }} · {{ site.title }}{% endblock %}
+{% block head %}<link rel="alternate" type="application/atom+xml" title="{{ card.title }}" href="{{ root }}{{ card.atom }}">{% endblock %}
+{% block body %}
+<section class="hero"><div class="label">{{ card.kind }} · every {{ card.cadence }}</div><h1>{{ card.title }}</h1>
+<p>{{ card.description }}</p>
+<p class="links"><a href="{{ root }}{{ card.atom }}">Atom</a><a href="{{ root }}{{ card.rss }}">RSS</a>{% for url in card.telegram %}<a class="tg" href="{{ url }}">Telegram ↗</a>{% endfor %}</p></section>
+<h2>Latest</h2>
+{% for e in entries %}
+<article class="panel entry"{% if card.kind == 'digest' %} id="run-{{ e.id.rsplit(':', 1)[-1] }}"{% endif %}>
+  <div class="meta">{{ e.published | local }}</div>
+  <h3>{{ e.title }}</h3>
+  {{ e.html | safe }}
+</article>
+{% else %}
+<div class="panel">Nothing yet — this topic posts only when its thresholds are met.</div>
+{% endfor %}
+{% endblock %}

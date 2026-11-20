@@ -1,0 +1,14 @@
+id: arxiv_ai
+title: "arXiv AI — daily picks"
+description: "New arXiv papers in AI, ML and NLP, filtered by keywords and summarised (abstracts only, never full text)."
+kind: digest
+cadence: { every: 1d, window: 2d, not_before: "07:00" }
+render: { mode: llm_digest, prompt: arxiv_ai, hashtags: ["#arXiv", "#AI"], max_input_items: 40,
+          overflow: drop, llm_selects: true }   # keyword filter -> newest 40 -> the LLM picks 10
+sources:
+  - { id: arxiv, type: arxiv, params: { categories: [cs.AI, cs.LG, cs.CL], page_size: 300, max_total: 1500 } }
+filters:
+  keywords_any: [large language model, LLM, agent, agents, reasoning, retrieval, RAG, alignment, benchmark, multimodal]
+  keywords_env: ARXIV_KEYWORDS          # optional extra keywords (Actions variable)
+material_fields: [title]
+attribution: [arxiv]
