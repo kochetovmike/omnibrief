@@ -10,7 +10,9 @@ from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 from omnibrief.attribution import NVD_NOTICE
+from omnibrief.categories import MATCH_TEXT_CHARS, vuln_text
 from omnibrief.config import Config, TopicConfig
+from omnibrief.global_critical import core_text
 from omnibrief.llm import SYSTEM_INSTRUCTION, LLMError, LLMProvider
 from omnibrief.models import Digest, DigestItem, Vuln
 from omnibrief.render import escape_md, sanitise
@@ -49,6 +51,8 @@ def to_item(v: Vuln, summarised: bool = True) -> DigestItem:
         summarised=summarised,
         published=v.published,
         kev_date_added=v.kev_date_added,
+        match_text=vuln_text(v)[:MATCH_TEXT_CHARS],
+        core_text=core_text(v)[:MATCH_TEXT_CHARS],
     )
 
 

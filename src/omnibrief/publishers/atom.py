@@ -9,6 +9,9 @@ so re-running a window never duplicates anything):
            every other included vulnerability (high / medium / low). Published only once the
            window has closed, so a reader sees at most two roundups a day.
 
+Feeds: feeds/vulns.atom ("general", everything) plus feeds/vulns-<slug>.atom per VULNS_WATCHLIST
+category (see categories.py), each with the same alert/roundup rules applied to its own items.
+
 Written with xml.etree rather than feedgen: feedgen 1.0 drops `rel`/`type` from entry links.
 """
 
@@ -23,6 +26,7 @@ from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 from omnibrief.attribution import short_rights
+from omnibrief.categories import Category, categories_for
 from omnibrief.models import Digest, DigestItem, severity_rank
 from omnibrief.publishers.base import Publisher, PublishResult
 
@@ -33,8 +37,14 @@ TITLE_CHARS = 70
 _LI = re.compile(r"<li>(.*?)</li>", re.DOTALL)
 
 
-def feed_path(topic_id: str) -> str:
-    return f"feeds/{topic_id}.atom"
+def feed_path(topic_id: str, slug: str | None = None) -> str:
+    """General feed: feeds/vulns.atom (stable URL); category feeds: feeds/vulns-<slug>.atom."""
+    return f"feeds/{topic_id}.atom" if not slug else f"feeds/{topic_id}-{slug}.atom"
+
+
+def page_path(slug: str | None = None) -> str:
+    """Dashboard page for a view (flat files so relative links keep working). index.html is the hub."""
+    return "general.html" if not slug else f"cat-{slug}.html"
 
 
 def entry_anchor(run_id: str) -> str:
@@ -125,7 +135,7 @@ class AtomPublisher(Publisher):
     def _footer(self, anchor: str) -> str:
         base = self.ctx.cfg.site.base
         return (f'<p><small>Machine-generated from open data · <a href="{base}about.html">Sources &amp; '
-                f'licences</a> · <a href="{base}#{anchor}">Dashboard</a></small></p>')
+                f'licences</a> · <a href="{base}{page_path()}#{anchor}">Dashboard</a></small></p>')
 
     def alert_entry(self, digest: Digest, item: DigestItem) -> Entry:
         icon, label = ("🚨", "Exploited") if item.kev else ("🔴", "Critical")
@@ -139,7 +149,8 @@ class AtomPublisher(Publisher):
                 + (f"<p>{links}</p>" if links else "")
                 + self._footer(entry_anchor(digest.run_id)))
         topic = self.ctx.topic.id
-        primary = next(iter(_https(item.links)), f"{self.ctx.cfg.site.base}#{entry_anchor(digest.run_id)}")
+        fallback = f"{self.ctx.cfg.site.base}{page_path()}#{entry_anchor(digest.run_id)}"
+        primary = next(iter(_https(item.links)), fallback)
         return Entry(
             id=f"urn:omnibrief:{topic}:alert:{digest.run_id}:{item.id}",
             title=title,
@@ -149,7 +160,8 @@ class AtomPublisher(Publisher):
             related=_https(item.links)[1:3],
         )
 
-    def rollup_entry(self, start: datetime, end: datetime, rows: list[tuple[Digest, DigestItem]]) -> Entry:
+    def rollup_entry(self, start: datetime, end: datetime, rows: list[tuple[Digest, DigestItem]],
+                     category: Category | None = None) -> Entry:
         tz = ZoneInfo(self.ctx.cfg.site.timezone)
         rows = sorted(rows, key=lambda r: (-severity_rank(r[1].severity), -(r[1].cvss or 0), r[1].id))
         counts: dict[str, int] = {}
@@ -171,14 +183,18 @@ class AtomPublisher(Publisher):
         html = (f"<p>{len(rows)} vulnerabilit{'y' if len(rows) == 1 else 'ies'} below critical in this "
                 f"12-hour window.</p><ul>{lis}</ul>" + self._footer(entry_anchor(last_run)))
         return Entry(
-            id=f"urn:omnibrief:{self.ctx.topic.id}:roundup:{start:%Y%m%dT%H%MZ}",
-            title=f"🟠 Roundup · {span} · {summary}",
+            id=f"{self._feed_id(category)}:roundup:{start:%Y%m%dT%H%MZ}",
+            title=f"🟠 Roundup{' · ' + category.label if category else ''} · {span} · {summary}",
             published=end,
             html=html,
-            alternate=f"{self.ctx.cfg.site.base}#{entry_anchor(last_run)}",
+            alternate=f"{self.ctx.cfg.site.base}{page_path(category.slug if category else None)}",
         )
 
-    def entries(self, digests: list[Digest]) -> list[Entry]:
+    def _feed_id(self, category: Category | None) -> str:
+        return f"urn:omnibrief:{self.ctx.topic.id}" + (f":{category.slug}" if category else "")
+
+    def entries(self, digests: list[Digest], category: Category | None = None) -> list[Entry]:
+        """Entries for the general feed, or only items matching `category`."""
         now = self.ctx.now
         cutoff = now - timedelta(days=FEED_DAYS)
         tz = self.ctx.cfg.site.timezone
@@ -188,23 +204,32 @@ class AtomPublisher(Publisher):
             if d.created_utc < cutoff:
                 continue
             for item in d.items:
+                if category is not None and not category.matches_item(item):
+                    continue
                 if is_alert(item):
                     alerts.append(self.alert_entry(d, item))
                 else:
                     windows.setdefault(rollup_window(d.created_utc, tz), []).append((d, item))
-        rollups = [self.rollup_entry(s, e, rows) for (s, e), rows in windows.items() if e <= now]
+        rollups = [self.rollup_entry(s, e, rows, category) for (s, e), rows in windows.items() if e <= now]
         out = sorted(alerts + rollups, key=lambda e: (e.published, e.id), reverse=True)
         return out[: self.ctx.cfg.site.entries_per_feed]
 
     # --- XML ---------------------------------------------------------------------------------------
     def publish(self, digests: list[Digest]) -> PublishResult:
+        """Writes the general feed plus one feed per watchlist category."""
+        for category in [None, *categories_for(self.ctx.topic, self.ctx.env)]:
+            self._write_feed(digests, category)
+        return PublishResult(status="ok")
+
+    def _write_feed(self, digests: list[Digest], category: Category | None) -> None:
         cfg, topic = self.ctx.cfg, self.ctx.topic
-        base, rel = cfg.site.base, feed_path(topic.id)
-        entries = self.entries(digests)
+        base = cfg.site.base
+        rel = feed_path(topic.id, category.slug if category else None)
+        entries = self.entries(digests, category)
 
         feed = ET.Element("feed", {"xmlns": ATOM_NS, "xml:lang": topic.language})
-        _el(feed, "id", f"urn:omnibrief:{topic.id}")
-        _el(feed, "title", f"Omnibrief · {topic.title}")
+        _el(feed, "id", self._feed_id(category))
+        _el(feed, "title", f"Omnibrief · {topic.title}" + (f" · {category.label}" if category else ""))
         _el(feed, "subtitle", "Instant alerts for critical and actively exploited vulnerabilities; "
                               "a 12-hour roundup for the rest.")
         _el(feed, "updated", _ts(entries[0].published if entries else self.ctx.now))
@@ -212,7 +237,8 @@ class AtomPublisher(Publisher):
         _el(author, "name", "Omnibrief")
         _el(author, "uri", base)
         _el(feed, "link", href=f"{base}{rel}", rel="self", type="application/atom+xml")
-        _el(feed, "link", href=base, rel="alternate", type="text/html")
+        _el(feed, "link", href=f"{base}{page_path(category.slug if category else None)}", rel="alternate",
+            type="text/html")
         _el(feed, "rights", short_rights(topic.source_types()))
         _el(feed, "generator", "Omnibrief")
 
@@ -232,7 +258,6 @@ class AtomPublisher(Publisher):
         out = self.ctx.site_dir / rel
         out.parent.mkdir(parents=True, exist_ok=True)
         tree.write(out, encoding="utf-8", xml_declaration=True)
-        return PublishResult(status="ok")
 
 
 def _ts(dt: datetime) -> str:

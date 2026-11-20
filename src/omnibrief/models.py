@@ -100,6 +100,8 @@ class DigestItem(BaseModel):
     summarised: bool = True  # False for overflow items listed as links only
     published: datetime | None = None  # when the vulnerability was published (NVD/GHSA)
     kev_date_added: str | None = None  # YYYY-MM-DD, when CISA flagged it as exploited
+    match_text: str = ""  # title/description/products/packages, for watchlist categories at render time
+    core_text: str = ""  # products/packages/title only, for the Global Critical category
 
 
 class Digest(BaseModel):

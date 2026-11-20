@@ -2,39 +2,24 @@
 
 from __future__ import annotations
 
-import re
 from collections.abc import Mapping
 from datetime import date, datetime, timedelta
 
+from omnibrief.categories import compile_terms, parse_categories, vuln_text
 from omnibrief.config import FilterConfig
+from omnibrief.global_critical import is_global_critical
 from omnibrief.models import Vuln, severity_rank
 from omnibrief.state import SeenEntry
 
 # --- watchlist ------------------------------------------------------------------------------
 
 
-def parse_watchlist(raw: str | None) -> list[str]:
-    return [t.strip() for t in (raw or "").split(",") if t.strip()]
-
-
-def _compile(terms: list[str]) -> re.Pattern | None:
-    if not terms:
-        return None
-    alts = "|".join(re.escape(t) for t in sorted(set(terms), key=len, reverse=True))
-    return re.compile(rf"(?<![\w-])(?:{alts})(?![\w-])", re.IGNORECASE)
-
-
-def _haystack(v: Vuln) -> str:
-    parts = [v.title, v.description, *v.products]
-    parts += [f"{p.ecosystem} {p.name}" for p in v.packages]
-    return "\n".join(parts)
-
-
 class Filter:
     def __init__(self, cfg: FilterConfig, env: Mapping[str, str]):
         self.cfg = cfg
-        self.watchlist = parse_watchlist(env.get(cfg.watchlist_env, "") if cfg.watchlist_env else "")
-        self._pattern = _compile(self.watchlist)
+        categories = parse_categories(env.get(cfg.watchlist_env, "") if cfg.watchlist_env else "")
+        self.watchlist = [t for c in categories for t in c.terms]  # any category term is a hit
+        self._pattern = compile_terms(self.watchlist)
 
     def reason(self, v: Vuln) -> str | None:
         """Why `v` is included, or None if it is filtered out."""
@@ -42,11 +27,13 @@ class Filter:
             return "kev"
         if "eu_exploited" in self.cfg.always_include_if and v.eu_exploited:
             return "eu_exploited"
+        if is_global_critical(v):
+            return "global_critical"
         if (
             self._pattern is not None
             and v.cvss is not None
             and v.cvss >= self.cfg.min_cvss
-            and self._pattern.search(_haystack(v))
+            and self._pattern.search(vuln_text(v))
         ):
             return "watchlist"
         if (

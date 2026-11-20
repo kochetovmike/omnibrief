@@ -1,5 +1,9 @@
-"""Static site: index.html (the "war room" dashboard), about.html (full attribution from NOTICE.md)
-and health.json.
+"""Static site:
+  index.html          hub: Global Critical feed, status of every feed, system health
+  general.html        full "war room" dashboard for everything (lanes, timeline, digest log)
+  cat-<slug>.html     the same dashboard per category (Global Critical + watchlist categories)
+  about.html          full attribution from NOTICE.md;  health.json
+
 
 Every value that comes from a source record is untrusted: it is HTML-escaped here, and only
 https:// links are rendered. Digest bodies (`Digest.html`) were already sanitised by render.py.
@@ -9,6 +13,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
+from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import UTC, date, datetime, timedelta
 from html import escape
@@ -18,9 +23,10 @@ from zoneinfo import ZoneInfo
 
 import markdown as md_lib
 
+from omnibrief.categories import categories_for
 from omnibrief.config import Config
 from omnibrief.models import Digest, DigestItem, RunRecord, severity_rank, utcnow
-from omnibrief.publishers.atom import entry_anchor, feed_path
+from omnibrief.publishers.atom import entry_anchor, feed_path, page_path
 
 BOARD_DAYS = 14  # the dashboard shows items from digests of the last two weeks
 LANE_CAP = 12  # cards per criticality lane; the rest are in the timeline
@@ -188,6 +194,57 @@ footer.site{border-top:1px solid var(--line);margin-top:40px;padding:18px 0 30px
   text-shadow:0 0 14px rgba(176,38,255,.8)}
 .prose li{margin:.5rem 0}
 .topic-h{font-size:1rem;font-weight:300;letter-spacing:.3em;text-transform:uppercase;margin:30px 0 0}
+.toolbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:18px 0 0;padding:12px 16px;
+  background:var(--panel);border:1px solid var(--line)}
+.toolbar select{appearance:none;-webkit-appearance:none;font:300 .95rem var(--sans);letter-spacing:.06em;
+  color:#fff;background-color:rgba(10,6,20,.95);background-repeat:no-repeat;
+  background-position:right 12px center;background-image:url("data:image/svg+xml,%3Csvg \
+xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2300f0ff'/%3E%3C/svg%3E");
+  border:1px solid var(--accent-strong);padding:7px 36px 7px 12px;min-width:240px;cursor:pointer;
+  box-shadow:0 0 14px -6px var(--accent-strong)}
+.toolbar select:focus{outline:1px solid var(--cyan);outline-offset:2px}
+.toolbar select option{background:#0c0716;color:#e9e4ff}
+.toolbar .feedlink{margin-left:auto;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em}
+@media (max-width:640px){.toolbar select{min-width:0;flex:1}.toolbar .feedlink{margin-left:0}}
+/* hub */
+.hub section{margin:34px 0}
+.hero{padding:30px 0 6px;border-bottom:1px solid var(--line);margin-top:10px!important}
+.hero-t{font-family:var(--sans);font-weight:300;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:.24em;
+  text-transform:uppercase;margin:8px 0 6px;color:#fff;
+  text-shadow:0 0 18px rgba(255,42,109,.55),0 0 40px rgba(176,38,255,.35)}
+.hero-sub{color:var(--muted);max-width:44rem;margin:0 0 18px}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:22px}
+.btn{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;
+  border:1px solid var(--accent-strong);color:#fff;box-shadow:0 0 14px -6px var(--accent-strong);
+  clip-path:polygon(0 0,calc(100% - 7px) 0,100% 7px,100% 100%,7px 100%,0 calc(100% - 7px))}
+.btn:hover{background:var(--accent-soft);color:#fff;border-bottom-color:var(--accent-strong)}
+.btn.ghost{border-color:var(--line);box-shadow:none;color:var(--muted)}
+.alerts{list-style:none;margin:0 0 18px;padding:0;border-top:1px solid var(--line)}
+.alerts li{display:grid;grid-template-columns:64px 170px 1fr auto;gap:14px;align-items:baseline;padding:10px 4px;
+  border-bottom:1px solid var(--line);border-left:2px solid var(--c);padding-left:12px}
+.alerts li:hover{background:rgba(255,42,109,.05)}
+.alerts .when{font-family:var(--mono);font-weight:300;font-size:.78rem;color:var(--muted)}
+.alerts .vid{color:#fff;border:0;font-size:.86rem}.alerts .vid:hover{color:var(--cyan)}
+.alerts .what{color:#cfc7ef;font-size:.88rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.alerts .score{font-family:var(--mono);font-weight:300;font-size:.8rem;color:var(--c);text-shadow:0 0 8px var(--c)}
+.more-link{font-family:var(--mono);font-size:.8rem}
+@media (max-width:760px){.alerts li{grid-template-columns:56px 1fr auto}
+  .alerts .what{grid-column:1/-1;white-space:normal}}
+.feeds{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.feed{background:var(--panel);border:1px solid color-mix(in srgb,var(--c) 28%,transparent);padding:14px 16px 12px;
+  clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,var(--cut) 100%,0 calc(100% - var(--cut)))}
+.feed:hover{box-shadow:inset 0 0 30px -18px var(--c)}
+.feed-h{display:flex;align-items:center;gap:8px}
+.feed-h .name{font-weight:400;letter-spacing:.08em;color:#fff;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap}
+.feed-h .state{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase}
+.dot{width:7px;height:7px;background:currentColor;box-shadow:0 0 8px currentColor;flex:none}
+.feed-n{font-family:var(--mono);font-weight:200;font-size:2rem;color:var(--c);margin:8px 0 6px;
+  text-shadow:0 0 14px color-mix(in srgb,var(--c) 60%,transparent)}
+.feed-n small{font-size:.7rem;font-weight:300;color:var(--muted);margin-left:8px;letter-spacing:.06em;text-shadow:none}
+.feed .bar{margin-bottom:8px}
+.feed-meta{font-family:var(--mono);font-weight:300;font-size:.7rem;color:var(--muted)}
+.feed-links{display:flex;gap:14px;margin-top:10px;font-family:var(--mono);font-size:.74rem;letter-spacing:.08em}
 ::selection{background:var(--accent-strong);color:#fff}
 """
 
@@ -208,6 +265,8 @@ JS = """
   document.querySelectorAll('[data-ts]').forEach(function(el){
     var t=Date.parse(el.getAttribute('data-ts'));if(!isNaN(t))el.setAttribute('title',el.textContent),
     el.textContent=ago(now-t);});
+  var sel=document.getElementById('cat');
+  if(sel)sel.addEventListener('change',function(){location.href=sel.value;});
   var pill=document.getElementById('status-pill');
   if(pill){var t=Date.parse(pill.getAttribute('data-last-run'));
     if(!isNaN(t)&&now-t>3*3600*1000){pill.className='pill st-stale';pill.textContent='STALE';}}
@@ -286,9 +345,9 @@ def _https(url: str) -> str | None:
     return url if url.startswith("https://") else None
 
 
-def _primary_link(b: BoardItem) -> str:
+def _primary_link(b: BoardItem, home: str = "") -> str:
     link = next((u for u in b.item.links if _https(u)), None)
-    return escape(link) if link else f"#{entry_anchor(b.run_id)}"
+    return escape(link) if link else f"{home}#{entry_anchor(b.run_id)}"
 
 
 def _fmt_local(dt: datetime, tz: str) -> str:
@@ -360,7 +419,7 @@ def _kpis_html(items: list[BoardItem]) -> str:
     ) + "</div>"
 
 
-def _card(b: BoardItem) -> str:
+def _card(b: BoardItem, home: str = "") -> str:
     i = b.item
     score = f"{i.cvss:.1f}" if i.cvss is not None else (b.severity.upper() if b.severity != "unknown" else "")
     title = i.title or i.product or ""
@@ -373,23 +432,23 @@ def _card(b: BoardItem) -> str:
         tags.append(f'<span class="tag epss">EPSS p{i.epss_percentile * 100:.0f}</span>')
     meta = "".join(tags) + (
         f'<span>{escape(b.issued_kind)} {b.issued.strftime("%d %b")}</span>'
-        f'<a href="#{entry_anchor(b.run_id)}">digest</a>'
+        f'<a href="{home}#{entry_anchor(b.run_id)}">digest</a>'
     )
     product = f'<div class="label" style="letter-spacing:.04em">{escape(i.product)}</div>' if i.product else ""
     return (
         f'<div class="card c-{b.color}"><div class="row1">'
-        f'<a class="vid" href="{_primary_link(b)}" rel="noopener noreferrer nofollow">{escape(i.id)}</a>'
+        f'<a class="vid" href="{_primary_link(b, home)}" rel="noopener noreferrer nofollow">{escape(i.id)}</a>'
         f'<span class="score">{escape(score)}</span></div>'
         f'{product}<div class="title">{escape(title)}</div><div class="meta">{meta}</div></div>'
     )
 
 
-def _lanes_html(items: list[BoardItem]) -> str:
+def _lanes_html(items: list[BoardItem], home: str = "") -> str:
     out = ['<div class="lanes">']
     for key, label in LANES:
         lane = [b for b in items if b.lane == key]
         color = "medium" if key == "other" else key
-        cards = "".join(_card(b) for b in lane[:LANE_CAP])
+        cards = "".join(_card(b, home) for b in lane[:LANE_CAP])
         if not lane:
             cards = '<div class="empty">Nothing here. Good.</div>'
         elif len(lane) > LANE_CAP:
@@ -401,7 +460,7 @@ def _lanes_html(items: list[BoardItem]) -> str:
     return "".join(out) + "</div>"
 
 
-def _timeline_html(items: list[BoardItem]) -> str:
+def _timeline_html(items: list[BoardItem], home: str = "") -> str:
     by_day: dict[date, list[BoardItem]] = {}
     for b in items:
         by_day.setdefault(b.issued, []).append(b)
@@ -415,7 +474,8 @@ def _timeline_html(items: list[BoardItem]) -> str:
         )
         rows = "".join(
             f'<li class="c-{b.color}"><span class="sev">{"exploited" if b.item.kev else b.severity}</span>'
-            f'<a class="vid mono" href="{_primary_link(b)}" rel="noopener noreferrer nofollow">{escape(b.item.id)}</a>'
+            f'<a class="vid mono" href="{_primary_link(b, home)}" rel="noopener noreferrer nofollow">'
+            f'{escape(b.item.id)}</a>'
             f'<span class="what">{escape(b.item.title or b.item.product)}</span>'
             f'<span class="src">{escape(b.issued_kind)} · '
             f'{escape(urlsplit(b.item.links[0]).hostname or "") if b.item.links else ""}</span></li>'
@@ -440,7 +500,8 @@ def _page(title: str, body: str, head: str = "", script: bool = False) -> str:
         f"<title>{escape(title)}</title>{FONTS}<style>{CSS}</style>{head}</head><body>"
         '<div class="top"><div class="wrap"><div class="brand"><span class="mark"></span>OMNIBRIEF'
         "<small>vulnerability war room</small></div><nav>"
-        '<a href="./">Dashboard</a><a href="feeds/vulns.atom">Atom feed</a>'
+        '<a href="./">Overview</a><a href="cat-global-critical.html">Global Critical</a>'
+        '<a href="general.html">All vulnerabilities</a>'
         '<a href="health.json">health.json</a><a href="about.html">Sources &amp; licences</a>'
         "</nav></div></div>"
         f"{body}"
@@ -452,48 +513,179 @@ def _page(title: str, body: str, head: str = "", script: bool = False) -> str:
     )
 
 
+def _toolbar(options: list[tuple[str | None, str, int]], current: str | None, feed_href: str) -> str:
+    """Category dropdown (navigates between pre-rendered pages) + subscribe link for this view."""
+    opts = "".join(
+        f'<option value="{page_path(slug)}"{" selected" if slug == current else ""}>'
+        f"{escape(label)} · {n}</option>"
+        for slug, label, n in options
+    )
+    links = " · ".join(f'<a href="{page_path(slug)}">{escape(label)}</a>' for slug, label, _ in options)
+    return (
+        '<div class="toolbar"><label class="label" for="cat">Category</label>'
+        f'<select id="cat" aria-label="Category">{opts}</select>'
+        f'<a class="feedlink" href="{feed_href}">Subscribe · Atom feed for this view</a>'
+        f'<noscript><div class="label">{links}</div></noscript></div>'
+    )
+
+
+UNSUMMARISED = ' <span class="tag upd">un-summarised</span>'
+
+
 def write_index(
     cfg: Config,
     site_dir: Path,
     digests_by_topic: dict[str, list[Digest]],
     health: dict | None = None,
     now: datetime | None = None,
+    env: Mapping[str, str] | None = None,
 ) -> None:
+    """Writes the hub (index.html), general.html (everything) and cat-<slug>.html per category."""
     now = now or utcnow()
+    env = env or {}
     tz = cfg.site.timezone
-    parts = ['<main class="wrap">', _health_html(health, tz)]
-    feeds = []
-    multi = len(cfg.topics) > 1
-    for topic in cfg.topics:
-        href = feed_path(topic.id)
-        feeds.append(f'<link rel="alternate" type="application/atom+xml" title="{escape(topic.title)}" '
-                     f'href="{href}">')
-        digests = digests_by_topic.get(topic.id, [])
-        items = board_items(digests, now)
-        if multi:
-            parts.append(f'<h1 class="topic-h">{escape(topic.title)}</h1>')
-        parts.append(f'<section>{_kpis_html(items)}</section>')
-        if items:
+    topic = cfg.topics[0]  # one topic today; categories come from its watchlist
+    categories = categories_for(topic, env)
+    digests = digests_by_topic.get(topic.id, [])
+    items = board_items(digests, now)
+    by_cat = {c.slug: [b for b in items if c.matches_item(b.item)] for c in categories}
+
+    options = [(None, "General — all", len(items))]
+    options += [(c.slug, c.label, len(by_cat[c.slug])) for c in categories]
+    head = "".join(
+        f'<link rel="alternate" type="application/atom+xml" title="{escape(label)}" '
+        f'href="{feed_path(topic.id, slug)}">'
+        for slug, label, _ in options
+    )
+    for slug, label, _ in options:
+        view = items if slug is None else by_cat[slug]
+        home = "" if slug is None else page_path()
+        parts = ['<main class="wrap">', _health_html(health, tz),
+                 _toolbar(options, slug, feed_path(topic.id, slug)),
+                 f"<section>{_kpis_html(view)}</section>"]
+        if view:
             parts.append(
                 '<section><h2>By criticality <span class="hint">· most urgent first</span></h2>'
-                f"{_lanes_html(items)}</section>"
+                f"{_lanes_html(view, home)}</section>"
                 '<section><h2>By date of issue <span class="hint">· exploited items dated by when CISA '
-                f'flagged them</span></h2>{_timeline_html(items)}</section>'
+                f'flagged them</span></h2>{_timeline_html(view, home)}</section>'
             )
         else:
-            parts.append(f'<div class="quiet">All quiet — nothing published in the last {BOARD_DAYS} days.</div>')
-        if digests:
+            parts.append(f'<div class="quiet">All quiet — nothing in this view for the last {BOARD_DAYS} days.</div>')
+        if slug is None and digests:
             log = "".join(
                 f'<article id="{entry_anchor(d.run_id)}"><h3>{escape(d.title)}'
-                f'{"" if d.summarised else " <span class=\"tag upd\">un-summarised</span>"}</h3>{d.html}</article>'
+                f'{"" if d.summarised else UNSUMMARISED}</h3>{d.html}</article>'
                 for d in digests
             )
             parts.append(
-                f'<section class="log"><h2>Digest log <span class="hint">· full digests; the '
-                f'<a href="{href}">Atom feed</a> carries short alerts and 12-hour roundups</span></h2>{log}</section>'
+                '<section class="log"><h2>Digest log <span class="hint">· full digests; the '
+                "Atom feeds carry short alerts and 12-hour roundups</span></h2>" + log + "</section>"
             )
-    parts.append("</main>")
-    html = _page("Omnibrief — vulnerability war room", "".join(parts), head="".join(feeds), script=True)
+        parts.append("</main>")
+        title = "Omnibrief — vulnerability war room" + ("" if slug is None else f" — {label}")
+        html = _page(title, "".join(parts), head=head, script=True)
+        (site_dir / page_path(slug)).write_text(html, encoding="utf-8")
+    _write_hub(cfg, site_dir, topic.id, items, categories, by_cat, health, now)
+    # Pages for categories removed from the watchlist must not linger (matters for render-only).
+    keep = {page_path(c.slug) for c in categories}
+    for old in site_dir.glob("cat-*.html"):
+        if old.name not in keep:
+            old.unlink()
+
+
+# --- hub (index.html) ------------------------------------------------------------------------------
+
+HUB_ALERTS = 12
+ACTIVE_HOURS = 24
+
+
+def _feed_state(view: list[BoardItem], now: datetime) -> tuple[str, str]:
+    """(css status, label) for a feed tile: live = new item in the last day, idle, or quiet."""
+    if not view:
+        return "skipped", "quiet"
+    last = max(b.seen for b in view)
+    return ("ok", "live") if now - last <= timedelta(hours=ACTIVE_HOURS) else ("pending", "idle")
+
+
+def _sev_bar(view: list[BoardItem]) -> str:
+    if not view:
+        return '<div class="bar"></div>'
+    counts = Counter(b.color for b in view)
+    return '<div class="bar">' + "".join(
+        f'<span class="c-{c}" style="width:{counts[c] / len(view) * 100:.2f}%;background:var(--c)"></span>'
+        for c in ("exploited", "critical", "high", "medium", "low", "unknown") if counts[c]
+    ) + "</div>"
+
+
+def _feed_tile(name: str, slug: str | None, view: list[BoardItem], topic_id: str, now: datetime,
+               accent: str = "accent") -> str:
+    state, label = _feed_state(view, now)
+    exploited = sum(1 for b in view if b.item.kev)
+    critical = sum(1 for b in view if b.severity == "critical" and not b.item.kev)
+    last = max((b.seen for b in view), default=None)
+    last_html = (f'last item <span data-ts="{last.isoformat()}">{last.strftime("%d %b %H:%M")} UTC</span>'
+                 if last else "no items yet")
+    return (
+        f'<div class="feed c-{accent}"><div class="feed-h"><span class="dot st-{state}"></span>'
+        f'<span class="name">{escape(name)}</span><span class="state st-{state}">{label}</span></div>'
+        f'<div class="feed-n">{len(view)}<small>items · {BOARD_DAYS} d</small></div>{_sev_bar(view)}'
+        f'<div class="feed-meta">{exploited} exploited · {critical} critical · {last_html}</div>'
+        f'<div class="feed-links"><a href="{page_path(slug)}">View</a>'
+        f'<a href="{feed_path(topic_id, slug)}">Atom ↗</a></div></div>'
+    )
+
+
+def _alert_row(b: BoardItem) -> str:
+    i = b.item
+    badge = ('<span class="tag kev"><span class="pulse"></span> exploited</span>' if i.kev
+             else f'<span class="score">CVSS {i.cvss:.1f}</span>' if i.cvss is not None else "")
+    what = " — ".join(x for x in (i.product, i.title) if x)
+    return (
+        f'<li class="c-{b.color}"><span class="when">{b.issued.strftime("%d %b")}</span>'
+        f'<a class="vid" href="{_primary_link(b, page_path())}" rel="noopener noreferrer nofollow">'
+        f'{escape(i.id)}</a><span class="what">{escape(what)}</span>{badge}</li>'
+    )
+
+
+def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem], categories: list,
+               by_cat: dict[str, list[BoardItem]], health: dict | None, now: datetime) -> None:
+    from omnibrief.global_critical import SLUG as GC
+
+    critical = by_cat.get(GC, [])
+    active = len(critical)
+    rows = "".join(_alert_row(b) for b in critical[:HUB_ALERTS])
+    alerts = (f'<ol class="alerts">{rows}</ol>' if critical else
+              f'<div class="quiet">No global-critical vulnerabilities in the last {BOARD_DAYS} days. '
+              "Quiet is good.</div>")
+    more = (f'<p class="more-link"><a href="{page_path(GC)}">+{active - HUB_ALERTS} more →</a></p>'
+            if active > HUB_ALERTS else "")
+    hero = (
+        '<section class="hero">'
+        '<div class="label">Built-in feed · fundamental technologies · actively exploited or CVSS ≥ 9</div>'
+        '<h1 class="hero-t">Global Critical</h1>'
+        '<p class="hero-sub">The few vulnerabilities everyone has to act on — OpenSSL, OpenSSH, Log4j, '
+        "nginx, the Linux kernel, Windows, Chrome, edge VPNs and firewalls.</p>"
+        f'<div class="hero-actions"><span class="pill {"st-failed" if active else "st-ok"}">'
+        f'{active} active · {BOARD_DAYS} days</span>'
+        f'<a class="btn" href="{feed_path(topic_id, GC)}">Subscribe · Atom</a>'
+        f'<a class="btn ghost" href="{page_path(GC)}">Open view</a></div>'
+        f"{alerts}{more}</section>"
+    )
+    tiles = [_feed_tile("General — all", None, items, topic_id, now, "accent")]
+    tiles += [_feed_tile(c.label, c.slug, by_cat[c.slug], topic_id, now, "exploited" if c.slug == GC else "accent")
+              for c in categories]
+    feeds = ('<section><h2>Feeds <span class="hint">· one Atom feed per view; instant alerts for critical '
+             'and exploited items, 12-hour roundups for the rest</span></h2>'
+             f'<div class="feeds">{"".join(tiles)}</div></section>')
+    system = f'<section><h2>System</h2>{_health_html(health, cfg.site.timezone)}</section>'
+    head = "".join(
+        f'<link rel="alternate" type="application/atom+xml" title="{escape(name)}" '
+        f'href="{feed_path(topic_id, slug)}">'
+        for slug, name in [(None, "General — all"), *[(c.slug, c.label) for c in categories]]
+    )
+    html = _page("Omnibrief — vulnerability war room", f'<main class="wrap hub">{hero}{feeds}{system}</main>',
+                 head=head, script=True)
     (site_dir / "index.html").write_text(html, encoding="utf-8")
 
 

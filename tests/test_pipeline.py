@@ -61,7 +61,7 @@ def go(cfg, tmp_path: Path, sources, env, now=NOW):
     opts.site_dir.mkdir(parents=True, exist_ok=True)
     store = Store(opts.data_dir)
     run = run_topic(cfg, cfg.topic("vulns"), store, opts, sources, None, now)
-    render_site(cfg, store, opts.site_dir, [run])
+    render_site(cfg, store, opts.site_dir, [run], env=env)
     return run, store, opts
 
 
@@ -121,8 +121,8 @@ def test_feed_rights_entry_shape_and_site_attribution(cfg, tmp_path, env):
     assert alt.get("href") == "https://nvd.nist.gov/vuln/detail/CVE-2026-0001"
     about = (opts.site_dir / "about.html").read_text(encoding="utf-8")
     assert "creativecommons.org/licenses/by/4.0" in about and "See EPSS at" in about
-    index = (opts.site_dir / "index.html").read_text(encoding="utf-8")
-    assert 'id="run-20261120T151700Z"' in index and "feeds/vulns.atom" in index
+    general = (opts.site_dir / "general.html").read_text(encoding="utf-8")
+    assert 'id="run-20261120T151700Z"' in general and "feeds/vulns.atom" in general
 
 
 def test_logs_and_run_record_do_not_contain_watchlist(cfg, tmp_path, caplog):
@@ -179,7 +179,7 @@ def test_war_room_dashboard(cfg, tmp_path, env):
                severity="high", cvss=8.8, sources=["cisa_kev"], refs=["javascript:alert(3)"])
     _, _, opts = go(cfg, tmp_path, [FakeSource("nvd", "nvd", [nvd_rec(1), evil]),
                                     FakeSource("cisa-kev", "cisa_kev", [kev])], env)
-    html = (opts.site_dir / "index.html").read_text(encoding="utf-8")
+    html = (opts.site_dir / "general.html").read_text(encoding="utf-8")  # full dashboard
     # criticality lanes + KPI tiles
     for label in ("Actively exploited", "Critical", "High", "Medium &amp; low"):
         assert label in html
@@ -192,6 +192,32 @@ def test_war_room_dashboard(cfg, tmp_path, env):
     assert "<script>alert" not in html and "<img src=x" not in html and "javascript:alert" not in html
     # violet accent, dark cyberpunk theme, thin type
     assert "--accent:#c77dff" in html and "font:300" in html
+
+
+def test_hub_shows_global_critical_feed_status_and_health(cfg, tmp_path, env):
+    env = {"VULNS_WATCHLIST": "widget, oracle"}
+    nginx = Vuln(id="CVE-2026-0500", products=["f5 nginx"], title="nginx RCE", cvss=9.8, severity="critical",
+                 published=NOW - timedelta(hours=2), refs=["https://nvd.nist.gov/vuln/detail/CVE-2026-0500"],
+                 sources=["nvd"])
+    evil = nvd_rec(9)
+    evil.title = "<script>alert(1)</script>"
+    _, _, opts = go(cfg, tmp_path, [FakeSource("nvd", "nvd", [nginx, nvd_rec(1), evil])], env)
+    hub = (opts.site_dir / "index.html").read_text(encoding="utf-8")
+    # 1) Global Critical hero: its alerts, subscribe + view links
+    assert "Global Critical</h1>" in hub and "1 active · 14 days" in hub
+    assert '<ol class="alerts">' in hub and "CVE-2026-0500" in hub
+    assert 'href="feeds/vulns-global-critical.atom">Subscribe' in hub
+    assert "CVE-2026-0001" not in hub.split('<ol class="alerts">')[1].split("</ol>")[0]  # widget item isn't global
+    # 2) one status tile per feed, in order: General, Global Critical, watchlist categories
+    tiles = [hub.index(f'class="name">{n}<') for n in ("General — all", "Global Critical", "widget", "oracle")]
+    assert tiles == sorted(tiles)
+    assert hub.count('class="feed ') == 4
+    assert 'st-ok">live<' in hub and 'st-skipped">quiet<' in hub  # widget is live; oracle has nothing
+    assert 'href="feeds/vulns-oracle.atom">Atom' in hub and 'href="cat-oracle.html">View' in hub
+    # 3) system health
+    assert 'id="status-pill"' in hub and "Last success" in hub
+    # the hub is minimal: no lanes, timeline or digest log; untrusted text escaped
+    assert 'class="lanes"' not in hub and 'class="log"' not in hub and "<script>alert" not in hub
 
 
 def test_render_only_keeps_health_on_dashboard(cfg, tmp_path, env):

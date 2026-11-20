@@ -317,6 +317,15 @@ Records (JSON):
 {records}
 ```
 
+### Global Critical (built-in category, added 2026-11-20)
+- Hardcoded view + feed (`feeds/vulns-global-critical.atom`) for the vulnerabilities everyone must act on
+  (Log4Shell, Spring4Shell, critical nginx/OpenSSH, Chrome/iOS zero-days, mass-exploited edge devices).
+- Rule (`global_critical.py`): affects a curated **fundamental technology** (matched on product/package names
+  and title, not the full description) **and** is actively exploited (KEV) or CVSS ≥ 9.0.
+- Always included by the filter, watchlist or not. All entries are alerts, so the feed has no roundups.
+- Calibrated on the KEV catalog: ~2–3 exploited items/week qualify. This feed is the planned input for the
+  Telegram channel (Phase 3b): post Global Critical only, not every digest.
+
 ### Atom
 - Feed `site/feeds/vulns.atom` at `{base_url}feeds/vulns.atom`; feed id `urn:omnibrief:vulns`.
 - **Message-style alert feed** (changed 2026-11-20, replaces one-entry-per-run digests):
@@ -427,7 +436,7 @@ Implement `Publisher` (short-form networks reuse `shortform.py`), add a `publish
 - **Threads:** dedicated bot profile; the Meta app requests only `threads_basic` + `threads_content_publish`. The optional `THREADS_REFRESH_PAT` is the most powerful credential in the system (it can overwrite repo secrets): fine-grained, this repo only, Secrets permission only, with an expiry date. It's used **only** by `refresh-threads-token.yml`, never exposed to `collect.yml`.
 - **No channel credential is required for the system to run.** Missing credentials disable a channel; they never fail CI or a scheduled run.
 - **Logs are public.** Log counts, source ids and statuses only. No prompts, API bodies or watchlist contents.
-- **Watchlist:** Actions *variable* `VULNS_WATCHLIST`, not in the repo, so Mike's tech stack isn't published. **It also must not be inferable from the feed**: the feed shows *what* matched, which is unavoidable, so keep the watchlist broad (well-known vendors/platforms) rather than exact internal versions.
+- **Watchlist:** Actions *variable* `VULNS_WATCHLIST`, not in the repo. **Changed 2026-11-20 (Mike's decision):** each entry is now a public category with its own dashboard view and Atom feed, so the category labels are published. Grouped entries (`label=term1|term2`) publish only the label, but the terms are still inferable from what matches. Keep it broad (well-known vendors/platforms/ecosystems) rather than exact internal products or versions.
 - **Workflow hardening:** pin third-party actions to full commit SHAs; explicit per-job `permissions:`; `collect.yml` only on `schedule` + `workflow_dispatch`; never `pull_request_target`; `ci.yml` runs on PRs without secrets.
 - **Branch protection:** `main` via PRs only; `data` writable by the workflow only.
 - **Output safety:** sanitised HTML only; no scripts, handlers or unknown links.

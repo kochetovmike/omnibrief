@@ -1,9 +1,12 @@
 # Omnibrief
 
 A hub for alerts: openly licensed vulnerability sources in → one merged, filtered, summarised
-digest out. Runs every hour on GitHub Actions and publishes a dashboard and a public Atom alert feed on
-GitHub Pages: one short entry per critical or actively exploited vulnerability, plus a 12-hour roundup
-(07:00 and 19:00 Vienna time) for everything else.
+digest out. Runs every hour on GitHub Actions and publishes to GitHub Pages:
+
+- **Hub** (`index.html`): the built-in **Global Critical** feed, the status of every feed, and system health.
+- **Dashboards** (`general.html`, `cat-<name>.html`): everything, or one category, by criticality and date.
+- **Atom feeds**: one per view — one short entry per critical or actively exploited vulnerability, plus a
+  12-hour roundup (07:00 and 19:00 Vienna time) for everything else.
 Costs €0: GitHub Free, the Gemini API free tier, and public data APIs. See [design.md](design.md).
 
 **Feed:** <https://kochetovmike.github.io/omnibrief/feeds/vulns.atom> ·
@@ -50,9 +53,21 @@ python -m omnibrief render-only --data ./data --site ./site   # rebuild the site
 3. **Settings → Secrets and variables → Actions:**
    - Secret `GEMINI_API_KEY` — from Google AI Studio (free tier).
    - Secret `NVD_API_KEY` — optional, free from NVD; raises the rate limit from 5 to 50 requests / 30 s.
-   - Variable `VULNS_WATCHLIST` — comma-separated, e.g. `microsoft,cisco,fortinet,wordpress,linux kernel`.
-     Matched case-insensitively on whole words against product, package and description text.
-     Keep it broad (well-known vendors/platforms): matches are visible in the public feed.
+   - Variable `VULNS_WATCHLIST` — comma-separated **categories**. Each entry is either a single term
+     (`microsoft`) or a label with several terms (`programming languages=python|pip|npm|maven|rust`).
+     Terms match case-insensitively on whole words against title, description, product and package
+     (`ecosystem name`) text. Example:
+     `microsoft,oracle,google,apache,wordpress,programming languages=python|pip|npm|java|maven|golang|rust`
+     Each category gets its own dashboard view (dropdown on the dashboards, `cat-<name>.html`) and its
+     own Atom feed (`feeds/vulns-<name>.atom`); **General** (`feeds/vulns.atom`) always carries everything,
+     including actively exploited items that match no category. Changing the variable re-sorts the last
+     14 days on the next run. **The category names are public** (feed URLs, dropdown) — keep them broad.
+   - Built in, independent of the watchlist: **Global Critical** (`cat-global-critical.html`,
+     `feeds/vulns-global-critical.atom`) — vulnerabilities in fundamental technologies (OpenSSL/OpenSSH,
+     Log4j, Spring, nginx, Linux kernel, Windows, Chrome, edge VPNs/firewalls, …) that are actively
+     exploited or CVSS ≥ 9.0. Always collected, even if nothing on the watchlist matches; every entry is an
+     instant alert (≈ 2–3 a week). Intended as the source for a Telegram channel. Tune the technology list
+     in `src/omnibrief/global_critical.py`.
 4. Run **Actions → collect → Run workflow** once. The first run creates the orphan `data` branch.
 5. Optional: protect `main` (PRs only).
 

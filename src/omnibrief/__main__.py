@@ -72,7 +72,7 @@ def main(argv: list[str] | None = None) -> int:
             for pub in pubs:
                 if pub.kind == "static":
                     pub.publish(digests)
-        render_site(cfg, store, args.site)
+        render_site(cfg, store, args.site, env=dict(os.environ))
         return 0
 
     runs = run_pipeline(

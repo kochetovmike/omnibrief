@@ -64,7 +64,7 @@ def test_watchlist_needs_cvss_and_word_boundary_match():
     assert f.reason(nvd("CVE-1", cvss=8.0, products=["acme widget"])) == "watchlist"
     assert f.reason(nvd("CVE-1", cvss=6.9, products=["acme widget"])) is None  # below min_cvss
     assert f.reason(nvd("CVE-1", cvss=9.0, products=["acme widgets"], desc="")) is None  # no word match
-    assert f.reason(nvd("CVE-1", cvss=9.0, products=[], desc="A flaw in FORTINET FortiOS")) == "watchlist"
+    assert f.reason(nvd("CVE-1", cvss=8.0, products=[], desc="A flaw in FORTINET FortiOS")) == "watchlist"
 
 
 def test_empty_watchlist_matches_nothing():

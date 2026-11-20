@@ -190,7 +190,13 @@ def _publish_static(cfg: Config, topic: TopicConfig, store: Store, opts: RunOpti
             run.publishers[pub.id] = PublisherStatus(status="failed", reason=_err(e))
 
 
-def render_site(cfg: Config, store: Store, site_dir: Path, runs: list[RunRecord] | None = None) -> None:
+def render_site(
+    cfg: Config,
+    store: Store,
+    site_dir: Path,
+    runs: list[RunRecord] | None = None,
+    env: Mapping[str, str] | None = None,
+) -> None:
     site_dir.mkdir(parents=True, exist_ok=True)
     digests = {t.id: store.recent_digests(t.id, HISTORY_DIGESTS) for t in cfg.topics}
     site_mod.write_static(site_dir)
@@ -200,7 +206,7 @@ def render_site(cfg: Config, store: Store, site_dir: Path, runs: list[RunRecord]
         store.save_health_state(health)
     if health:
         site_mod.write_health(site_dir, health)
-    site_mod.write_index(cfg, site_dir, digests, health=health or None)
+    site_mod.write_index(cfg, site_dir, digests, health=health or None, env=env)
     site_mod.write_about(cfg, site_dir)
 
 
@@ -226,5 +232,5 @@ def run(cfg: Config, opts: RunOptions, now: datetime | None = None) -> list[RunR
         for topic in cfg.topics:
             sources = [build_source(s, sctx) for s in topic.enabled_sources()]
             runs.append(run_topic(cfg, topic, store, opts, sources, provider, now))
-    render_site(cfg, store, opts.site_dir, runs)
+    render_site(cfg, store, opts.site_dir, runs, env=opts.env)
     return runs
