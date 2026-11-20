@@ -214,6 +214,9 @@ def test_hub_shows_global_critical_feed_status_and_health(cfg, tmp_path, env):
     assert hub.count('class="feed ') == 4
     assert 'st-ok">live<' in hub and 'st-skipped">quiet<' in hub  # widget is live; oracle has nothing
     assert 'href="feeds/vulns-oracle.atom">Atom' in hub and 'href="cat-oracle.html">View' in hub
+    # Telegram channel linked from the Global Critical section (callout + button)
+    assert 'class="tg-callout" href="https://t.me/vulnerabilitiesbrief"' in hub
+    assert "<b>@vulnerabilitiesbrief</b> on Telegram" in hub and "Join on Telegram" in hub
     # 3) system health
     assert 'id="status-pill"' in hub and "Last success" in hub
     # site icon: written, linked from every page, referenced by the feeds

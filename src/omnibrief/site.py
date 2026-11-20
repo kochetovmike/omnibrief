@@ -229,6 +229,17 @@ xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5
 .alerts .score{font-family:var(--mono);font-weight:300;font-size:.8rem;color:var(--c);text-shadow:0 0 8px var(--c)}
 .more-link{font-family:var(--mono);font-size:.8rem}
 .brief-note{font-family:var(--mono);font-weight:300;font-size:.78rem;color:var(--muted);margin:0 0 20px}
+.tg-callout{display:flex;align-items:center;gap:14px;max-width:44rem;margin:0 0 18px;padding:12px 16px;
+  color:var(--fg);border:1px solid rgba(42,171,238,.55);background:rgba(42,171,238,.07);
+  box-shadow:0 0 22px -10px #2aabee;font-size:.9rem;
+  clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px))}
+.tg-callout:hover{background:rgba(42,171,238,.14);color:#fff;border-bottom-color:rgba(42,171,238,.55);text-shadow:none}
+.tg-callout b{font-family:var(--mono);font-weight:400;color:#fff}
+.tg-icon{display:grid;place-items:center;width:34px;height:34px;flex:none;color:#fff;background:#2aabee;
+  border-radius:50%;box-shadow:0 0 14px -2px #2aabee}
+.tg-go{margin-left:auto;font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;color:#7fd3ff;white-space:nowrap}
+.btn.tg{border-color:#2aabee;box-shadow:0 0 14px -6px #2aabee;color:#bfe8ff}
+.btn.tg:hover{background:rgba(42,171,238,.14)}
 @media (max-width:760px){.alerts li{grid-template-columns:56px 1fr auto}
   .alerts .what{grid-column:1/-1;white-space:normal}}
 .feeds{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
@@ -651,13 +662,31 @@ def _alert_row(b: BoardItem) -> str:
 
 
 def telegram_url(cfg: Config, env: Mapping[str, str]) -> str | None:
-    """t.me link for a public channel configured as TELEGRAM_CHAT_ID="@name" (None otherwise)."""
+    """Public t.me link for the channel: `channel_url` from sources.yaml, else derived from
+    TELEGRAM_CHAT_ID="@name". None if neither is a valid public channel link."""
     for pcfg in cfg.publishers.values():
-        if pcfg.type == "telegram":
-            chat = (env.get(pcfg.option("chat_id_env", "TELEGRAM_CHAT_ID")) or "").strip()
-            if chat.startswith("@") and chat[1:].replace("_", "").isalnum():
-                return f"https://t.me/{chat[1:]}"
+        if pcfg.type != "telegram":
+            continue
+        url = str(pcfg.option("channel_url", "") or "").strip()
+        if url:
+            name = url.removeprefix("https://t.me/")
+            return url if url.startswith("https://t.me/") and name.replace("_", "").isalnum() else None
+        chat = (env.get(pcfg.option("chat_id_env", "TELEGRAM_CHAT_ID")) or "").strip()
+        if chat.startswith("@") and chat[1:].replace("_", "").isalnum():
+            return f"https://t.me/{chat[1:]}"
     return None
+
+
+def _telegram_callout(url: str) -> str:
+    handle = "@" + url.removeprefix("https://t.me/")
+    return (
+        f'<a class="tg-callout" href="{escape(url)}" rel="noopener">'
+        '<span class="tg-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18">'
+        '<path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3'
+        '-5 9.2-8.3c.4-.4-.1-.6-.6-.2L6.2 13 1.3 11.5c-1-.3-1.1-1 .2-1.5L20.6 2.8c.9-.3 1.6.2 1.3 1.5z"/></svg>'
+        f'</span><span><b>{escape(handle)}</b> on Telegram — an instant alert for every Global Critical '
+        "vulnerability, plus the Global brief at 08:00 &amp; 20:00.</span><span class=\"tg-go\">Join ↗</span></a>"
+    )
 
 
 def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem], categories: list,
@@ -681,9 +710,10 @@ def _write_hub(cfg: Config, site_dir: Path, topic_id: str, items: list[BoardItem
         '<h1 class="hero-t">Global Critical</h1>'
         '<p class="hero-sub">The few vulnerabilities everyone has to act on — OpenSSL, OpenSSH, Log4j, '
         "nginx, the Linux kernel, Windows, Chrome, edge VPNs and firewalls.</p>"
-        f'<div class="hero-actions"><span class="pill {"st-failed" if active else "st-ok"}">'
+        + (_telegram_callout(telegram) if telegram else "")
+        + f'<div class="hero-actions"><span class="pill {"st-failed" if active else "st-ok"}">'
         f'{active} critical · {BOARD_DAYS} days</span>'
-        + (f'<a class="btn" href="{escape(telegram)}" rel="noopener">Telegram ↗</a>' if telegram else "")
+        + (f'<a class="btn tg" href="{escape(telegram)}" rel="noopener">Join on Telegram ↗</a>' if telegram else "")
         + f'<a class="btn" href="{feed_path(topic_id, GC)}">Subscribe · Atom</a>'
         f'<a class="btn ghost" href="{page_path(GC)}">Open view</a></div>'
         f"{alerts}{more}"

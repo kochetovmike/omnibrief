@@ -206,9 +206,14 @@ def test_test_message(cfg, tmp_path):
 def test_hub_links_the_channel(cfg):
     from omnibrief.site import telegram_url
 
+    # channel_url from sources.yaml wins, so the link works even without the env var
+    assert telegram_url(cfg, {}) == "https://t.me/vulnerabilitiesbrief"
+    cfg.publishers["telegram"].model_extra.pop("channel_url")
     assert telegram_url(cfg, ENV) == "https://t.me/vulnerabilitiesbrief"
     assert telegram_url(cfg, {"TELEGRAM_CHAT_ID": "-1001234"}) is None
     assert telegram_url(cfg, {"TELEGRAM_CHAT_ID": '@x"><script>'}) is None
+    cfg.publishers["telegram"].model_extra["channel_url"] = 'https://t.me/x"><script>'
+    assert telegram_url(cfg, {}) is None
 
 
 @pytest.mark.parametrize("core,cvss,kev,tier", [

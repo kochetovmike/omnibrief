@@ -46,6 +46,7 @@ publishers:
     type: telegram                        # Global Critical only: instant alerts + Global brief 08:00/20:00
     bot_token_env: TELEGRAM_BOT_TOKEN     # Actions secret
     chat_id_env: TELEGRAM_CHAT_ID         # Actions variable, e.g. "@vulnerabilitiesbrief"
+    channel_url: https://t.me/vulnerabilitiesbrief   # public link shown on the website
     max_message_chars: 4000               # Telegram's limit is 4096; keep headroom
     min_interval_seconds: 1.1             # stay under ~1 message/second per chat
     disable_link_previews: true
