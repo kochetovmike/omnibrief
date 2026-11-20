@@ -47,6 +47,8 @@ def to_item(v: Vuln, summarised: bool = True) -> DigestItem:
         changes=v.changes,
         links=item_links(v),
         summarised=summarised,
+        published=v.published,
+        kev_date_added=v.kev_date_added,
     )
 
 

@@ -168,3 +168,34 @@ def test_raw_archive_holds_included_records_only(cfg, tmp_path, env):
     go(cfg, tmp_path, [FakeSource("nvd", "nvd", [nvd_rec(1), nvd_rec(2, product="unwatched")])], env)
     [raw] = list((tmp_path / "raw").glob("*.json"))
     assert [r["id"] for r in json.loads(raw.read_text())] == ["CVE-2026-0001"]
+
+
+def test_war_room_dashboard(cfg, tmp_path, env):
+    evil = nvd_rec(9)
+    evil.title = '<img src=x onerror=alert(1)>"><script>alert(2)</script>'
+    evil.published = NOW - timedelta(days=1)
+    kev = Vuln(id="CVE-2026-0042", kev=True, kev_date_added="2026-11-19", title="Exploited thing",
+               severity="high", cvss=8.8, sources=["cisa_kev"], refs=["javascript:alert(3)"])
+    _, _, opts = go(cfg, tmp_path, [FakeSource("nvd", "nvd", [nvd_rec(1), evil]),
+                                    FakeSource("cisa-kev", "cisa_kev", [kev])], env)
+    html = (opts.site_dir / "index.html").read_text(encoding="utf-8")
+    # criticality lanes + KPI tiles
+    for label in ("Actively exploited", "Critical", "High", "Medium &amp; low"):
+        assert label in html
+    assert 'class="lane c-exploited"' in html and "CVE-2026-0042" in html
+    # timeline grouped by date of issue (KEV date for exploited, publish date otherwise)
+    assert "2026-11-19" in html and "KEV added" in html
+    # health strip from health.json
+    assert 'id="status-pill"' in html and "health.json" in html and "Last success" in html
+    # untrusted text is escaped, non-https links are never rendered
+    assert "<script>alert" not in html and "<img src=x" not in html and "javascript:alert" not in html
+    # violet accent
+    assert "--accent:#a78bfa" in html
+
+
+def test_render_only_keeps_health_on_dashboard(cfg, tmp_path, env):
+    _, store, opts = go(cfg, tmp_path, [FakeSource("nvd", "nvd", [nvd_rec(1)])], env)
+    render_site(cfg, store, opts.site_dir)  # no runs: must reuse persisted health
+    html = (opts.site_dir / "index.html").read_text(encoding="utf-8")
+    assert "NO DATA" not in html and 'data-last-run="2026' in html
+    assert json.loads((opts.site_dir / "health.json").read_text())["sources"] == {"nvd": "ok"}

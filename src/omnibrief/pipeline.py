@@ -193,12 +193,14 @@ def render_site(cfg: Config, store: Store, site_dir: Path, runs: list[RunRecord]
     site_dir.mkdir(parents=True, exist_ok=True)
     digests = {t.id: store.recent_digests(t.id, cfg.site.entries_per_feed) for t in cfg.topics}
     site_mod.write_static(site_dir)
-    site_mod.write_index(cfg, site_dir, digests, latest=cfg.site.entries_per_feed)
-    site_mod.write_about(cfg, site_dir)
+    # The full health record is persisted so `render-only` can redraw the dashboard without a run.
+    health = site_mod.health(runs, store.load_health_state()) if runs else store.load_health_state()
     if runs:
-        data = site_mod.health(runs, store.load_health_state())
-        site_mod.write_health(site_dir, data)
-        store.save_health_state({"last_success_utc": data["last_success_utc"]})
+        store.save_health_state(health)
+    if health:
+        site_mod.write_health(site_dir, health)
+    site_mod.write_index(cfg, site_dir, digests, health=health or None)
+    site_mod.write_about(cfg, site_dir)
 
 
 def run(cfg: Config, opts: RunOptions, now: datetime | None = None) -> list[RunRecord]:

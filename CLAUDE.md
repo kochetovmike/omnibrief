@@ -84,3 +84,9 @@ secrets and write permissions out of the job that runs pip-installed code.
 - Workflow actions are pinned to full commit SHAs (resolve with `git ls-remote --tags`);
   `collect.yml` triggers only on `schedule` + `workflow_dispatch`.
 - No `feedgen`: v1.0 drops `rel` on entry links; the Atom XML is written with `xml.etree`.
+- `index.html` is the "war room" dashboard (`site.py`): health strip (same data as health.json,
+  persisted in `data/state/health.json` so `render-only` can redraw it), KPI tiles, criticality
+  lanes and a by-date-of-issue timeline built from the last 14 days of digests, then the digest
+  log (its `#run-…` anchors are the Atom entries' alternate links — keep them). Record fields are
+  HTML-escaped there and only `https://` links are rendered; theme colours are CSS variables
+  (violet accent) at the top of `site.py`.

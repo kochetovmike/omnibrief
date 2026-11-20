@@ -98,6 +98,8 @@ class DigestItem(BaseModel):
     changes: list[str] = Field(default_factory=list)
     links: list[str] = Field(default_factory=list)
     summarised: bool = True  # False for overflow items listed as links only
+    published: datetime | None = None  # when the vulnerability was published (NVD/GHSA)
+    kev_date_added: str | None = None  # YYYY-MM-DD, when CISA flagged it as exploited
 
 
 class Digest(BaseModel):
