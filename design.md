@@ -75,7 +75,7 @@ A scheduled collector that, every hour, pulls new vulnerability records from ope
 
 ```
 .github/workflows/collect.yml
-  on: schedule (cron "17 * * * *", UTC; hourly, off the top of the hour), workflow_dispatch
+  on: schedule (cron '0 * * * *', UTC; hourly), workflow_dispatch
   concurrency: { group: collect, cancel-in-progress: false }
         │
         ▼
@@ -423,7 +423,7 @@ Implement `Publisher` (short-form networks reuse `shortform.py`), add a `publish
 
 ## 8. Operations
 
-- **Cron reality:** GitHub may delay or skip scheduled runs under load. The 6h lookback covers it. The `:17` offset avoids the top-of-hour rush.
+- **Cron reality:** GitHub may delay or skip scheduled runs under load (the top of the hour is busiest). The 6h lookback and per-source catch-up window cover it. The plain `'0 * * * *'` schedule replaced `17 * * * *` on 2026-11-20 after the offset schedule never fired on the new repo.
 - **60-day inactivity rule:** in public repos, scheduled workflows are disabled after 60 days without repository activity. Each run pushes to the `data` branch, which is expected to count. **Verify in Phase 1**; if it doesn't, add a monthly keepalive.
 - **Health:** `site/health.json` = `{last_success_utc, last_run_utc, new_records, included, status, degraded_sources: [...], publishers: {atom: ok, telegram|bluesky|threads: ok|disabled|failed|pending}}` (for Threads, `failed` includes the reason, e.g. `auth` for an expired token). GitHub's failure email stays on.
 - **Publisher failures** never fail the workflow. Undelivered push digests are retried by later runs within `deliver_window_hours`.
