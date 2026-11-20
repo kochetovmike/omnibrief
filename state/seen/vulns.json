@@ -4,7 +4,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": null
  },
@@ -13,7 +13,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": false,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": "high"
  },
@@ -22,7 +22,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": false,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": "high"
  },
@@ -31,7 +31,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": null
  },
@@ -40,7 +40,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": false,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": "critical"
  },
@@ -49,7 +49,7 @@
   "first_seen": "2026-11-20T17:29:51.365702Z",
   "kev": false,
   "last_material_change": "2026-11-20T17:29:51.365702Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": "high"
  },
@@ -58,7 +58,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": null
  },
@@ -67,7 +67,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:59:57.392292Z",
+  "last_seen": "2026-11-20T18:14:19.453209Z",
   "patched": [],
   "severity": null
  }
