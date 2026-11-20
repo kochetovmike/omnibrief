@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 Omnibrief is a scheduled collector: openly licensed vulnerability sources in → merged, filtered,
-LLM-summarised digest → public Atom feed on GitHub Pages (+ optional push channels later).
+LLM-summarised digest → dashboard + Atom alert feed on GitHub Pages, hourly (+ optional push channels later).
 `design.md` is the approved spec and build order (§11 phases); read the relevant section before
 changing behaviour. Hard constraints from it: **€0 running cost (free tiers only, no Azure/paid
 services), and only licence-allowlisted sources (§5).**

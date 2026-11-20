@@ -32,7 +32,7 @@ Every design decision should keep both ends open:
 
 ## 1. What we're building (v1)
 
-A scheduled collector that, every 3 hours, pulls new vulnerability records from openly licensed sources, merges them per CVE, filters them against a watchlist and exploitation signals, asks a free-tier LLM for a short digest, and publishes it to every configured channel: a **public Atom feed** on GitHub Pages (always on), plus a **Telegram channel**, a **Bluesky account** and a **Threads profile**, each only if configured.
+A scheduled collector that, every hour, pulls new vulnerability records from openly licensed sources, merges them per CVE, filters them against a watchlist and exploitation signals, asks a free-tier LLM for a short digest, and publishes it to every configured channel: a **public Atom feed** on GitHub Pages (always on), plus a **Telegram channel**, a **Bluesky account** and a **Threads profile**, each only if configured.
 
 ### Goals
 - **€0 running cost.** Everything fits inside GitHub Free, the Gemini API free tier and the free Telegram, Bluesky and Threads APIs.
@@ -54,11 +54,11 @@ A scheduled collector that, every 3 hours, pulls new vulnerability records from 
 
 | Need | Free service | Notes |
 |---|---|---|
-| Schedule + compute | **GitHub Actions** (scheduled workflow, `ubuntu-latest`) | Free on public repos with standard runners. ~8 runs/day × ~2 min. |
+| Schedule + compute | **GitHub Actions** (scheduled workflow, `ubuntu-latest`) | Free on public repos with standard runners. 24 runs/day × ~2–3 min (hourly since 2026-11-20); still free on public repos. |
 | Feed hosting | **GitHub Pages**, deployed via `actions/deploy-pages` | Always public on GitHub Free; repo must be public. |
 | State (dedup, digest history) | **Git**: a dedicated `data` branch | No external store. Pushes also count as repo activity (see §8). |
 | Raw item archive | **Actions artifacts** (default retention) | Keeps raw data out of git history. |
-| LLM | **Gemini API free tier**, Flash / Flash-Lite class | ≤ 8 calls/day. Pluggable provider. GitHub Models is retired; do not use it. |
+| LLM | **Gemini API free tier**, Flash / Flash-Lite class | ≤ 24 calls/day (only runs with new items call it). Pluggable provider. GitHub Models is retired; do not use it. |
 | Chat channel | **Telegram Bot API** posting to a public channel | Free, no per-message cost; one post reaches all subscribers. **Optional** (§7a). |
 | Social: Bluesky | **AT Protocol** (bsky.social PDS), app-password login | Free, no API key or developer account; automated accounts welcome. **Optional** (§7a). |
 | Social: Threads | **Threads API** (Meta, `graph.threads.net`) | Free, no per-call fee; 250 posts / 24h per profile. Needs a Meta app + long-lived token. **Optional** (§7a). |
@@ -75,7 +75,7 @@ A scheduled collector that, every 3 hours, pulls new vulnerability records from 
 
 ```
 .github/workflows/collect.yml
-  on: schedule (cron "17 */3 * * *", UTC; off the top of the hour), workflow_dispatch
+  on: schedule (cron "17 * * * *", UTC; hourly, off the top of the hour), workflow_dispatch
   concurrency: { group: collect, cancel-in-progress: false }
         │
         ▼
@@ -268,7 +268,7 @@ publishers:
     deliver_window_hours: 24
 ```
 
-The `lookback_hours: 6` window deliberately overlaps the 3h schedule, so a delayed or skipped run loses nothing; dedupe absorbs the overlap. Phase 0 confirms every URL and parameter against live responses and current API docs.
+The `lookback_hours: 6` window deliberately overlaps the hourly schedule, so a delayed or skipped run loses nothing; dedupe absorbs the overlap. Phase 0 confirms every URL and parameter against live responses and current API docs.
 
 `config.py` fails fast on unknown source or publisher `type`, duplicate ids, a source not on the §5 allowlist, missing prompt files, or a missing `base_url`. **Missing environment values for an optional publisher are not a config error**; that publisher is simply disabled (§7a). CI runs `python -m omnibrief validate-config`.
 

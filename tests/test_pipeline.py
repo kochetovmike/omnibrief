@@ -190,8 +190,8 @@ def test_war_room_dashboard(cfg, tmp_path, env):
     assert 'id="status-pill"' in html and "health.json" in html and "Last success" in html
     # untrusted text is escaped, non-https links are never rendered
     assert "<script>alert" not in html and "<img src=x" not in html and "javascript:alert" not in html
-    # violet accent
-    assert "--accent:#a78bfa" in html
+    # violet accent, dark cyberpunk theme, thin type
+    assert "--accent:#c77dff" in html and "font:300" in html
 
 
 def test_render_only_keeps_health_on_dashboard(cfg, tmp_path, env):

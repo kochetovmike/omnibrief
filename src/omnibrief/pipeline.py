@@ -34,7 +34,7 @@ from omnibrief.state import Store
 log = logging.getLogger(__name__)
 
 SEEN_RETENTION_DAYS = 90
-HISTORY_DIGESTS = 8 * 14  # up to 8 runs/day for the 14 days the feed and dashboard show
+HISTORY_DIGESTS = 24 * 14  # up to 24 runs/day (hourly) for the 14 days the feed and dashboard show
 MAX_CATCHUP = timedelta(days=7)
 CATCHUP_OVERLAP = timedelta(hours=1)
 
