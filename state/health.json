@@ -1,3 +1,20 @@
 {
- "last_success_utc": "2026-11-20T17:12:19.211063+00:00"
+ "degraded_sources": [],
+ "included": 1,
+ "last_run_utc": "2026-11-20T17:29:53.322148+00:00",
+ "last_success_utc": "2026-11-20T17:29:53.322148+00:00",
+ "llm": {
+  "vulns": "ok"
+ },
+ "new_records": 134,
+ "publishers": {
+  "atom": "ok"
+ },
+ "sources": {
+  "cisa-kev": "ok",
+  "epss": "ok",
+  "ghsa": "ok",
+  "nvd": "ok"
+ },
+ "status": "ok"
 }

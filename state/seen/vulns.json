@@ -4,7 +4,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:12:14.656810Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
   "patched": [],
   "severity": null
  },
@@ -13,7 +13,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": false,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:12:14.656810Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
   "patched": [],
   "severity": "high"
  },
@@ -22,7 +22,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": false,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:12:14.656810Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
   "patched": [],
   "severity": "high"
  },
@@ -31,7 +31,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:12:14.656810Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
   "patched": [],
   "severity": null
  },
@@ -40,16 +40,25 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": false,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:12:14.656810Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
   "patched": [],
   "severity": "critical"
+ },
+ "CVE-2026-82675": {
+  "aliases": [],
+  "first_seen": "2026-11-20T17:29:51.365702Z",
+  "kev": false,
+  "last_material_change": "2026-11-20T17:29:51.365702Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
+  "patched": [],
+  "severity": "high"
  },
  "CVE-2026-90436": {
   "aliases": [],
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:12:14.656810Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
   "patched": [],
   "severity": null
  },
@@ -58,7 +67,7 @@
   "first_seen": "2026-11-20T17:12:14.656810Z",
   "kev": true,
   "last_material_change": "2026-11-20T17:12:14.656810Z",
-  "last_seen": "2026-11-20T17:12:14.656810Z",
+  "last_seen": "2026-11-20T17:29:51.365702Z",
   "patched": [],
   "severity": null
  }
