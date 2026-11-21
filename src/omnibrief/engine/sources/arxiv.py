@@ -17,7 +17,7 @@ NS = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/ato
 
 
 class ArxivSource(SourceAdapter):
-    type = "arxiv"
+    type = "arxiv_api"
 
     def fetch(self, topic_id: str, since: datetime, now: datetime) -> list[Item]:
         """Newest first, page by page until entries are older than `since` (cap: max_total)."""
@@ -59,7 +59,7 @@ def parse_entry(topic_id: str, entry) -> Item | None:
     return Item(
         topic=topic_id,
         key=f"arxiv:{arxiv_id}",
-        source_ids=["arxiv"],
+        source_ids=["arxiv_api"],
         title=_text(entry, "a:title"),
         url=f"https://arxiv.org/abs/{arxiv_id}",
         published=published,

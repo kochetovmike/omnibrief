@@ -32,7 +32,7 @@ def _pick(value, prefer=LANG_ORDER):
 
 
 class TedSource(SourceAdapter):
-    type = "ted"
+    type = "ted_search"
 
     def build_query(self, since: datetime) -> str:
         p = self.params
@@ -84,7 +84,7 @@ def parse_notice(topic_id: str, n: dict) -> Item | None:
     return Item(
         topic=topic_id,
         key=f"TED:{pub}",
-        source_ids=["ted"],
+        source_ids=["ted_search"],
         title=title,
         url=url,
         published=published,

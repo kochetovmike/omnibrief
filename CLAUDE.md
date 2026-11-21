@@ -2,33 +2,32 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-Omnibrief v2 is a hub: many licence-clean sources → per-topic filter/dedupe → template alerts or
-AI digests → Atom/RSS feeds, a static site and Telegram channels. One hourly GitHub Actions run; a
-planner picks the due topics. The spec is `design-v2 (2).md` (supersedes `design.md`; v1 rules it
-doesn't change still apply). Hard constraints: **€0 running cost** and **only licence-allowlisted
-sources**.
-
-**Engine vs instance:** this repo is the engine. It must never contain `instance/` (`engine-guard.yml`
-fails CI) and its workflow is inert without one. A fork adds `instance/` (copy of `instance.example/`).
-Never make normal customisation require editing engine files — add a config knob instead.
+Omnibrief v3 (spec: `design-v3 (1).md`; v2/v1 rules it doesn't change still apply): one repo, one
+hourly run, every pipeline is a **brief** = `briefs/<id>.yaml`; global settings in `omnibrief.yaml`.
+Secrets are references (`{secret: X}`/`{variable: X}`), never values. Hard constraints: €0, licence-clean.
 
 ## Commands
 
 ```bash
-.venv/Scripts/python -m pip install -e ".[dev]"                     # Windows dev box (py -3.12 venv)
-.venv/Scripts/python -m pytest                                      # all tests, offline (~40 s)
-.venv/Scripts/python -m pytest tests/v2/test_channels.py -k quiet   # single test
+.venv/Scripts/python -m pytest                       # offline (~30 s)
 .venv/Scripts/python -m ruff check .
-.venv/Scripts/python -m omnibrief --instance instance.example validate-config
-.venv/Scripts/python -m omnibrief --instance instance.example run --data D --site S --out O --archive A --topics all
-.venv/Scripts/python -m omnibrief --instance instance.example {plan|render-only|deliver [--test]} --data D [--site S]
+.venv/Scripts/python -m omnibrief check              # config + secrets table
+.venv/Scripts/python -m omnibrief dry-run <brief>    # one brief, nothing stored/posted
+.venv/Scripts/python -m omnibrief schema / notice    # regenerate schema/*.json / NOTICE.md (CI --check's both)
+.venv/Scripts/python -m omnibrief run --data D --site _site --briefs all   # live; build output is _site (site/ = overrides)
 ```
-Live runs hit real APIs (point dirs at a scratch folder). Env: `GEMINI_API_KEY`, `NVD_API_KEY`,
-`GITHUB_TOKEN`, `VULNS_WATCHLIST`, `ARXIV_KEYWORDS`, Telegram token + chat-id vars named in the instance.
+
+## v3 layer
+`engine/brief.py` validates `omnibrief.yaml` + briefs (pydantic → `schema/*.json`) and **compiles them
+into the v2 engine model** (Engine/TopicSpec; internally brief = "topic", push output = "channel").
+Telegram outputs with the same `id` across briefs are one channel. `merge: cve` → the `vulns` plugin
+(v1 pipeline). Generic adapters (`engine/sources/generic_feeds.py`) require a licence block; specialised
+adapters use `licence: builtin` and their attribution phrases must appear in the brief's `attribution.text`.
+`filters.expr` = `engine/expr.py` (ast whitelist, no eval). The CLI keeps only referenced secret names.
 
 ## Architecture
 
-- `src/omnibrief/engine/` — topic-agnostic v2 engine:
+- `src/omnibrief/engine/` — engine (v2 internals):
   `config.py` (instance + topic schema, overlay = deep-merge `instance/topics/*.yaml` over
   `catalog/topics/*.yaml`, file-wins for prompts/templates/site/NOTICE, validation incl. licence
   allowlist, routing, token-in-YAML), `planner.py` (cadence, `not_before`, business days, forced),

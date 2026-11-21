@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=../schema/brief.schema.json
+schema_version: 3
+id: earthquakes
+title: "Earthquakes: Europe & Alps"
+description: "USGS-located earthquakes of magnitude 4+ in Europe and the Alps, and 3+ in Austria."
+enabled: true
+schedule: { every: 1h, lookback: 3h }
+sources:
+  - { id: usgs, type: usgs_fdsn, licence: builtin, params: { minmagnitude: 3.0, bbox: [34, -11, 72, 40] } }
+filters:
+  expr: "fields.magnitude >= 4.0 or (fields.country == 'Austria' and fields.magnitude >= 3.0)"
+dedupe: { key: "{key}", material_fields: [magnitude, place, tsunami_flag] }
+render: { mode: template, template: earthquake }
+outputs:
+  - type: feed
+  - type: telegram
+    id: tg_alerts
+    connection: tg_bot
+    chat_id: { variable: TG_ALERTS_CHAT_ID }
+    max_posts_per_run: 10
+    quiet_hours: "23:00-06:00"
+attribution:
+  text: "Data: U.S. Geological Survey (USGS), public domain."

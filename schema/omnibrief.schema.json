@@ -1,0 +1,313 @@
+{
+  "$defs": {
+    "Connection": {
+      "additionalProperties": false,
+      "properties": {
+        "access_token": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "app_password": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "bot_token": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "handle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "refresh_pat": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "type": {
+          "enum": [
+            "telegram",
+            "bluesky",
+            "threads"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "user_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Connection",
+      "type": "object"
+    },
+    "GlobalLLM": {
+      "additionalProperties": false,
+      "properties": {
+        "api_key": {
+          "$ref": "#/$defs/Ref"
+        },
+        "max_calls_per_day": {
+          "default": 40,
+          "minimum": 0,
+          "title": "Max Calls Per Day",
+          "type": "integer"
+        },
+        "max_calls_per_run": {
+          "default": 6,
+          "minimum": 0,
+          "title": "Max Calls Per Run",
+          "type": "integer"
+        },
+        "max_output_tokens": {
+          "default": 4000,
+          "minimum": 100,
+          "title": "Max Output Tokens",
+          "type": "integer"
+        },
+        "model": {
+          "default": "gemini-flash-lite-latest",
+          "title": "Model",
+          "type": "string"
+        },
+        "provider": {
+          "default": "gemini",
+          "title": "Provider",
+          "type": "string"
+        },
+        "temperature": {
+          "default": 0.2,
+          "title": "Temperature",
+          "type": "number"
+        }
+      },
+      "title": "GlobalLLM",
+      "type": "object"
+    },
+    "GlobalSink": {
+      "additionalProperties": true,
+      "properties": {
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "GlobalSink",
+      "type": "object"
+    },
+    "GlobalStorage": {
+      "additionalProperties": false,
+      "properties": {
+        "default_sinks": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Default Sinks",
+          "type": "array"
+        },
+        "primary": {
+          "$ref": "#/$defs/GlobalSink"
+        },
+        "sinks": {
+          "additionalProperties": {
+            "$ref": "#/$defs/GlobalSink"
+          },
+          "title": "Sinks",
+          "type": "object"
+        }
+      },
+      "title": "GlobalStorage",
+      "type": "object"
+    },
+    "Limits": {
+      "additionalProperties": false,
+      "properties": {
+        "max_concurrent_briefs": {
+          "default": 4,
+          "maximum": 16,
+          "minimum": 1,
+          "title": "Max Concurrent Briefs",
+          "type": "integer"
+        },
+        "max_http_connections": {
+          "default": 8,
+          "maximum": 32,
+          "minimum": 1,
+          "title": "Max Http Connections",
+          "type": "integer"
+        },
+        "run_time_budget_seconds": {
+          "default": 600,
+          "minimum": 60,
+          "title": "Run Time Budget Seconds",
+          "type": "integer"
+        }
+      },
+      "title": "Limits",
+      "type": "object"
+    },
+    "Ref": {
+      "additionalProperties": false,
+      "description": "A secret reference: the NAME of a GitHub Actions secret or variable, never a value.",
+      "properties": {
+        "optional": {
+          "default": false,
+          "title": "Optional",
+          "type": "boolean"
+        },
+        "secret": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Secret"
+        },
+        "variable": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variable"
+        }
+      },
+      "title": "Ref",
+      "type": "object"
+    },
+    "SiteSettings": {
+      "additionalProperties": false,
+      "properties": {
+        "base_url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Base Url",
+          "type": "string"
+        },
+        "language": {
+          "default": "en",
+          "title": "Language",
+          "type": "string"
+        },
+        "tagline": {
+          "default": "Licence-clean alerts and digests, delivered everywhere.",
+          "title": "Tagline",
+          "type": "string"
+        },
+        "theme": {
+          "default": "default",
+          "enum": [
+            "default",
+            "instance"
+          ],
+          "title": "Theme",
+          "type": "string"
+        },
+        "timezone": {
+          "default": "Europe/Vienna",
+          "title": "Timezone",
+          "type": "string"
+        },
+        "title": {
+          "default": "Omnibrief",
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "base_url"
+      ],
+      "title": "SiteSettings",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "connections": {
+      "additionalProperties": {
+        "$ref": "#/$defs/Connection"
+      },
+      "title": "Connections",
+      "type": "object"
+    },
+    "limits": {
+      "$ref": "#/$defs/Limits"
+    },
+    "llm": {
+      "$ref": "#/$defs/GlobalLLM"
+    },
+    "schema_version": {
+      "const": 3,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "site": {
+      "$ref": "#/$defs/SiteSettings"
+    },
+    "storage": {
+      "$ref": "#/$defs/GlobalStorage"
+    }
+  },
+  "required": [
+    "schema_version",
+    "site"
+  ],
+  "title": "GlobalConfig",
+  "type": "object"
+}

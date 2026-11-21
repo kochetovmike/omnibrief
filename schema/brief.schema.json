@@ -1,0 +1,588 @@
+{
+  "$defs": {
+    "Attribution": {
+      "additionalProperties": false,
+      "properties": {
+        "licence_url": {
+          "anyOf": [
+            {
+              "pattern": "^https://",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Licence Url"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "text"
+      ],
+      "title": "Attribution",
+      "type": "object"
+    },
+    "BriefSource": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "licence": {
+          "anyOf": [
+            {
+              "const": "builtin",
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/LicenceBlock"
+            }
+          ],
+          "default": "builtin",
+          "title": "Licence"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "secrets": {
+          "additionalProperties": {
+            "$ref": "#/$defs/Ref"
+          },
+          "title": "Secrets",
+          "type": "object"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "title": "BriefSource",
+      "type": "object"
+    },
+    "BriefStorage": {
+      "additionalProperties": false,
+      "properties": {
+        "sinks": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Sinks",
+          "type": "array"
+        }
+      },
+      "title": "BriefStorage",
+      "type": "object"
+    },
+    "Dedupe": {
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "default": "{key}",
+          "title": "Key",
+          "type": "string"
+        },
+        "material_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Material Fields",
+          "type": "array"
+        }
+      },
+      "title": "Dedupe",
+      "type": "object"
+    },
+    "Enrich": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Id"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Enrich",
+      "type": "object"
+    },
+    "Filters": {
+      "additionalProperties": true,
+      "description": "Known keys + strategy-specific extras (e.g. the `cve` merge's min_cvss), and v2's declarative ones.",
+      "properties": {
+        "exclude_keywords_any": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Exclude Keywords Any",
+          "type": "array"
+        },
+        "expr": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expr"
+        },
+        "include_keywords_any": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Include Keywords Any",
+          "type": "array"
+        },
+        "max_items": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Max Items"
+        },
+        "watchlist": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "Filters",
+      "type": "object"
+    },
+    "LicenceBlock": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        },
+        "reviewed_by": {
+          "title": "Reviewed By",
+          "type": "string"
+        },
+        "reviewed_on": {
+          "format": "date",
+          "title": "Reviewed On",
+          "type": "string"
+        },
+        "url": {
+          "pattern": "^https://",
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "url",
+        "reviewed_on",
+        "reviewed_by"
+      ],
+      "title": "LicenceBlock",
+      "type": "object"
+    },
+    "Output": {
+      "additionalProperties": true,
+      "description": "`type` + type-specific params. Outputs with the same `id` in several briefs are ONE channel\n(shared caps/quiet hours); default id is `<brief>-<type>`.",
+      "properties": {
+        "chat_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Ref"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "connection": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Connection"
+        },
+        "hashtags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Hashtags",
+          "type": "array"
+        },
+        "id": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9_-]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Id"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "pattern": "^https://",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Output",
+      "type": "object"
+    },
+    "Ref": {
+      "additionalProperties": false,
+      "description": "A secret reference: the NAME of a GitHub Actions secret or variable, never a value.",
+      "properties": {
+        "optional": {
+          "default": false,
+          "title": "Optional",
+          "type": "boolean"
+        },
+        "secret": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Secret"
+        },
+        "variable": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Variable"
+        }
+      },
+      "title": "Ref",
+      "type": "object"
+    },
+    "Render": {
+      "additionalProperties": false,
+      "properties": {
+        "fallback": {
+          "const": "titles_and_links",
+          "default": "titles_and_links",
+          "title": "Fallback",
+          "type": "string"
+        },
+        "language": {
+          "default": "en",
+          "title": "Language",
+          "type": "string"
+        },
+        "llm_selects": {
+          "default": false,
+          "title": "Llm Selects",
+          "type": "boolean"
+        },
+        "max_input_items": {
+          "default": 40,
+          "minimum": 1,
+          "title": "Max Input Items",
+          "type": "integer"
+        },
+        "mode": {
+          "enum": [
+            "template",
+            "llm_digest",
+            "hybrid"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "overflow": {
+          "default": "list",
+          "enum": [
+            "list",
+            "drop"
+          ],
+          "title": "Overflow",
+          "type": "string"
+        },
+        "prompt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prompt"
+        },
+        "prompt_file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Prompt File"
+        },
+        "template": {
+          "default": "item",
+          "title": "Template",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mode"
+      ],
+      "title": "Render",
+      "type": "object"
+    },
+    "Schedule": {
+      "additionalProperties": false,
+      "properties": {
+        "days": {
+          "anyOf": [
+            {
+              "items": {
+                "enum": [
+                  "mon",
+                  "tue",
+                  "wed",
+                  "thu",
+                  "fri",
+                  "sat",
+                  "sun"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Days"
+        },
+        "every": {
+          "default": "1h",
+          "title": "Every",
+          "type": "string"
+        },
+        "lookback": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Lookback"
+        },
+        "not_before": {
+          "anyOf": [
+            {
+              "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Not Before"
+        }
+      },
+      "title": "Schedule",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "attribution": {
+      "$ref": "#/$defs/Attribution"
+    },
+    "dedupe": {
+      "$ref": "#/$defs/Dedupe"
+    },
+    "deliver_window_hours": {
+      "default": 24,
+      "minimum": 1,
+      "title": "Deliver Window Hours",
+      "type": "integer"
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    },
+    "enabled": {
+      "title": "Enabled",
+      "type": "boolean"
+    },
+    "enrich": {
+      "items": {
+        "$ref": "#/$defs/Enrich"
+      },
+      "title": "Enrich",
+      "type": "array"
+    },
+    "feed_entries": {
+      "default": 30,
+      "maximum": 200,
+      "minimum": 1,
+      "title": "Feed Entries",
+      "type": "integer"
+    },
+    "filters": {
+      "$ref": "#/$defs/Filters"
+    },
+    "id": {
+      "pattern": "^[a-z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "merge": {
+      "anyOf": [
+        {
+          "const": "cve",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Merge"
+    },
+    "outputs": {
+      "items": {
+        "$ref": "#/$defs/Output"
+      },
+      "minItems": 1,
+      "title": "Outputs",
+      "type": "array"
+    },
+    "render": {
+      "$ref": "#/$defs/Render"
+    },
+    "schedule": {
+      "$ref": "#/$defs/Schedule"
+    },
+    "schema_version": {
+      "const": 3,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/BriefSource"
+      },
+      "minItems": 1,
+      "title": "Sources",
+      "type": "array"
+    },
+    "storage": {
+      "$ref": "#/$defs/BriefStorage"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "title",
+    "enabled",
+    "schedule",
+    "sources",
+    "dedupe",
+    "render",
+    "outputs",
+    "attribution"
+  ],
+  "title": "Brief",
+  "type": "object"
+}

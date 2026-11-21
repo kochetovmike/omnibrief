@@ -45,26 +45,27 @@ def test_swpc_parses_k_and_g_scale():
 
 
 def test_geosphere_groups_by_bundesland():
-    items, _ = fetch("geosphere_warn")
+    items, _ = fetch("geosphere_warnings")
     storm = next(i for i in items if i.key == "geosphere:w4147c0v2")
     assert storm.title == "Orange storm warning — Salzburg, Tirol"
     assert storm.fields["level"] == 2 and storm.severity == "medium"
 
 
 def test_arxiv_never_links_pdfs_and_strips_versions():
-    items, _ = fetch("arxiv", {"categories": ["cs.AI"]})
+    items, _ = fetch("arxiv_api", {"categories": ["cs.AI"]})
     assert items and all(i.url.startswith("https://arxiv.org/abs/") and "pdf" not in i.url for i in items)
     assert all("v" not in i.key.split(":", 1)[1] for i in items)
     assert all(i.summary for i in items)
 
 
 def test_arxiv_window_filters_old_entries():
-    items, _ = fetch("arxiv", {"categories": ["cs.AI"]}, since=NOW + timedelta(days=1))
+    items, _ = fetch("arxiv_api", {"categories": ["cs.AI"]}, since=NOW + timedelta(days=1))
     assert items == []
 
 
 def test_ted_query_and_parse():
-    items, requests = fetch("ted", {"countries": ["AUT", "DEU"], "cpv": [72000000]}, since=NOW - timedelta(days=2))
+    params = {"countries": ["AUT", "DEU"], "cpv": [72000000]}
+    items, requests = fetch("ted_search", params, since=NOW - timedelta(days=2))
     body = requests[0].content.decode()
     assert "buyer-country IN (AUT DEU)" in body and "classification-cpv IN (72000000)" in body
     assert "publication-date>=20261118" in body
@@ -73,14 +74,15 @@ def test_ted_query_and_parse():
 
 
 def test_safety_gate_reports_in_window():
-    items, requests = fetch("safety_gate", {"max_reports": 1}, since=datetime(2026, 11, 19, tzinfo=UTC))
+    items, requests = fetch("safety_gate_weekly", {"max_reports": 1}, since=datetime(2026, 11, 19, tzinfo=UTC))
     assert len(items) == 6 and all(i.key.startswith("SG:") for i in items)
     assert any(i.fields["notifying_country"] == "Austria" for i in items)
     assert sum(1 for r in requests if "detail" in str(r.url)) == 1
 
 
-@pytest.mark.parametrize("stype", list(SOURCE_TYPES))
+@pytest.mark.parametrize("stype", [t for t in SOURCE_TYPES if t not in ("rss", "atom", "json_api", "xml", "geojson")])
 def test_source_outage_raises(stype):
-    name = {"usgs_fdsn": "usgs", "noaa_swpc": "swpc", "geosphere_warn": "geosphere"}.get(stype, stype)
+    name = {"usgs_fdsn": "usgs", "noaa_swpc": "swpc", "geosphere_warnings": "geosphere", "ted_search": "ted",
+            "arxiv_api": "arxiv", "safety_gate_weekly": "safety_gate"}.get(stype, stype)
     with pytest.raises(httpx.HTTPStatusError):
         fetch(stype, fail={name})

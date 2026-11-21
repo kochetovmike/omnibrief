@@ -26,6 +26,9 @@ def is_due(spec: TopicSpec, entry: dict | None, now: datetime, tz: str, forced: 
     cad = spec.cadence
     if cad.business_days and local.weekday() >= 5:
         return False, "weekend"
+    days = (spec.options or {}).get("days")
+    if days and ["mon", "tue", "wed", "thu", "fri", "sat", "sun"][local.weekday()] not in days:
+        return False, "not a scheduled day"
     if cad.not_before and local.time() < _parse_hhmm(cad.not_before):
         return False, f"before {cad.not_before}"
     last = (entry or {}).get("last_success")

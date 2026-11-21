@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=../schema/brief.schema.json
+schema_version: 3
+id: safety-gate
+title: "EU product safety alerts (Safety Gate)"
+description: "The weekly EU Safety Gate report on dangerous non-food products, grouped by category. Published Fridays; checked daily."
+enabled: true
+schedule: { every: 24h, lookback: 192h }
+sources:
+  - { id: safety-gate, type: safety_gate_weekly, licence: builtin, params: { max_reports: 1 } }
+dedupe: { key: "{key}", material_fields: [level, measures] }
+render: { mode: llm_digest, prompt_file: prompts/safety-gate.md }
+outputs:
+  - type: feed
+  - type: telegram
+    id: tg_alerts
+    connection: tg_bot
+    chat_id: { variable: TG_ALERTS_CHAT_ID }
+    max_posts_per_run: 10
+    quiet_hours: "23:00-06:00"
+attribution:
+  text: "Source: © European Union, Safety Gate, CC BY 4.0. Summaries are machine-generated and modified."
+  licence_url: https://creativecommons.org/licenses/by/4.0/

@@ -57,8 +57,12 @@ def write_site(engine: Engine, site_dir: Path, *, now: datetime, cards: list[dic
             (site_dir / card["page"]).write_text(html, encoding="utf-8")
     (site_dir / "status.html").write_text(env.get_template("status.html.j2").render(**common, health=health),
                                           encoding="utf-8")
-    notice = engine.overlay_file("NOTICE.md")
-    about = md_lib.markdown(notice.read_text(encoding="utf-8"), output_format="html") if notice else ""
+    if hasattr(engine, "notice_markdown"):
+        notice_text = engine.notice_markdown()
+    else:
+        notice = engine.overlay_file("NOTICE.md")
+        notice_text = notice.read_text(encoding="utf-8") if notice else ""
+    about = md_lib.markdown(notice_text, output_format="html")
     (site_dir / "about.html").write_text(env.get_template("about.html.j2").render(**common, about=about),
                                          encoding="utf-8")
     (site_dir / "health.json").write_text(json.dumps(health, indent=1, sort_keys=True, default=str) + "\n",

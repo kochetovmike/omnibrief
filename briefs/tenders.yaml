@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=../schema/brief.schema.json
+schema_version: 3
+id: tenders
+title: "EU tenders: IT, data & cloud (AT/DE/CH)"
+description: "New EU public procurement notices (TED) for IT services, software, data and cloud in Austria, Germany and Switzerland."
+enabled: true
+schedule: { every: 24h, not_before: "09:30", days: [mon, tue, wed, thu, fri], lookback: 48h }
+sources:
+  - id: ted
+    type: ted_search
+    licence: builtin
+    params: { countries: [AUT, DEU, CHE], cpv: [72000000, 48000000, 72300000, 72500000], limit: 100, max_pages: 5 }
+dedupe: { key: "{key}", material_fields: [deadline, estimated_value] }
+render: { mode: llm_digest, prompt_file: prompts/tenders.md, fallback: titles_and_links }
+outputs:
+  - type: feed
+  - { type: telegram, id: tg_tenders, connection: tg_bot, chat_id: { variable: TG_TENDERS_CHAT_ID }, max_posts_per_run: 3, hashtags: ["#tender"] }
+attribution:
+  text: "Source: © European Union, TED (Tenders Electronic Daily), CC BY 4.0. Summaries are machine-generated and modified."
+  licence_url: https://creativecommons.org/licenses/by/4.0/

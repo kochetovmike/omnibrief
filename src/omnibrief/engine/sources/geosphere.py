@@ -22,7 +22,7 @@ LAENDER = {"1": "Burgenland", "2": "Kärnten", "3": "Niederösterreich", "4": "O
 
 
 class GeoSphereWarnSource(SourceAdapter):
-    type = "geosphere_warn"
+    type = "geosphere_warnings"
 
     def fetch(self, topic_id: str, since: datetime, now: datetime) -> list[Item]:
         data = self.get(self.params.get("url", URL)).json()  # no parameters (OpenAPI: getWarnstatus)
@@ -51,7 +51,7 @@ def parse_warning(topic_id: str, feature: dict, now: datetime) -> Item | None:
     return Item(
         topic=topic_id,
         key=f"geosphere:{wid}",
-        source_ids=["geosphere_warn"],
+        source_ids=["geosphere_warnings"],
         title=title,
         url=PAGE,
         published=start or now,

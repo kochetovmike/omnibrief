@@ -25,7 +25,7 @@ htmlcov/
 #   raw/   is the raw merged-record archive (uploaded as an Actions artifact)
 #   out/   is the v2 artifact sink output; archive/ is the `archive` branch checkout (jsonl_git sink)
 /data/
-/site/
+/_site/
 /raw/
 /out/
 /archive/

@@ -60,9 +60,10 @@ def _err(e: Exception) -> str:
 
 
 def make_client(engine: Engine) -> httpx.Client:
+    g = getattr(engine, "global_cfg", None)
     return httpx.Client(timeout=30, follow_redirects=True,
-                        headers={"User-Agent": f"Omnibrief/0.2 (+{engine.site.base})"},
-                        limits=httpx.Limits(max_connections=8))
+                        headers={"User-Agent": f"Omnibrief/0.3 (+{engine.site.base})"},
+                        limits=httpx.Limits(max_connections=g.limits.max_http_connections if g else 8))
 
 
 def run(engine: Engine, paths: RunPaths, env: Mapping[str, str], now: datetime | None = None,
@@ -107,7 +108,9 @@ def run(engine: Engine, paths: RunPaths, env: Mapping[str, str], now: datetime |
                 log.exception("topic %s failed", spec.id)
                 return TopicResult(status="failed", error=_err(e))
 
-        with ThreadPoolExecutor(max_workers=MAX_TOPIC_WORKERS) as pool:
+        limits = getattr(engine, "global_cfg", None)
+        workers = limits.limits.max_concurrent_briefs if limits else MAX_TOPIC_WORKERS
+        with ThreadPoolExecutor(max_workers=workers) as pool:
             results = dict(zip([s.id for s in due_specs], pool.map(collect, due_specs), strict=True))
 
         sinks = build_sinks(engine.config.storage.sinks, paths.out_dir, paths.archive_dir)
@@ -121,7 +124,10 @@ def run(engine: Engine, paths: RunPaths, env: Mapping[str, str], now: datetime |
             rec.topics[tid] = {"status": res.status, "error": res.error, "sources": res.sources,
                                "counts": res.counts, "llm": res.llm}
             log.info("topic %s: %s %s", tid, res.status, res.counts)
+            allowed_sinks = engine.topics[tid].options.get("sinks")
             for sink in sinks:
+                if allowed_sinks is not None and sink.type not in allowed_sinks:
+                    continue
                 ok, why = sink.is_enabled()
                 if not ok:
                     rec.sinks[sink.id] = f"disabled: {why}"

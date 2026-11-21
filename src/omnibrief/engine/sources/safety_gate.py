@@ -22,7 +22,7 @@ def _t(el, tag: str) -> str:
 
 
 class SafetyGateSource(SourceAdapter):
-    type = "safety_gate"
+    type = "safety_gate_weekly"
 
     def reports(self, since: datetime) -> list[tuple[datetime, str]]:
         root = ET.fromstring(self.get(self.params.get("url", LIST_URL)).content)
@@ -59,7 +59,7 @@ def parse_notification(topic_id: str, n, report_day: datetime) -> Item | None:
     return Item(
         topic=topic_id,
         key=f"SG:{case}",
-        source_ids=["safety_gate"],
+        source_ids=["safety_gate_weekly"],
         title=f"{product}" + (f" — {brand}" if brand and brand.lower() not in ("unknown", "") else ""),
         url=ref,
         published=published,

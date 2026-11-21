@@ -9,7 +9,8 @@ import pytest
 import yaml
 
 from omnibrief.config import load_config
-from omnibrief.engine.config import CATALOG, TopicSpec
+from omnibrief.engine.brief import load_project
+from omnibrief.engine.config import CATALOG
 from omnibrief.engine.topics.vulns import v1_config_dict
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ def fixture_json(*parts: str):
 
 def vulns_v1_dict() -> dict:
     """The v1 config the vulns plugin builds from the catalogue topic (v1 tests run against it)."""
-    spec = TopicSpec.model_validate(yaml.safe_load((CATALOG / "topics" / "vulns.yaml").read_text(encoding="utf-8")))
+    spec = load_project(ROOT).topics["vulns"]  # compiled from briefs/vulns.yaml
     return v1_config_dict(
         base_url=BASE_URL, timezone="Europe/Vienna", language="en",
         llm={"provider": "gemini", "model": "gemini-flash-lite-latest", "api_key_env": "GEMINI_API_KEY",
@@ -40,7 +41,7 @@ def repo(tmp_path: Path) -> Path:
     (tmp_path / "sources.yaml").write_text(yaml.safe_dump(vulns_v1_dict(), sort_keys=False), encoding="utf-8")
     shutil.copy(CATALOG / "NOTICE.md", tmp_path / "NOTICE.md")
     (tmp_path / "prompts").mkdir()
-    shutil.copy(CATALOG / "prompts" / "vulns.md", tmp_path / "prompts" / "vulns.md")
+    shutil.copy(ROOT / "prompts" / "vulns.md", tmp_path / "prompts" / "vulns.md")
     return tmp_path
 
 

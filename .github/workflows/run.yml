@@ -1,33 +1,24 @@
 name: run
 
-# Omnibrief v2 (design-v2 §5). One hourly run; the planner decides which topics are due.
-# INERT in the engine repo: every job is skipped unless instance/omnibrief.yaml exists (forks).
-#
-# Least privilege per job:
-#   check            contents: read                      — does this repo have an instance?
-#   run              contents: read + secrets (as JSON)  — runs pip-installed code; can't write anything
-#   push-state       contents: write, no secrets         — commits data + archive branches; runs no project code
-#   deploy           pages + id-token                     — deploys the site built by `run`
-#   deliver          contents: read + secrets (as JSON)  — push channels, after state is durable
-#   push-deliveries  contents: write, no secrets         — records what was sent (no double posts)
-# Secrets reach the CLI as a pre-filtered JSON file, split by NAME CONVENTION so each job only gets
-# what it needs (an instance can still name any env var without editing this engine-owned file):
-#   run job      every secret EXCEPT push-channel ones (TELEGRAM_*, TG_*, BLUESKY_*, THREADS_*)
-#   deliver job  ONLY push-channel secrets (TELEGRAM_*, TG_*, BLUESKY_*, THREADS_*)
-#   neither      THREADS_REFRESH_PAT (only for a future refresh-threads-token.yml)
-# Variables are not secret and are passed whole (OMNIBRIEF_VARS_JSON).
+# Omnibrief v3 (design-v3): one hourly run over every enabled brief in briefs/.
+# Jobs: run [read; secrets as JSON] → push-state [write, no secrets] → deploy [pages]
+#                                    → push-archive [write]   (a sink: never blocks deploy/deliver)
+#                                    → deliver [read; secrets as JSON] → push-deliveries [write]
+# Secrets (design-v3 §6.2): passed as ONE JSON blob to the two steps that run the engine; the engine
+# keeps only the names referenced by omnibrief.yaml and enabled briefs and never logs values. Keep
+# unrelated secrets out of this repo; THREADS_REFRESH_PAT is dropped before the engine sees anything.
 
 on:
   schedule:
     - cron: '0 * * * *'   # every hour, on the hour (UTC)
   workflow_dispatch:
     inputs:
-      topics:
-        description: "Force these topics now (comma-separated ids, or 'all'); empty = planner decides"
+      briefs:
+        description: "Force these briefs now (comma-separated ids, or 'all'); empty = planner decides"
         type: string
         default: ""
       telegram_test:
-        description: "Also send a test message to every configured Telegram channel"
+        description: "Also send a test message to every configured Telegram output"
         type: boolean
         default: false
 
@@ -38,26 +29,7 @@ concurrency:
 permissions: {}
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    timeout-minutes: 2
-    permissions:
-      contents: read
-    outputs:
-      has_instance: ${{ steps.check.outputs.has_instance }}
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-          sparse-checkout: instance
-      - id: check
-        run: |
-          if [ -f instance/omnibrief.yaml ]; then echo "has_instance=true" >> "$GITHUB_OUTPUT";
-          else echo "has_instance=false" >> "$GITHUB_OUTPUT"; echo "No instance/omnibrief.yaml: engine repo, nothing to do."; fi
-
   run:
-    needs: check
-    if: needs.check.outputs.has_instance == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
@@ -74,14 +46,6 @@ jobs:
           cache: pip
           cache-dependency-path: pyproject.toml
 
-      - name: Select secrets for this job (push-channel secrets stay out)
-        env:
-          ALL_SECRETS: ${{ toJSON(secrets) }}
-        run: >-
-          echo "$ALL_SECRETS" | jq -c
-          'with_entries(select(.key | test("^(TELEGRAM_|TG_|BLUESKY_|THREADS_|github_token$)") | not))'
-          > "$RUNNER_TEMP/secrets.json"
-
       - name: Install
         run: python -m pip install --quiet .
 
@@ -96,16 +60,19 @@ jobs:
             fi
           done
 
-      - name: Validate instance
-        run: python -m omnibrief validate-config
+      - name: Check config (names only, never values)
+        run: python -m omnibrief check --offline
 
       - name: Run (plan → collect → store → publish)
         env:
-          OMNIBRIEF_SECRETS_FILE: ${{ runner.temp }}/secrets.json
-          OMNIBRIEF_VARS_JSON: ${{ toJSON(vars) }}
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+          OMNIBRIEF_VARS: ${{ toJSON(vars) }}
           GITHUB_TOKEN: ${{ github.token }}
-          FORCE_TOPICS: ${{ github.event_name == 'workflow_dispatch' && inputs.topics || '' }}
-        run: python -m omnibrief run --data ./data --site ./site --out ./out --archive ./archive --topics "$FORCE_TOPICS"
+          FORCE_BRIEFS: ${{ github.event_name == 'workflow_dispatch' && inputs.briefs || '' }}
+        run: |
+          export OMNIBRIEF_SECRETS="$(echo "$ALL_SECRETS" | jq -c 'del(.THREADS_REFRESH_PAT)')"
+          unset ALL_SECRETS
+          python -m omnibrief run --data ./data --site ./_site --out ./out --archive ./archive --briefs "$FORCE_BRIEFS"
 
       - name: Upload state
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -122,7 +89,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: site/
+          path: _site/
 
   push-state:
     needs: run
@@ -232,14 +199,6 @@ jobs:
           cache: pip
           cache-dependency-path: pyproject.toml
 
-      - name: Select secrets for this job (push-channel secrets only)
-        env:
-          ALL_SECRETS: ${{ toJSON(secrets) }}
-        run: >-
-          echo "$ALL_SECRETS" | jq -c
-          'with_entries(select((.key | test("^(TELEGRAM_|TG_|BLUESKY_|THREADS_)")) and .key != "THREADS_REFRESH_PAT"))'
-          > "$RUNNER_TEMP/secrets.json"
-
       - run: python -m pip install --quiet .
 
       - name: Fetch the just-pushed state
@@ -251,10 +210,12 @@ jobs:
 
       - name: Deliver (channels without settings are skipped)
         env:
-          OMNIBRIEF_SECRETS_FILE: ${{ runner.temp }}/secrets.json
-          OMNIBRIEF_VARS_JSON: ${{ toJSON(vars) }}
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+          OMNIBRIEF_VARS: ${{ toJSON(vars) }}
           SEND_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.telegram_test }}
         run: |
+          export OMNIBRIEF_SECRETS="$(echo "$ALL_SECRETS" | jq -c 'del(.THREADS_REFRESH_PAT)')"
+          unset ALL_SECRETS
           if [ "$SEND_TEST" = "true" ]; then python -m omnibrief deliver --data ./data --test
           else python -m omnibrief deliver --data ./data; fi
 

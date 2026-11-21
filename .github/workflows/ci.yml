@@ -30,8 +30,11 @@ jobs:
       - name: Lint
         run: ruff check .
 
-      - name: Validate the example instance (design-v2 §13)
-        run: python -m omnibrief --instance instance.example validate-config
+      - name: Check config, schemas and NOTICE are valid and up to date
+        run: |
+          python -m omnibrief check --offline
+          python -m omnibrief schema --check
+          python -m omnibrief notice --check
 
       - name: Test (offline)
         run: pytest

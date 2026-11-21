@@ -12,10 +12,12 @@ YAML under `filters:` — every condition at one level must hold (AND):
 
 from __future__ import annotations
 
+import functools
 from collections.abc import Mapping
 from typing import Any
 
 from omnibrief.categories import compile_terms
+from omnibrief.engine import expr as expr_mod
 from omnibrief.engine.items import Item, sev_rank
 
 
@@ -48,8 +50,20 @@ def matches(item: Item, cond: dict, env: Mapping[str, str]) -> bool:
         pattern = compile_terms(words)
         if pattern is None or not pattern.search(f"{item.title}\n{item.summary or ''}"):
             return False
+    if (ex := cond.get("exclude_keywords_any")) and (pat := compile_terms(ex)) and \
+            pat.search(f"{item.title}\n{item.summary or ''}"):
+        return False
+    if (text := cond.get("expr")) and not expr_mod.evaluate(_compiled(text), {
+            "fields": item.fields, "severity": item.severity, "source": (item.source_ids or [None])[0],
+            "title": item.title, "key": item.key, "status": item.status}):
+        return False
     alts = cond.get("any_of")
     return not alts or any(matches(item, a, env) for a in alts)
+
+
+@functools.lru_cache(maxsize=128)
+def _compiled(text: str):
+    return expr_mod.compile_expr(text)
 
 
 def passes(item: Item, filters: dict, env: Mapping[str, str]) -> bool:

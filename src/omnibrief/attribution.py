@@ -33,15 +33,15 @@ SOURCE_LICENCES: dict[str, SourceLicence] = {
     "euvd": SourceLicence("ENISA EUVD", "ENISA legal notice", ("ENISA",)),
     "cvelist": SourceLicence("CVE List (CVE Program)", "CVE Program Terms of Use", ("MITRE",)),
     # --- v2 topics (design-v2 §6). Phase 0 re-verification notes live in NOTICE.md. ---
-    "ted": SourceLicence("TED — Tenders Electronic Daily (EU)", "CC BY 4.0 (EU reuse policy)",
+    "ted_search": SourceLicence("TED — Tenders Electronic Daily (EU)", "CC BY 4.0 (EU reuse policy)",
                          ("© European Union, TED",)),
-    "arxiv": SourceLicence("arXiv API metadata", "CC0 1.0 (metadata via the arXiv API)", ("Thank you to arXiv",)),
-    "safety_gate": SourceLicence("EU Safety Gate", "CC BY 4.0 (Commission reuse policy)",
+    "arxiv_api": SourceLicence("arXiv API metadata", "CC0 1.0 (metadata via the arXiv API)", ("Thank you to arXiv",)),
+    "safety_gate_weekly": SourceLicence("EU Safety Gate", "CC BY 4.0 (Commission reuse policy)",
                                  ("© European Union, Safety Gate",)),
     "noaa_swpc": SourceLicence("NOAA Space Weather Prediction Center", "US government public information",
                                ("NOAA SWPC",)),
     "usgs_fdsn": SourceLicence("USGS Earthquake Hazards Program", "US federal public domain", ("USGS",)),
-    "geosphere_warn": SourceLicence("GeoSphere Austria", "CC BY 4.0", ("Datenquelle: GeoSphere Austria",)),
+    "geosphere_warnings": SourceLicence("GeoSphere Austria", "CC BY 4.0", ("Datenquelle: GeoSphere Austria",)),
 }
 
 DISCLAIMER = (
@@ -67,11 +67,11 @@ def short_rights(source_types: list[str]) -> str:
 # Per-entry credit lines (design-v2 §9): CC BY sources need credit + licence link + "modified" on
 # every channel, not just about.html. (credit, licence, licence_url | None, modified_note)
 CREDITS: dict[str, tuple[str, str | None, str | None, bool]] = {
-    "ted": ("© European Union, TED", "CC BY 4.0", CC_BY_URL, True),
-    "safety_gate": ("© European Union, Safety Gate", "CC BY 4.0", CC_BY_URL, True),
-    "geosphere_warn": ("Datenquelle: GeoSphere Austria", "CC BY 4.0", CC_BY_URL, True),
+    "ted_search": ("© European Union, TED", "CC BY 4.0", CC_BY_URL, True),
+    "safety_gate_weekly": ("© European Union, Safety Gate", "CC BY 4.0", CC_BY_URL, True),
+    "geosphere_warnings": ("Datenquelle: GeoSphere Austria", "CC BY 4.0", CC_BY_URL, True),
     "ghsa": ("GitHub Advisory Database", "CC BY 4.0", CC_BY_URL, True),
-    "arxiv": ("Metadata: arXiv", "CC0", None, False),
+    "arxiv_api": ("Metadata: arXiv", "CC0", None, False),
     "noaa_swpc": ("Data: NOAA SWPC", None, None, False),
     "usgs_fdsn": ("Data: USGS", None, None, False),
     "cisa_kev": ("CISA KEV", "CC0", None, False),

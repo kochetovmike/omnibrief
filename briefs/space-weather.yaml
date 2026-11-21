@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=../schema/brief.schema.json
+schema_version: 3
+id: space-weather
+title: "Space weather & aurora"
+description: "NOAA SWPC geomagnetic storm alerts and warnings at G2 (Kp 6) or stronger."
+enabled: true
+schedule: { every: 1h, lookback: 3h }
+sources:
+  - { id: swpc, type: noaa_swpc, licence: builtin }
+filters:
+  expr: "fields.g_scale >= 2 or fields.kp >= 6"
+dedupe: { key: "{key}", material_fields: [code, serial] }
+render: { mode: template, template: space_weather }
+outputs:
+  - type: feed
+  - type: telegram
+    id: tg_alerts
+    connection: tg_bot
+    chat_id: { variable: TG_ALERTS_CHAT_ID }
+    max_posts_per_run: 10
+    quiet_hours: "23:00-06:00"
+attribution:
+  text: "Data: NOAA SWPC (NOAA Space Weather Prediction Center), public information."

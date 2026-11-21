@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=../schema/brief.schema.json
+schema_version: 3
+id: vulns
+title: "Vulnerability digest"
+description: "CISA KEV, NVD, GitHub Advisory Database and EPSS, merged per CVE, filtered and summarised. Includes the Global Critical feed."
+enabled: true
+schedule: { every: 1h, lookback: 6h }
+merge: cve                     # code-backed strategy: v1 pipeline (Global Critical, watchlist categories, dashboards)
+sources:
+  - { id: cisa-kev, type: cisa_kev, licence: builtin, params: { url: "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json", lookback_days: 2 } }
+  - { id: nvd, type: nvd, licence: builtin, params: { url: "https://services.nvd.nist.gov/rest/json/cves/2.0", lookback_hours: 6 }, secrets: { api_key: { secret: NVD_API_KEY, optional: true } } }
+  - { id: ghsa, type: ghsa, licence: builtin, params: { url: "https://api.github.com/advisories", advisory_type: reviewed, lookback_hours: 6 }, secrets: { token: { secret: GITHUB_TOKEN, optional: true } } }
+enrich:
+  - { id: epss, type: epss, params: { url: "https://api.first.org/data/v1/epss", batch_size: 100 } }
+filters:
+  min_cvss: 7.0
+  always_include_if: [kev, eu_exploited]
+  epss_percentile_override: 0.99
+  watchlist: { variable: VULNS_WATCHLIST, optional: true }   # categories = public feeds (see README)
+dedupe: { key: "{key}" }
+render:
+  mode: llm_digest
+  prompt_file: prompts/vulns.md
+outputs:
+  - type: feed
+  - type: telegram             # Global Critical alerts + the Global brief (08:00/20:00)
+    id: tg_security
+    connection: tg_bot
+    chat_id: { variable: TELEGRAM_CHAT_ID }
+    url: https://t.me/vulnerabilitiesbrief
+    deliver_window_hours: 24
+    brief_max_items: 10
+    brief_grace_hours: 6
+attribution:
+  text: "Data: CISA Known Exploited Vulnerabilities catalog (CC0); GitHub Advisory Database (CC BY 4.0, https://creativecommons.org/licenses/by/4.0/; summarised and modified); See EPSS at https://www.first.org/epss; This product uses the NVD API but is not endorsed or certified by the NVD."
+  licence_url: https://creativecommons.org/licenses/by/4.0/
+feed_entries: 40
