@@ -1,0 +1,166 @@
+"""YAML-driven topic: sources → items → dedupe (key + material_hash) → filters → template/LLM."""
+
+from __future__ import annotations
+
+import logging
+import re
+from datetime import timedelta
+
+from omnibrief.attribution import credits
+from omnibrief.engine.config import ChannelSettings
+from omnibrief.engine.feeds import write_atom, write_rss
+from omnibrief.engine.filters import passes
+from omnibrief.engine.items import FeedEntry, Item, Outbound, material_hash
+from omnibrief.engine.render import clip_telegram, escape, html_to_telegram
+from omnibrief.engine.sources import SOURCE_TYPES, SourceCtx
+from omnibrief.engine.topics.base import TopicContext, TopicPlugin, TopicResult, run_time
+
+log = logging.getLogger(__name__)
+FEED_DAYS = 30
+
+
+def _err(e: Exception) -> str:
+    import httpx
+
+    return f"HTTP {e.response.status_code}" if isinstance(e, httpx.HTTPStatusError) else type(e).__name__
+
+
+def dedupe_key(template: str | None, it: Item, source_id: str) -> str:
+    """Render a brief's `dedupe.key` ("{key}", "{source}:{fields.notice_id}", …); unknown → item key."""
+    if not template or template == "{key}":
+        return it.key
+
+    def field(m: re.Match) -> str:
+        name = m.group(1)
+        if name == "key":
+            return it.key
+        if name == "source":
+            return source_id
+        if name.startswith("fields."):
+            return str(it.fields.get(name[7:], ""))
+        return str(getattr(it, name, ""))
+
+    return re.sub(r"\{([a-z_.]+)\}", field, template)
+
+
+class GenericTopic(TopicPlugin):
+    # --- collect ------------------------------------------------------------------------------------
+    def collect(self, ctx: TopicContext) -> TopicResult:
+        spec, result = self.spec, TopicResult()
+        since = ctx.since()
+        sctx = SourceCtx(client=ctx.client, env=ctx.env)
+        found: dict[str, Item] = {}
+        for src in spec.sources:
+            try:
+                adapter = SOURCE_TYPES[src.type](src, sctx)
+                items = adapter.fetch(spec.id, since, ctx.now)
+                result.sources[src.id] = "ok" if not getattr(adapter, "truncated", False) else "truncated"
+                for it in items:
+                    it.key = dedupe_key(spec.options.get("dedupe_key"), it, src.id)
+                    found.setdefault(it.key, it)
+            except Exception as e:
+                log.warning("%s/%s: source failed (%s)", spec.id, src.id, _err(e))
+                result.sources[src.id] = f"failed: {_err(e)}"
+        if spec.sources and all(v.startswith("failed") for v in result.sources.values()):
+            result.status, result.error = "failed", "all sources failed"
+            return result
+
+        seen = ctx.store.load_seen_index(spec.id)
+        candidates: list[Item] = []
+        for it in found.values():
+            it.material_hash = material_hash(it, spec.material_fields)
+            prev = seen.get(it.key)
+            if prev is None:
+                it.status = "new"
+            elif prev.get("material_hash") != it.material_hash:
+                it.status = "updated"
+            else:
+                prev["last_seen"] = ctx.now.isoformat()
+                continue
+            candidates.append(it)
+        emitted = [it for it in candidates if passes(it, spec.filters, ctx.env)]
+        if (cap := spec.options.get("max_items")) and len(emitted) > cap:
+            emitted = sorted(emitted, key=lambda i: i.published, reverse=True)[:cap]
+        for it in emitted:
+            rec = seen.setdefault(it.key, {"first_seen": ctx.now.isoformat()})
+            rec.update(last_seen=ctx.now.isoformat(), material_hash=it.material_hash)
+        result.counts = {"fetched": len(found), "new_or_updated": len(candidates), "emitted": len(emitted)}
+        result.emitted = emitted
+
+        if spec.kind == "digest":
+            if emitted:
+                digest, result.llm = ctx.renderer.digest(spec, emitted, ctx.provider, ctx.run_id, ctx.now)
+                ctx.store.save_topic_digest(digest)
+                result.digest = digest
+        elif emitted:
+            ctx.store.save_items(spec.id, ctx.run_id, emitted)
+        ctx.store.save_seen_index(spec.id, seen, ctx.now)
+        ctx.store.prune_items(spec.id, ctx.now)
+        if result.status == "ok" and (any(v != "ok" for v in result.sources.values())
+                                      or result.llm in ("fallback", "budget")):
+            result.status = "degraded"
+        return result
+
+    # --- static ----------------------------------------------------------------------------------------
+    def feed_entries(self, ctx: TopicContext) -> list[FeedEntry]:
+        spec, base = self.spec, ctx.engine.site.base
+        entries: list[FeedEntry] = []
+        if spec.kind == "alert":
+            for run_id, it in ctx.store.recent_items(spec.id, ctx.now - timedelta(days=FEED_DAYS)):
+                entries.append(FeedEntry(
+                    id=f"urn:omnibrief:{spec.id}:{it.delivery_key()}", topic=spec.id,
+                    title=("Updated · " if it.status == "updated" else "") + it.title, link=it.url,
+                    published=run_time(run_id), html=ctx.renderer.item(spec, it, "html")))
+        else:
+            for d in ctx.store.recent_topic_digests(spec.id, spec.feed_entries):
+                entries.append(FeedEntry(
+                    id=f"urn:omnibrief:{spec.id}:{d.run_id}", topic=spec.id,
+                    title=d.title + ("" if d.summarised else " (un-summarised)"),
+                    link=f"{base}{self.page}#run-{d.run_id}", published=d.created_utc, html=d.html,
+                    related=[i.url for i in d.items[:20]]))
+        return sorted(entries, key=lambda e: e.published, reverse=True)[: spec.feed_entries]
+
+    def rights(self) -> str:
+        if text := (self.spec.options.get("attribution") or {}).get("text"):
+            return text
+        return credits(self.spec.source_types()) + ". Machine-generated by Omnibrief; may contain errors."
+
+    def write_static(self, ctx: TopicContext, entries: list[FeedEntry]) -> None:
+        base, spec, paths = ctx.engine.site.base, self.spec, self.feed_paths()
+        common = dict(rights=self.rights(), entries=entries, now=ctx.now, site_url=f"{base}{self.page}",
+                      language=ctx.engine.site.language)
+        write_atom(ctx.site_dir / paths["atom"], feed_id=f"urn:omnibrief:{spec.id}",
+                   title=f"{ctx.engine.site.title} · {spec.title}", subtitle=spec.description or spec.title,
+                   self_url=f"{base}{paths['atom']}", icon=f"{base}favicon.svg", **common)
+        write_rss(ctx.site_dir / paths["rss"], title=f"{ctx.engine.site.title} · {spec.title}",
+                  description=spec.description or spec.title, self_url=f"{base}{paths['rss']}", **common)
+
+    # --- push -------------------------------------------------------------------------------------------
+    def outbound(self, ctx: TopicContext, channel_id: str, channel: ChannelSettings) -> list[Outbound]:
+        if channel.type != "telegram":
+            return []
+        spec = self.spec
+        since = ctx.now - timedelta(hours=spec.deliver_window_hours)
+        tags = " ".join(escape(t) for t in spec.render.hashtags)
+        attr = spec.options.get("attribution") or {}
+        credit = f"<i>{escape(attr['text'])}</i>" if attr.get("text") else \
+            f"<i>{credits(spec.source_types(), 'html')}</i>"
+        out: list[Outbound] = []
+        if spec.kind == "alert":
+            for run_id, it in ctx.store.recent_items(spec.id, since):
+                text = ctx.renderer.item(spec, it, "telegram") + (f"\n{tags}" if tags else "")
+                out.append(Outbound(topic=spec.id, key=it.delivery_key(), text=clip_telegram(text),
+                                    severity=it.severity, created_utc=run_time(run_id)))
+        else:
+            page = f"{ctx.engine.site.base}{self.page}"
+            for d in ctx.store.recent_topic_digests(spec.id, 10):
+                if d.created_utc < since:
+                    continue
+                head = f"🗞 <b>{escape(d.title)}</b>" + ("" if d.summarised else " <i>(un-summarised)</i>")
+                more = f'… <a href="{page}#run-{d.run_id}">full digest</a>'
+                # the credit line is appended AFTER clipping, so a long digest can never lose it
+                body = clip_telegram(f"{head}\n\n{html_to_telegram(d.html)}", limit=3900 - len(credit) - len(tags),
+                                     more=more)
+                text = body + f"\n{credit}" + (f"\n{tags}" if tags else "")
+                out.append(Outbound(topic=spec.id, key=f"digest:{d.run_id}", text=text, created_utc=d.created_utc))
+        return sorted(out, key=lambda o: o.created_utc)

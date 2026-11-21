@@ -1,0 +1,4 @@
+<p><strong>{{ item.title }}</strong>{% if item.status == "updated" %} <em>(updated)</em>{% endif %}</p>
+<p>{{ f.start | local }} – {{ f.end | local }} · {{ f.municipalities }} municipalities</p>
+<p><a href="{{ item.url }}">GeoSphere Austria warnings</a></p>
+<p><small>Datenquelle: GeoSphere Austria (CC BY 4.0, <a href="https://creativecommons.org/licenses/by/4.0/">licence</a>), modified · <a href="{{ base }}about.html">Sources &amp; licences</a></small></p>

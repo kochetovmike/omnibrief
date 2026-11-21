@@ -42,11 +42,12 @@ KEEP_DAYS = 30  # delivery records older than this are pruned
 
 
 class TelegramError(Exception):
-    def __init__(self, kind: str, reason: str, retry_after: float | None = None):
+    def __init__(self, kind: str, reason: str, retry_after: float | None = None, status: int | None = None):
         super().__init__(reason)
         self.kind = kind  # "rate_limited" | "rejected" | "transient"
         self.reason = reason
         self.retry_after = retry_after
+        self.status = status  # HTTP status for "rejected": 400 = this message is bad; 401/403 = channel is
 
 
 def _e(text: str) -> str:
@@ -61,6 +62,33 @@ def _clip(text: str, n: int) -> str:
 def _links(urls: list[str], limit: int = 3) -> str:
     good = [u for u in urls if u.startswith("https://")][:limit]
     return " · ".join(f'<a href="{_e(u)}">{_e(urlsplit(u).hostname or "link")}</a>' for u in good)
+
+
+def send_message(client: httpx.Client, token: str, chat_id: str, text: str, disable_previews: bool = True) -> int:
+    """Bot API sendMessage (HTML). Returns message_id; raises TelegramError (kind = rate_limited |
+    rejected | transient). Errors never contain the request URL, which embeds the bot token."""
+    try:
+        resp = client.post(
+            f"{API}/bot{token}/sendMessage",
+            json={"chat_id": chat_id, "text": text, "parse_mode": "HTML",
+                  "link_preview_options": {"is_disabled": disable_previews}},
+            timeout=20,
+        )
+    except httpx.TransportError as e:
+        raise TelegramError("transient", f"transport error: {type(e).__name__}") from None
+    try:
+        data = resp.json()
+    except ValueError:
+        data = {}
+    if resp.status_code == 200 and data.get("ok"):
+        return int(data["result"]["message_id"])
+    desc = _clip(str(data.get("description") or f"HTTP {resp.status_code}"), 200)
+    if resp.status_code == 429:
+        retry = (data.get("parameters") or {}).get("retry_after")
+        raise TelegramError("rate_limited", desc, float(retry) if retry is not None else None)
+    if resp.status_code >= 500:
+        raise TelegramError("transient", desc)
+    raise TelegramError("rejected", desc, status=resp.status_code)  # 400 bad chat/markup, 401 token, 403 admin
 
 
 class TelegramPublisher(Publisher):
@@ -156,28 +184,8 @@ class TelegramPublisher(Publisher):
     # --- sending -------------------------------------------------------------------------------
     def send(self, client: httpx.Client, text: str) -> int:
         """Send one message; returns its message_id. Never puts the URL (contains the token) in errors."""
-        try:
-            resp = client.post(
-                f"{API}/bot{self.token}/sendMessage",
-                json={"chat_id": self.chat_id, "text": text, "parse_mode": "HTML",
-                      "link_preview_options": {"is_disabled": bool(self.pcfg.option("disable_link_previews", True))}},
-                timeout=20,
-            )
-        except httpx.TransportError as e:
-            raise TelegramError("transient", f"transport error: {type(e).__name__}") from None
-        try:
-            data = resp.json()
-        except ValueError:
-            data = {}
-        if resp.status_code == 200 and data.get("ok"):
-            return int(data["result"]["message_id"])
-        desc = _clip(str(data.get("description") or f"HTTP {resp.status_code}"), 200)
-        if resp.status_code == 429:
-            retry = (data.get("parameters") or {}).get("retry_after")
-            raise TelegramError("rate_limited", desc, float(retry) if retry is not None else None)
-        if resp.status_code >= 500:
-            raise TelegramError("transient", desc)
-        raise TelegramError("rejected", desc)  # 400 bad chat id/markup, 401 bad token, 403 not admin
+        return send_message(client, self.token, self.chat_id, text,
+                            disable_previews=bool(self.pcfg.option("disable_link_previews", True)))
 
     def _send_paced(self, client: httpx.Client, text: str, sleep: Callable[[float], None]) -> int:
         try:

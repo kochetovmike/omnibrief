@@ -1,0 +1,259 @@
+name: run
+
+# Omnibrief v3 (design-v3): one hourly run over every enabled brief in briefs/.
+# Jobs: run [read; secrets as JSON] → push-state [write, no secrets] → deploy [pages]
+#                                    → push-archive [write]   (a sink: never blocks deploy/deliver)
+#                                    → deliver [read; secrets as JSON] → push-deliveries [write]
+# Secrets (design-v3 §6.2): passed as ONE JSON blob to the two steps that run the engine; the engine
+# keeps only the names referenced by omnibrief.yaml and enabled briefs and never logs values. Keep
+# unrelated secrets out of this repo; THREADS_REFRESH_PAT is dropped before the engine sees anything.
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour, on the hour (UTC)
+  workflow_dispatch:
+    inputs:
+      briefs:
+        description: "Force these briefs now (comma-separated ids, or 'all'); empty = planner decides"
+        type: string
+        default: ""
+      telegram_test:
+        description: "Also send a test message to every configured Telegram output"
+        type: boolean
+        default: false
+
+concurrency:
+  group: omnibrief-run
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - name: Check out main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install
+        run: python -m pip install --quiet .
+
+      - name: Fetch state (data branch) and archive (archive branch)
+        run: |
+          for b in data archive; do
+            mkdir -p "$b"
+            if git ls-remote --exit-code --heads origin "$b" > /dev/null; then
+              git fetch --quiet --depth=1 origin "$b"
+              git --work-tree="$b" checkout FETCH_HEAD -- .
+              git reset --quiet
+            fi
+          done
+
+      - name: Check config (names only, never values)
+        run: python -m omnibrief check --offline
+
+      - name: Run (plan → collect → store → publish)
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+          OMNIBRIEF_VARS: ${{ toJSON(vars) }}
+          GITHUB_TOKEN: ${{ github.token }}
+          FORCE_BRIEFS: ${{ github.event_name == 'workflow_dispatch' && inputs.briefs || '' }}
+        run: |
+          export OMNIBRIEF_SECRETS="$(echo "$ALL_SECRETS" | jq -c 'del(.THREADS_REFRESH_PAT)')"
+          unset ALL_SECRETS
+          python -m omnibrief run --data ./data --site ./_site --out ./out --archive ./archive --briefs "$FORCE_BRIEFS"
+
+      - name: Upload state
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with: { name: state, path: data/, retention-days: 1 }
+
+      - name: Upload archive
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with: { name: archive, path: archive/, retention-days: 1, if-no-files-found: ignore }
+
+      - name: Upload raw records (artifact sink)
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with: { name: "raw-${{ github.run_id }}", path: out/raw/, retention-days: 14, if-no-files-found: ignore }
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site/
+
+  push-state:
+    needs: run
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+      - name: Switch to the data branch (orphan on first run) and clear the tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin data > /dev/null; then
+            git fetch --quiet --depth=1 origin data
+            git checkout --quiet -B data FETCH_HEAD
+          else
+            git checkout --quiet --orphan data
+          fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with: { name: state, path: . }
+      - name: Commit and push
+        run: |
+          git add -A
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          git commit --quiet -m "data: run ${GITHUB_RUN_ID}"
+          for attempt in 1 2; do
+            if git push --quiet origin HEAD:data; then exit 0; fi
+            git fetch --quiet origin data
+            if ! git rebase --quiet FETCH_HEAD; then
+              git rebase --abort; echo "::error::Rebase conflict on data; state not saved."; exit 1
+            fi
+          done
+          git push --quiet origin HEAD:data
+
+  push-archive:   # a sink: its failure never blocks deploy or delivery (design-v2 §7)
+    needs: push-state
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+      - name: Switch to the archive branch (orphan on first run) and clear the tree
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin archive > /dev/null; then
+            git fetch --quiet --depth=1 origin archive
+            git checkout --quiet -B archive FETCH_HEAD
+          else
+            git checkout --quiet --orphan archive
+          fi
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+      - id: download
+        continue-on-error: true   # absent when nothing was archived this run
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with: { name: archive, path: . }
+      - name: Commit and push
+        if: steps.download.outcome == 'success'
+        run: |
+          git add -A
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          git commit --quiet -m "archive: run ${GITHUB_RUN_ID}"
+          for attempt in 1 2; do
+            if git push --quiet origin HEAD:archive; then exit 0; fi
+            git fetch --quiet origin archive
+            if ! git rebase --quiet FETCH_HEAD; then
+              git rebase --abort; echo "::error::Rebase conflict on archive; not saved."; exit 1
+            fi
+          done
+          git push --quiet origin HEAD:archive
+
+  deploy:
+    needs: push-state
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  deliver:
+    needs: push-state
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - run: python -m pip install --quiet .
+
+      - name: Fetch the just-pushed state
+        run: |
+          mkdir -p data
+          git fetch --quiet --depth=1 origin data
+          git --work-tree=data checkout FETCH_HEAD -- .
+          git reset --quiet
+
+      - name: Deliver (channels without settings are skipped)
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+          OMNIBRIEF_VARS: ${{ toJSON(vars) }}
+          SEND_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.telegram_test }}
+        run: |
+          export OMNIBRIEF_SECRETS="$(echo "$ALL_SECRETS" | jq -c 'del(.THREADS_REFRESH_PAT)')"
+          unset ALL_SECRETS
+          if [ "$SEND_TEST" = "true" ]; then python -m omnibrief deliver --data ./data --test
+          else python -m omnibrief deliver --data ./data; fi
+
+      - if: ${{ !cancelled() }}   # keep records of what WAS sent even if a later step failed
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with: { name: deliveries, path: data/state/deliveries/, retention-days: 1, if-no-files-found: ignore }
+
+  push-deliveries:
+    needs: deliver
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: data
+          fetch-depth: 1
+
+      - id: download
+        continue-on-error: true
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with: { name: deliveries, path: state/deliveries }
+
+      - name: Commit and push
+        if: steps.download.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/deliveries
+          if git diff --cached --quiet; then echo "No delivery changes."; exit 0; fi
+          git commit --quiet -m "data: deliveries ${GITHUB_RUN_ID}"
+          for attempt in 1 2; do
+            if git push --quiet origin HEAD:data; then exit 0; fi
+            git fetch --quiet origin data
+            if ! git rebase --quiet FETCH_HEAD; then
+              git rebase --abort; echo "::error::Rebase conflict; delivery records not saved."; exit 1
+            fi
+          done
+          git push --quiet origin HEAD:data

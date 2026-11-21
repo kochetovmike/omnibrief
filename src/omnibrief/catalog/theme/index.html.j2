@@ -1,0 +1,25 @@
+{% extends "base.html.j2" %}
+{% block head %}{% for c in cards %}<link rel="alternate" type="application/atom+xml" title="{{ c.title }}" href="{{ c.atom }}">
+{% endfor %}{% endblock %}
+{% block body %}
+<section class="hero"><div class="label">Licence-clean alerts and digests</div>
+<h1>{{ site.title }}</h1><p>{{ site.tagline }}</p>
+<p class="links"><a href="feeds/all.atom">All topics · Atom</a><a href="feeds/all.rss">RSS</a><a href="feeds/omnibrief.opml">Subscribe to everything (OPML)</a></p></section>
+<h2>Topics</h2>
+<div class="cards">
+{% for c in cards %}
+<div class="card">
+  <div class="meta"><span class="dot st-{{ c.status }}"></span>{{ c.kind }} · every {{ c.cadence }}{% if c.last_success %} · updated {{ c.last_success | local("%d %b, %H:%M") }}{% endif %}</div>
+  <h3><a href="{{ c.page }}">{{ c.title }}</a></h3>
+  <p class="desc">{{ c.description }}</p>
+  <div class="meta">{{ c.week }} entr{{ "y" if c.week == 1 else "ies" }} in the last 7 days</div>
+  {% if c.latest %}<ul class="latest">{% for e in c.latest %}<li><a href="{{ e.link }}">{{ e.title }}</a></li>{% endfor %}</ul>{% endif %}
+  <div class="links">
+    <a href="{{ c.page }}">Open</a>{% for name, href in c.links %}<a href="{{ href }}">{{ name }}</a>{% endfor %}
+    <a href="{{ c.atom }}">Atom</a><a href="{{ c.rss }}">RSS</a>{% for name, href in c.extra_feeds %}<a href="{{ href }}">{{ name }}</a>{% endfor %}
+    {% for url in c.telegram %}<a class="tg" href="{{ url }}">Telegram ↗</a>{% endfor %}
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

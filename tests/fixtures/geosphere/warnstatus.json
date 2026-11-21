@@ -1,0 +1,42 @@
+{
+ "type": "FeatureCollection",
+ "_note": "synthetic, shaped per openapi.hub.geosphere.at/warnapi/v1/openapi.json",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": []
+   },
+   "properties": {
+    "warnid": "w4147c0v2",
+    "wtype": 1,
+    "wlevel": 2,
+    "start": "1795248000",
+    "end": "1795291200",
+    "gemeinden": [
+     "70101",
+     "70102",
+     "50101"
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": []
+   },
+   "properties": {
+    "warnid": "w5000a1v1",
+    "wtype": 2,
+    "wlevel": 1,
+    "start": "1795248000",
+    "end": "1795291200",
+    "gemeinden": [
+     "90101"
+    ]
+   }
+  }
+ ]
+}

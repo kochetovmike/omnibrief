@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="{{ site.language }}"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#05030b">
+<title>{% block title %}{{ site.title }}{% endblock %}</title>
+<link rel="icon" type="image/svg+xml" href="{{ root }}favicon.svg">
+<link rel="stylesheet" href="{{ root }}style.css">
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }} · all topics" href="{{ root }}feeds/all.atom">
+{% block head %}{% endblock %}
+</head><body>
+<div class="top"><div class="wrap"><a class="brand" href="{{ root }}index.html"><span class="mark"></span>{{ site.title | upper }}</a>
+<nav><a href="{{ root }}index.html">Topics</a><a href="{{ root }}feeds/omnibrief.opml">OPML</a><a href="{{ root }}status.html">Status</a><a href="{{ root }}about.html">Sources &amp; licences</a></nav></div></div>
+<main class="wrap">{% block body %}{% endblock %}</main>
+<footer><div class="wrap">{{ site.tagline }} · machine-generated from open data; may contain errors · <a href="{{ root }}about.html">Sources &amp; licences</a> · updated {{ now | local }}</div></footer>
+</body></html>

@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=schema/omnibrief.schema.json
+# Global config (design-v3 §4). Secrets are REFERENCES ({secret: NAME} / {variable: NAME}), never values.
+schema_version: 3
+
+site:
+  base_url: https://kochetovmike.github.io/omnibrief/
+  title: "Omnibrief"
+  tagline: "Licence-clean alerts and digests, delivered everywhere."
+  timezone: Europe/Vienna
+  language: en
+
+llm:
+  provider: gemini
+  model: gemini-flash-lite-latest     # Flash-Lite free tier
+  api_key: { secret: GEMINI_API_KEY, optional: true }
+  max_calls_per_run: 6
+  max_calls_per_day: 40
+
+connections:                          # shared credentials for outputs
+  tg_bot:
+    type: telegram
+    bot_token: { secret: TELEGRAM_BOT_TOKEN }
+  # bsky_main: { type: bluesky, handle: { variable: BLUESKY_HANDLE }, app_password: { secret: BLUESKY_APP_PASSWORD } }
+
+storage:
+  primary: { type: git_branch, branch: data }
+  default_sinks: [artifact, jsonl_git]
+  sinks:
+    artifact:  { type: artifact }
+    jsonl_git: { type: jsonl_git, branch: archive }
+
+limits:
+  run_time_budget_seconds: 600
+  max_concurrent_briefs: 4
+  max_http_connections: 8

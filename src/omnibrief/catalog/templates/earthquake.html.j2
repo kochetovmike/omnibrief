@@ -1,0 +1,4 @@
+<p><strong>M{{ "%.1f"|format(f.magnitude) if f.magnitude is not none else "?" }}</strong> — {{ f.place }}{% if item.status == "updated" %} <em>(updated)</em>{% endif %}</p>
+<p>{{ item.published | local }} · depth {{ "%.0f"|format(f.depth_km) if f.depth_km is not none else "?" }} km{% if f.tsunami_flag %} · <strong>tsunami flag</strong>{% endif %}{% if f.felt %} · felt reports: {{ f.felt }}{% endif %}</p>
+<p><a href="{{ item.url }}">USGS event page</a></p>
+<p><small>Data: USGS (public domain) · <a href="{{ base }}about.html">Sources &amp; licences</a></small></p>

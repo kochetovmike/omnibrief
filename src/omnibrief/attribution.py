@@ -32,6 +32,16 @@ SOURCE_LICENCES: dict[str, SourceLicence] = {
     # Optional (§5) — allowlisted, but no adapter yet; enabling them needs a licence re-check first.
     "euvd": SourceLicence("ENISA EUVD", "ENISA legal notice", ("ENISA",)),
     "cvelist": SourceLicence("CVE List (CVE Program)", "CVE Program Terms of Use", ("MITRE",)),
+    # --- v2 topics (design-v2 §6). Phase 0 re-verification notes live in NOTICE.md. ---
+    "ted_search": SourceLicence("TED — Tenders Electronic Daily (EU)", "CC BY 4.0 (EU reuse policy)",
+                         ("© European Union, TED",)),
+    "arxiv_api": SourceLicence("arXiv API metadata", "CC0 1.0 (metadata via the arXiv API)", ("Thank you to arXiv",)),
+    "safety_gate_weekly": SourceLicence("EU Safety Gate", "CC BY 4.0 (Commission reuse policy)",
+                                 ("© European Union, Safety Gate",)),
+    "noaa_swpc": SourceLicence("NOAA Space Weather Prediction Center", "US government public information",
+                               ("NOAA SWPC",)),
+    "usgs_fdsn": SourceLicence("USGS Earthquake Hazards Program", "US federal public domain", ("USGS",)),
+    "geosphere_warnings": SourceLicence("GeoSphere Austria", "CC BY 4.0", ("Datenquelle: GeoSphere Austria",)),
 }
 
 DISCLAIMER = (
@@ -52,3 +62,38 @@ def short_rights(source_types: list[str]) -> str:
     if "nvd" in source_types:
         parts.append(f"NVD ({NVD_NOTICE})")
     return "Data from: " + "; ".join(parts) + ". " + DISCLAIMER
+
+
+# Per-entry credit lines (design-v2 §9): CC BY sources need credit + licence link + "modified" on
+# every channel, not just about.html. (credit, licence, licence_url | None, modified_note)
+CREDITS: dict[str, tuple[str, str | None, str | None, bool]] = {
+    "ted_search": ("© European Union, TED", "CC BY 4.0", CC_BY_URL, True),
+    "safety_gate_weekly": ("© European Union, Safety Gate", "CC BY 4.0", CC_BY_URL, True),
+    "geosphere_warnings": ("Datenquelle: GeoSphere Austria", "CC BY 4.0", CC_BY_URL, True),
+    "ghsa": ("GitHub Advisory Database", "CC BY 4.0", CC_BY_URL, True),
+    "arxiv_api": ("Metadata: arXiv", "CC0", None, False),
+    "noaa_swpc": ("Data: NOAA SWPC", None, None, False),
+    "usgs_fdsn": ("Data: USGS", None, None, False),
+    "cisa_kev": ("CISA KEV", "CC0", None, False),
+    "nvd": (NVD_NOTICE, None, None, False),
+    "epss": (EPSS_NOTICE, None, None, False),
+}
+
+
+def credits(source_types: list[str], fmt: str = "text") -> str:
+    """One line crediting every source of a topic. fmt: text | markdown | html (Telegram/feeds)."""
+    from html import escape
+
+    out = []
+    for st in source_types:
+        if st not in CREDITS:
+            continue
+        credit, licence, url, modified = CREDITS[st]
+        if fmt == "text" or not url:
+            lic = f" ({licence}{', modified' if modified else ''})" if licence else ""
+            out.append((escape(credit) if fmt == "html" else credit) + lic)
+        elif fmt == "markdown":
+            out.append(f"{credit} ([{licence}]({url}){', modified' if modified else ''})")
+        else:
+            out.append(f'{escape(credit)} (<a href="{url}">{licence}</a>{", modified" if modified else ""})')
+    return " · ".join(out)

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../schema/brief.schema.json
+schema_version: 3
+id: arxiv-ai
+title: "arXiv AI: daily picks"
+description: "New arXiv papers in AI, ML and NLP, filtered by keywords; the LLM picks and summarises the top 10 (abstracts only)."
+enabled: true
+schedule: { every: 24h, not_before: "07:00", lookback: 48h }
+sources:
+  - { id: arxiv, type: arxiv_api, licence: builtin, params: { categories: [cs.AI, cs.LG, cs.CL], page_size: 300, max_total: 1500 } }
+filters:
+  include_keywords_any: [large language model, LLM, agent, agents, reasoning, retrieval, RAG, alignment, benchmark, multimodal]
+dedupe: { key: "{key}", material_fields: [title] }
+render: { mode: llm_digest, prompt_file: prompts/arxiv-ai.md, max_input_items: 40, overflow: drop, llm_selects: true }
+outputs:
+  - type: feed
+attribution:
+  text: "Metadata: arXiv (CC0). Thank you to arXiv for use of its open access interoperability. Summaries are machine-generated."

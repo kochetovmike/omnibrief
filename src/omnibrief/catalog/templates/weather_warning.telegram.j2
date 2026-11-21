@@ -1,0 +1,5 @@
+{% if f.level >= 3 %}🔴{% else %}🟠{% endif %} <b>{{ item.title }}</b>{% if item.status == "updated" %} · updated{% endif %}
+
+{{ f.start | local("%a %d %b, %H:%M") }} – {{ f.end | local("%a %d %b, %H:%M %Z") }}
+<a href="{{ item.url }}">GeoSphere Austria</a>
+<i>Datenquelle: GeoSphere Austria (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>), modified · <a href="{{ base }}about.html">Sources &amp; licences</a></i>

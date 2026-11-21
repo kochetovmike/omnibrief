@@ -1,0 +1,19 @@
+{% extends "base.html.j2" %}
+{% block title %}Status · {{ site.title }}{% endblock %}
+{% block body %}
+<section class="hero"><div class="label">System</div><h1>Status</h1>
+<p><span class="dot st-{{ health.status }}"></span>{{ health.status | upper }} · last run {{ health.last_run_utc | local }} · <a href="health.json">health.json</a></p></section>
+<h2>Topics</h2>
+<div class="panel"><table><tr><th>Topic</th><th>Status</th><th>Last success</th><th>This run</th></tr>
+{% for tid, t in health.topics.items() %}<tr><td class="mono">{{ tid }}</td><td><span class="dot st-{{ t.status or 'pending' }}"></span>{{ t.status or "pending" }}{% if t.error %} — {{ t.error }}{% endif %}</td><td>{{ t.last_success | local if t.last_success else "—" }}</td><td>{{ t.due }}</td></tr>{% endfor %}
+</table></div>
+<h2>Channels</h2>
+<div class="panel"><table><tr><th>Channel</th><th>Type</th><th>Status</th><th>Last attempt</th></tr>
+{% for cid, c in health.channels.items() %}<tr><td class="mono">{{ cid }}</td><td>{{ c.type }}</td><td><span class="dot st-{{ c.status }}"></span>{{ c.status }}{% if c.reason %} — {{ c.reason }}{% endif %}</td><td>{{ c.last_attempt_utc | local if c.last_attempt_utc else "—" }}</td></tr>{% endfor %}
+</table></div>
+<h2>Storage &amp; LLM</h2>
+<div class="panel"><table><tr><th>Sink</th><th>Status</th></tr>
+{% for sid, s in health.sinks.items() %}<tr><td class="mono">{{ sid }}</td><td>{{ s }}</td></tr>{% else %}<tr><td colspan="2">no sink writes this run</td></tr>{% endfor %}
+</table>
+<p class="meta">LLM calls today {{ health.llm.calls_today }} / {{ health.llm.per_day }} (this run {{ health.llm.this_run }}, cap {{ health.llm.per_run }} per run)</p></div>
+{% endblock %}
