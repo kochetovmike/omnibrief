@@ -1,0 +1,43 @@
+{
+ "arxiv-ai": {
+  "error": null,
+  "last_attempt": "2026-11-21T08:33:37.471730+00:00",
+  "last_success": "2026-11-21T08:33:37.471730+00:00",
+  "status": "ok"
+ },
+ "earthquakes": {
+  "error": null,
+  "last_attempt": "2026-11-21T08:33:37.471730+00:00",
+  "last_success": "2026-11-21T08:33:37.471730+00:00",
+  "status": "ok"
+ },
+ "safety-gate": {
+  "error": null,
+  "last_attempt": "2026-11-21T08:33:37.471730+00:00",
+  "last_success": "2026-11-21T08:33:37.471730+00:00",
+  "status": "ok"
+ },
+ "space-weather": {
+  "error": null,
+  "last_attempt": "2026-11-21T08:33:37.471730+00:00",
+  "last_success": "2026-11-21T08:33:37.471730+00:00",
+  "status": "ok"
+ },
+ "tenders": {
+  "error": null,
+  "last_attempt": "2026-11-21T08:33:37.471730+00:00",
+  "last_success": "2026-11-21T08:33:37.471730+00:00",
+  "status": "ok"
+ },
+ "vulns": {
+  "error": "FileNotFoundError",
+  "last_attempt": "2026-11-21T08:33:37.471730+00:00",
+  "status": "failed"
+ },
+ "weather-at": {
+  "error": null,
+  "last_attempt": "2026-11-21T08:33:37.471730+00:00",
+  "last_success": "2026-11-21T08:33:37.471730+00:00",
+  "status": "ok"
+ }
+}

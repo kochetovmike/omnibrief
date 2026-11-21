@@ -1,0 +1,116 @@
+{
+ "due": {
+  "arxiv-ai": "due: forced",
+  "earthquakes": "due: forced",
+  "safety-gate": "due: forced",
+  "space-weather": "due: forced",
+  "tenders": "due: forced",
+  "vulns": "due: forced",
+  "weather-at": "due: forced"
+ },
+ "finished_utc": "2026-11-21T08:33:55.061934+00:00",
+ "llm_calls": 3,
+ "run_id": "20261121T083337Z",
+ "sinks": {
+  "artifact": "ok",
+  "jsonl_git": "ok"
+ },
+ "started_utc": "2026-11-21T08:33:37.471730+00:00",
+ "static": {
+  "arxiv-ai": "ok",
+  "earthquakes": "ok",
+  "safety-gate": "ok",
+  "space-weather": "ok",
+  "tenders": "ok",
+  "vulns": "ok",
+  "weather-at": "ok"
+ },
+ "status": "degraded",
+ "topics": {
+  "arxiv-ai": {
+   "counts": {
+    "emitted": 120,
+    "fetched": 233,
+    "new_or_updated": 233
+   },
+   "error": null,
+   "llm": "ok",
+   "sources": {
+    "arxiv": "ok"
+   },
+   "status": "ok"
+  },
+  "earthquakes": {
+   "counts": {
+    "emitted": 0,
+    "fetched": 0,
+    "new_or_updated": 0
+   },
+   "error": null,
+   "llm": "n/a",
+   "sources": {
+    "usgs": "ok"
+   },
+   "status": "ok"
+  },
+  "safety-gate": {
+   "counts": {
+    "emitted": 104,
+    "fetched": 104,
+    "new_or_updated": 104
+   },
+   "error": null,
+   "llm": "ok",
+   "sources": {
+    "safety-gate": "ok"
+   },
+   "status": "ok"
+  },
+  "space-weather": {
+   "counts": {
+    "emitted": 0,
+    "fetched": 0,
+    "new_or_updated": 0
+   },
+   "error": null,
+   "llm": "n/a",
+   "sources": {
+    "swpc": "ok"
+   },
+   "status": "ok"
+  },
+  "tenders": {
+   "counts": {
+    "emitted": 240,
+    "fetched": 240,
+    "new_or_updated": 240
+   },
+   "error": null,
+   "llm": "ok",
+   "sources": {
+    "ted": "ok"
+   },
+   "status": "ok"
+  },
+  "vulns": {
+   "counts": {},
+   "error": "FileNotFoundError",
+   "llm": "n/a",
+   "sources": {},
+   "status": "failed"
+  },
+  "weather-at": {
+   "counts": {
+    "emitted": 0,
+    "fetched": 0,
+    "new_or_updated": 0
+   },
+   "error": null,
+   "llm": "n/a",
+   "sources": {
+    "geosphere": "ok"
+   },
+   "status": "ok"
+  }
+ }
+}
