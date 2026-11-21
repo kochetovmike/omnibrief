@@ -246,6 +246,7 @@ def render_site(
     site_dir: Path,
     runs: list[RunRecord] | None = None,
     env: Mapping[str, str] | None = None,
+    now: datetime | None = None,
 ) -> None:
     site_dir.mkdir(parents=True, exist_ok=True)
     digests = {t.id: store.recent_digests(t.id, HISTORY_DIGESTS) for t in cfg.topics}
@@ -256,7 +257,7 @@ def render_site(
         store.save_health_state(health)
     if health:
         site_mod.write_health(site_dir, health)
-    site_mod.write_index(cfg, site_dir, digests, health=health or None, env=env)
+    site_mod.write_index(cfg, site_dir, digests, health=health or None, env=env, now=now)
     site_mod.write_about(cfg, site_dir)
 
 

@@ -61,7 +61,7 @@ def go(cfg, tmp_path: Path, sources, env, now=NOW):
     opts.site_dir.mkdir(parents=True, exist_ok=True)
     store = Store(opts.data_dir)
     run = run_topic(cfg, cfg.topic("vulns"), store, opts, sources, None, now)
-    render_site(cfg, store, opts.site_dir, [run], env=env)
+    render_site(cfg, store, opts.site_dir, [run], env=env, now=now)
     return run, store, opts
 
 
