@@ -115,3 +115,12 @@ def test_each_brief_reaches_exactly_its_outputs(repo):
 def test_schema_and_notice_are_up_to_date():
     assert main(["--root", str(ROOT), "schema", "--check"]) == 0
     assert main(["--root", str(ROOT), "notice", "--check"]) == 0
+
+
+def test_vulns_prompt_file_resolves_from_repo_root():
+    """Regression: v1 code joins prompt_file onto the package catalogue; it must be absolute."""
+    from omnibrief.engine.topics.vulns import build_v1_config
+
+    project = load_project(ROOT)
+    cfg = build_v1_config(project, project.topics["vulns"])
+    assert (cfg.root / cfg.topic("vulns").prompt_file).is_file()

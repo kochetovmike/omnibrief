@@ -58,7 +58,11 @@ def build_v1_config(engine: Engine, spec: TopicSpec) -> Config:
         if "url" in telegram:
             telegram["channel_url"] = telegram.pop("url")
     llm = engine.config.llm
+    # Absolute: the v1 code joins prompt_file onto cfg.root (the package catalogue), not the repo root.
     prompt = engine.prompt_path(spec.render.prompt or spec.id)
+    if prompt is None:
+        raise ValueError(f"prompt for {spec.id!r} not found (expected prompts/{spec.id}.md)")
+    prompt = prompt.resolve()
     cfg = Config.model_validate(v1_config_dict(
         base_url=engine.site.base, timezone=engine.site.timezone, language=engine.site.language,
         llm={"provider": llm.provider, "model": llm.model, "api_key_env": llm.api_key_env,
