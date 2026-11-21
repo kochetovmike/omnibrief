@@ -1,0 +1,46 @@
+name: keeper
+
+# GitHub's cron often starts late or skips runs entirely on this repo. The keeper makes the hourly
+# cadence reliable: it waits until a few minutes past the next hour, dispatches `run`, then
+# dispatches itself again (workflow_dispatch from GITHUB_TOKEN is allowed to start workflows).
+# Exactly one keeper is alive (concurrency group). If the chain ever breaks, the 6-hourly cron below
+# (or a manual "Run workflow") restarts it. run.yml keeps its own cron as a further fallback.
+# Cost: one mostly-idle job per hour — free on public repos (standard runners, unlimited minutes).
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 */6 * * *'   # restart the chain if it died
+
+concurrency:
+  group: keeper
+  cancel-in-progress: false  # one running + at most one pending: never more than one chain
+
+permissions: {}
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    permissions:
+      actions: write   # dispatch workflows; nothing else
+    steps:
+      - name: Wait until 5 minutes past the next hour
+        run: |
+          now=$(date -u +%s)
+          next=$(( (now / 3600 + 1) * 3600 + 300 ))
+          echo "Sleeping $(( next - now )) s until $(date -u -d @"$next" +%H:%M) UTC"
+          sleep $(( next - now ))
+      - name: Dispatch the hourly run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+        run: gh workflow run run.yml --repo "$REPO" --ref "$BRANCH"
+      - name: Re-arm the keeper
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          BRANCH: ${{ github.event.repository.default_branch }}
+        run: gh workflow run keeper.yml --repo "$REPO" --ref "$BRANCH"
