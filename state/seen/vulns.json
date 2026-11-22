@@ -13,7 +13,7 @@
   "first_seen": "2026-11-20T19:32:01.528797Z",
   "kev": true,
   "last_material_change": "2026-11-20T19:32:01.528797Z",
-  "last_seen": "2026-11-22T19:05:19.261909Z",
+  "last_seen": "2026-11-22T20:05:17.923392Z",
   "patched": [],
   "severity": null
  },
@@ -202,7 +202,7 @@
   "first_seen": "2026-11-20T19:32:01.528797Z",
   "kev": true,
   "last_material_change": "2026-11-20T19:32:01.528797Z",
-  "last_seen": "2026-11-22T19:05:19.261909Z",
+  "last_seen": "2026-11-22T20:05:17.923392Z",
   "patched": [],
   "severity": null
  },
@@ -274,7 +274,7 @@
   "first_seen": "2026-11-22T16:05:18.316437Z",
   "kev": false,
   "last_material_change": "2026-11-22T16:05:18.316437Z",
-  "last_seen": "2026-11-22T19:05:19.261909Z",
+  "last_seen": "2026-11-22T20:05:17.923392Z",
   "patched": [],
   "severity": "high"
  },
@@ -292,7 +292,7 @@
   "first_seen": "2026-11-20T19:32:01.528797Z",
   "kev": true,
   "last_material_change": "2026-11-20T19:32:01.528797Z",
-  "last_seen": "2026-11-22T19:05:19.261909Z",
+  "last_seen": "2026-11-22T20:05:17.923392Z",
   "patched": [],
   "severity": null
  },
@@ -382,7 +382,7 @@
   "first_seen": "2026-11-20T19:32:01.528797Z",
   "kev": true,
   "last_material_change": "2026-11-20T19:32:01.528797Z",
-  "last_seen": "2026-11-22T19:05:19.261909Z",
+  "last_seen": "2026-11-22T20:05:17.923392Z",
   "patched": [],
   "severity": null
  },
