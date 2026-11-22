@@ -1,8 +1,8 @@
 {
  "degraded_sources": [],
  "included": 0,
- "last_run_utc": "2026-11-22T13:05:19.454975+00:00",
- "last_success_utc": "2026-11-22T13:05:19.454975+00:00",
+ "last_run_utc": "2026-11-22T14:05:17.841931+00:00",
+ "last_success_utc": "2026-11-22T14:05:17.841931+00:00",
  "llm": {
   "vulns": "skipped"
  },
