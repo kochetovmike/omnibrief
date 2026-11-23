@@ -1,12 +1,12 @@
 {
  "degraded_sources": [],
- "included": 1,
- "last_run_utc": "2026-11-23T16:05:50.851117+00:00",
- "last_success_utc": "2026-11-23T16:05:50.851117+00:00",
+ "included": 0,
+ "last_run_utc": "2026-11-23T17:05:38.182350+00:00",
+ "last_success_utc": "2026-11-23T17:05:38.182350+00:00",
  "llm": {
-  "vulns": "fallback"
+  "vulns": "skipped"
  },
- "new_records": 80,
+ "new_records": 117,
  "publishers": {
   "atom": "ok",
   "telegram": "ok"
@@ -17,5 +17,5 @@
   "ghsa": "ok",
   "nvd": "ok"
  },
- "status": "degraded"
+ "status": "ok"
 }
