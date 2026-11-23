@@ -1,8 +1,8 @@
 {
  "held": 0,
- "last_attempt_utc": "2026-11-23T18:05:53.692772+00:00",
+ "last_attempt_utc": "2026-11-23T19:06:09.831323+00:00",
  "migrated_from": "telegram.json",
- "posted_last_run": 0,
+ "posted_last_run": 1,
  "reason": null,
  "sent": {
   "vulns:alert:20261120T193201Z:CVE-2026-123890": {
@@ -32,6 +32,10 @@
   "vulns:brief:2026-11-22T19:00:00+00:00": {
    "at_utc": "2026-11-23T07:06:00.935644+00:00",
    "skipped": "empty"
+  },
+  "vulns:brief:2026-11-23T07:00:00+00:00": {
+   "message_id": 8,
+   "sent_utc": "2026-11-23T19:06:09.831323+00:00"
   }
  },
  "status": "ok"
