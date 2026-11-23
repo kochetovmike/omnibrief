@@ -1,0 +1,101 @@
+{
+ "due": {
+  "arxiv-ai": "skipped: done for this period",
+  "earthquakes": "due: cadence",
+  "safety-gate": "skipped: done for this period",
+  "space-weather": "due: cadence",
+  "tenders": "due: cadence",
+  "vulns": "due: cadence",
+  "weather-at": "due: cadence"
+ },
+ "finished_utc": "2026-11-23T09:05:31.648417+00:00",
+ "llm_calls": 1,
+ "run_id": "20261123T090522Z",
+ "sinks": {
+  "artifact": "ok",
+  "jsonl_git": "ok"
+ },
+ "started_utc": "2026-11-23T09:05:22.641704+00:00",
+ "static": {
+  "arxiv-ai": "ok",
+  "earthquakes": "ok",
+  "safety-gate": "ok",
+  "space-weather": "ok",
+  "tenders": "ok",
+  "vulns": "ok",
+  "weather-at": "ok"
+ },
+ "status": "ok",
+ "topics": {
+  "earthquakes": {
+   "counts": {
+    "emitted": 0,
+    "fetched": 0,
+    "new_or_updated": 0
+   },
+   "error": null,
+   "llm": "n/a",
+   "sources": {
+    "usgs": "ok"
+   },
+   "status": "ok"
+  },
+  "space-weather": {
+   "counts": {
+    "emitted": 0,
+    "fetched": 0,
+    "new_or_updated": 0
+   },
+   "error": null,
+   "llm": "n/a",
+   "sources": {
+    "swpc": "ok"
+   },
+   "status": "ok"
+  },
+  "tenders": {
+   "counts": {
+    "emitted": 68,
+    "fetched": 156,
+    "new_or_updated": 68
+   },
+   "error": null,
+   "llm": "ok",
+   "sources": {
+    "ted": "ok"
+   },
+   "status": "ok"
+  },
+  "vulns": {
+   "counts": {
+    "discovered": 19,
+    "included": 0,
+    "merged": 19,
+    "new": 19,
+    "updated": 0
+   },
+   "error": null,
+   "llm": "skipped",
+   "sources": {
+    "cisa-kev": "ok",
+    "epss": "ok",
+    "ghsa": "ok",
+    "nvd": "ok"
+   },
+   "status": "ok"
+  },
+  "weather-at": {
+   "counts": {
+    "emitted": 0,
+    "fetched": 1,
+    "new_or_updated": 1
+   },
+   "error": null,
+   "llm": "n/a",
+   "sources": {
+    "geosphere": "ok"
+   },
+   "status": "ok"
+  }
+ }
+}
