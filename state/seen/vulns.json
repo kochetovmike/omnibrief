@@ -373,7 +373,16 @@
   "first_seen": "2026-11-23T16:05:16.301645Z",
   "kev": false,
   "last_material_change": "2026-11-23T16:05:16.301645Z",
-  "last_seen": "2026-11-23T18:05:17.121353Z",
+  "last_seen": "2026-11-23T19:05:14.309219Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-135446": {
+  "aliases": [],
+  "first_seen": "2026-11-23T19:05:14.309219Z",
+  "kev": false,
+  "last_material_change": "2026-11-23T19:05:14.309219Z",
+  "last_seen": "2026-11-23T19:05:14.309219Z",
   "patched": [],
   "severity": "high"
  },
