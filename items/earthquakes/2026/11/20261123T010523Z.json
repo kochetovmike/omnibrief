@@ -1,0 +1,32 @@
+[
+ {
+  "topic": "earthquakes",
+  "key": "usgs:us6000ucv1",
+  "source_ids": [
+   "usgs_fdsn"
+  ],
+  "title": "M4.2 earthquake — 33 km WSW of Pánormos, Greece",
+  "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ucv1",
+  "published": "2026-11-22T23:42:49.074000Z",
+  "updated": "2026-11-23T00:17:02.040000Z",
+  "summary": null,
+  "severity": "low",
+  "geo": {
+   "lat": 36.86,
+   "lon": 26.5913,
+   "depth_km": 14.644
+  },
+  "fields": {
+   "magnitude": 4.2,
+   "mag_type": "mb",
+   "place": "33 km WSW of Pánormos, Greece",
+   "country": "Greece",
+   "depth_km": 14.644,
+   "tsunami_flag": false,
+   "alert": null,
+   "felt": null
+  },
+  "material_hash": "c5ca2141975cb622b8d6d9145f06b6cedb6b97bc76d1744c3c6504283793ba51",
+  "status": "new"
+ }
+]
