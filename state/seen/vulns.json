@@ -202,7 +202,7 @@
   "first_seen": "2026-11-23T12:05:14.294230Z",
   "kev": false,
   "last_material_change": "2026-11-23T12:05:14.294230Z",
-  "last_seen": "2026-11-23T15:05:21.016490Z",
+  "last_seen": "2026-11-23T16:05:16.301645Z",
   "patched": [],
   "severity": "high"
  },
@@ -365,6 +365,15 @@
   "kev": false,
   "last_material_change": "2026-11-22T01:55:21.077131Z",
   "last_seen": "2026-11-22T01:55:21.077131Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-135163": {
+  "aliases": [],
+  "first_seen": "2026-11-23T16:05:16.301645Z",
+  "kev": false,
+  "last_material_change": "2026-11-23T16:05:16.301645Z",
+  "last_seen": "2026-11-23T16:05:16.301645Z",
   "patched": [],
   "severity": "high"
  },
