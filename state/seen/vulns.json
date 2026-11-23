@@ -197,6 +197,15 @@
   "patched": [],
   "severity": "high"
  },
+ "CVE-2026-123886": {
+  "aliases": [],
+  "first_seen": "2026-11-23T12:05:14.294230Z",
+  "kev": false,
+  "last_material_change": "2026-11-23T12:05:14.294230Z",
+  "last_seen": "2026-11-23T12:05:14.294230Z",
+  "patched": [],
+  "severity": "high"
+ },
  "CVE-2026-123890": {
   "aliases": [],
   "first_seen": "2026-11-20T19:32:01.528797Z",
