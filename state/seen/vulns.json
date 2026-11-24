@@ -238,7 +238,7 @@
   "first_seen": "2026-11-24T00:05:30.994586Z",
   "kev": false,
   "last_material_change": "2026-11-24T00:05:30.994586Z",
-  "last_seen": "2026-11-24T04:05:18.273248Z",
+  "last_seen": "2026-11-24T05:05:19.690145Z",
   "patched": [],
   "severity": "high"
  },
@@ -445,7 +445,7 @@
   "first_seen": "2026-11-23T21:05:21.025926Z",
   "kev": true,
   "last_material_change": "2026-11-23T21:05:21.025926Z",
-  "last_seen": "2026-11-24T04:05:18.273248Z",
+  "last_seen": "2026-11-24T05:05:19.690145Z",
   "patched": [],
   "severity": null
  },
@@ -454,7 +454,7 @@
   "first_seen": "2026-11-24T03:05:15.078377Z",
   "kev": false,
   "last_material_change": "2026-11-24T03:05:15.078377Z",
-  "last_seen": "2026-11-24T04:05:18.273248Z",
+  "last_seen": "2026-11-24T05:05:19.690145Z",
   "patched": [],
   "severity": "critical"
  },
@@ -463,7 +463,7 @@
   "first_seen": "2026-11-23T21:05:21.025926Z",
   "kev": true,
   "last_material_change": "2026-11-23T21:05:21.025926Z",
-  "last_seen": "2026-11-24T04:05:18.273248Z",
+  "last_seen": "2026-11-24T05:05:19.690145Z",
   "patched": [],
   "severity": null
  },
