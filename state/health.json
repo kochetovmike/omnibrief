@@ -1,21 +1,23 @@
 {
- "degraded_sources": [],
- "included": 1,
- "last_run_utc": "2026-11-24T21:05:16.241207+00:00",
- "last_success_utc": "2026-11-24T21:05:16.241207+00:00",
+ "degraded_sources": [
+  "epss"
+ ],
+ "included": 0,
+ "last_run_utc": "2026-11-24T22:05:40.250869+00:00",
+ "last_success_utc": "2026-11-24T22:05:40.250869+00:00",
  "llm": {
-  "vulns": "ok"
+  "vulns": "skipped"
  },
- "new_records": 375,
+ "new_records": 358,
  "publishers": {
   "atom": "ok",
   "telegram": "ok"
  },
  "sources": {
   "cisa-kev": "ok",
-  "epss": "ok",
+  "epss": "failed",
   "ghsa": "ok",
   "nvd": "ok"
  },
- "status": "ok"
+ "status": "degraded"
 }
