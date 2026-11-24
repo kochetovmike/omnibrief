@@ -1,0 +1,48 @@
+{
+ "run_id": "20261124T170515Z",
+ "topic": "vulns",
+ "started_utc": "2026-11-24T17:05:15.743899Z",
+ "finished_utc": "2026-11-24T17:05:26.282598Z",
+ "status": "ok",
+ "sources": {
+  "cisa-kev": {
+   "status": "ok",
+   "count": 2,
+   "error": null
+  },
+  "nvd": {
+   "status": "ok",
+   "count": 287,
+   "error": null
+  },
+  "ghsa": {
+   "status": "ok",
+   "count": 0,
+   "error": null
+  },
+  "epss": {
+   "status": "ok",
+   "count": 0,
+   "error": null
+  }
+ },
+ "publishers": {
+  "telegram": {
+   "status": "ok",
+   "reason": null
+  },
+  "atom": {
+   "status": "ok",
+   "reason": null
+  }
+ },
+ "llm": "skipped",
+ "counts": {
+  "discovered": 289,
+  "merged": 289,
+  "new": 221,
+  "updated": 0,
+  "included": 0
+ },
+ "digest_written": false
+}
