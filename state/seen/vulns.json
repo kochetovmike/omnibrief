@@ -58,7 +58,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": false,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -427,7 +427,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": null
  },
@@ -436,7 +436,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": null
  },
@@ -445,7 +445,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": null
  },
@@ -481,7 +481,7 @@
   "first_seen": "2026-11-23T21:05:21.025926Z",
   "kev": true,
   "last_material_change": "2026-11-23T21:05:21.025926Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": null
  },
@@ -499,7 +499,7 @@
   "first_seen": "2026-11-23T21:05:21.025926Z",
   "kev": true,
   "last_material_change": "2026-11-23T21:05:21.025926Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": null
  },
@@ -544,7 +544,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -553,7 +553,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -562,7 +562,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -571,16 +571,25 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
+ },
+ "CVE-2026-135506": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
  },
  "CVE-2026-135507": {
   "aliases": [],
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -589,7 +598,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -598,7 +607,16 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
+ },
+ "CVE-2026-135510": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -607,7 +625,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -616,7 +634,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -625,7 +643,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -634,7 +652,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -643,7 +661,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -652,7 +670,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -661,7 +679,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -670,7 +688,25 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
+ },
+ "CVE-2026-135520": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
+ },
+ "CVE-2026-135521": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -679,7 +715,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -688,7 +724,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -697,7 +733,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -706,7 +742,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -715,7 +751,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -724,16 +760,34 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
+ },
+ "CVE-2026-135529": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
+ },
+ "CVE-2026-135530": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
  },
  "CVE-2026-135531": {
   "aliases": [],
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -742,7 +796,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -751,7 +805,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -760,7 +814,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -769,7 +823,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -778,7 +832,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -787,7 +841,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -796,7 +850,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -805,7 +859,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -814,7 +868,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -823,7 +877,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -832,16 +886,25 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
+ },
+ "CVE-2026-135547": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
  },
  "CVE-2026-135548": {
   "aliases": [],
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -850,7 +913,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -859,7 +922,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -868,7 +931,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -877,7 +940,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -886,7 +949,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -895,7 +958,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -904,7 +967,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -913,7 +976,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -922,7 +985,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -931,7 +994,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -940,7 +1003,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -949,7 +1012,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -958,7 +1021,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -967,7 +1030,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -976,7 +1039,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -985,7 +1048,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -994,7 +1057,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1003,7 +1066,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1012,7 +1075,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1021,7 +1084,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -1030,7 +1093,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1039,7 +1102,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1048,7 +1111,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1057,7 +1120,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1066,7 +1129,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1075,7 +1138,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1084,16 +1147,25 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
+ },
+ "CVE-2026-135596": {
+  "aliases": [],
+  "first_seen": "2026-11-24T20:05:13.970778Z",
+  "kev": false,
+  "last_material_change": "2026-11-24T20:05:13.970778Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
+  "patched": [],
+  "severity": "critical"
  },
  "CVE-2026-135597": {
   "aliases": [],
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "critical"
  },
@@ -1102,7 +1174,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
@@ -1111,7 +1183,7 @@
   "first_seen": "2026-11-24T16:05:14.762546Z",
   "kev": false,
   "last_material_change": "2026-11-24T16:05:14.762546Z",
-  "last_seen": "2026-11-24T19:05:23.983155Z",
+  "last_seen": "2026-11-24T20:05:13.970778Z",
   "patched": [],
   "severity": "high"
  },
