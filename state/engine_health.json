@@ -13,7 +13,7 @@
    "type": "telegram"
   },
   "tg_security": {
-   "last_attempt_utc": "2026-11-24T16:06:02.267199+00:00",
+   "last_attempt_utc": "2026-11-24T17:06:53.131036+00:00",
    "reason": null,
    "status": "ok",
    "type": "telegram"
@@ -25,15 +25,15 @@
    "type": "telegram"
   }
  },
- "last_run_utc": "2026-11-24T17:05:15.743899+00:00",
- "last_success_utc": "2026-11-24T17:05:15.743899+00:00",
+ "last_run_utc": "2026-11-24T18:05:17.156276+00:00",
+ "last_success_utc": "2026-11-24T18:05:17.156276+00:00",
  "llm": {
   "calls_today": 7,
   "per_day": 40,
   "per_run": 6,
   "this_run": 0
  },
- "run_id": "20261124T170515Z",
+ "run_id": "20261124T180517Z",
  "sinks": {
   "artifact": "ok",
   "jsonl_git": "ok"
@@ -51,8 +51,8 @@
   "earthquakes": {
    "due": "due: cadence",
    "error": null,
-   "last_attempt": "2026-11-24T17:05:15.743899+00:00",
-   "last_success": "2026-11-24T17:05:15.743899+00:00",
+   "last_attempt": "2026-11-24T18:05:17.156276+00:00",
+   "last_success": "2026-11-24T18:05:17.156276+00:00",
    "static": "ok",
    "status": "ok"
   },
@@ -67,8 +67,8 @@
   "space-weather": {
    "due": "due: cadence",
    "error": null,
-   "last_attempt": "2026-11-24T17:05:15.743899+00:00",
-   "last_success": "2026-11-24T17:05:15.743899+00:00",
+   "last_attempt": "2026-11-24T18:05:17.156276+00:00",
+   "last_success": "2026-11-24T18:05:17.156276+00:00",
    "static": "ok",
    "status": "ok"
   },
@@ -83,16 +83,16 @@
   "vulns": {
    "due": "due: cadence",
    "error": null,
-   "last_attempt": "2026-11-24T17:05:15.743899+00:00",
-   "last_success": "2026-11-24T17:05:15.743899+00:00",
+   "last_attempt": "2026-11-24T18:05:17.156276+00:00",
+   "last_success": "2026-11-24T18:05:17.156276+00:00",
    "static": "ok",
    "status": "ok"
   },
   "weather-at": {
    "due": "due: cadence",
    "error": null,
-   "last_attempt": "2026-11-24T17:05:15.743899+00:00",
-   "last_success": "2026-11-24T17:05:15.743899+00:00",
+   "last_attempt": "2026-11-24T18:05:17.156276+00:00",
+   "last_success": "2026-11-24T18:05:17.156276+00:00",
    "static": "ok",
    "status": "ok"
   }

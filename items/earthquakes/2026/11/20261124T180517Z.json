@@ -1,0 +1,32 @@
+[
+ {
+  "topic": "earthquakes",
+  "key": "usgs:us6000ud82",
+  "source_ids": [
+   "usgs_fdsn"
+  ],
+  "title": "M4.2 earthquake — 14 km SSE of Kónitsa, Greece",
+  "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ud82",
+  "published": "2026-11-24T15:55:22.846000Z",
+  "updated": "2026-11-24T17:28:57.040000Z",
+  "summary": null,
+  "severity": "low",
+  "geo": {
+   "lat": 39.9395,
+   "lon": 20.8439,
+   "depth_km": 10.0
+  },
+  "fields": {
+   "magnitude": 4.2,
+   "mag_type": "mb",
+   "place": "14 km SSE of Kónitsa, Greece",
+   "country": "Greece",
+   "depth_km": 10,
+   "tsunami_flag": false,
+   "alert": null,
+   "felt": null
+  },
+  "material_hash": "3322e5de09124dd66197bbd575cadfc5d4484730616bc5b34b449631e68637d1",
+  "status": "new"
+ }
+]
