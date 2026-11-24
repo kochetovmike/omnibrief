@@ -1,0 +1,32 @@
+[
+ {
+  "topic": "earthquakes",
+  "key": "usgs:us6000ud7z",
+  "source_ids": [
+   "usgs_fdsn"
+  ],
+  "title": "M4.7 earthquake — 18 km ESE of Güvercinlik, Turkey",
+  "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000ud7z",
+  "published": "2026-11-24T15:39:43.392000Z",
+  "updated": "2026-11-24T15:53:59.040000Z",
+  "summary": null,
+  "severity": "low",
+  "geo": {
+   "lat": 37.0918,
+   "lon": 27.779,
+   "depth_km": 10.0
+  },
+  "fields": {
+   "magnitude": 4.7,
+   "mag_type": "mb",
+   "place": "18 km ESE of Güvercinlik, Turkey",
+   "country": "Turkey",
+   "depth_km": 10,
+   "tsunami_flag": false,
+   "alert": null,
+   "felt": null
+  },
+  "material_hash": "3f9dd82770098a452ff370e458b7aea0ba9b3b5cae511652c9f8df09aeb6f2af",
+  "status": "new"
+ }
+]

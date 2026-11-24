@@ -3,5 +3,10 @@
   "first_seen": "2026-11-23T01:05:23.574512+00:00",
   "last_seen": "2026-11-23T02:05:24.691561+00:00",
   "material_hash": "c5ca2141975cb622b8d6d9145f06b6cedb6b97bc76d1744c3c6504283793ba51"
+ },
+ "usgs:us6000ud7z": {
+  "first_seen": "2026-11-24T16:05:14.762546+00:00",
+  "last_seen": "2026-11-24T16:05:14.762546+00:00",
+  "material_hash": "3f9dd82770098a452ff370e458b7aea0ba9b3b5cae511652c9f8df09aeb6f2af"
  }
 }
