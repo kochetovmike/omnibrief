@@ -1,0 +1,320 @@
+{
+ "topic": "vulns",
+ "run_id": "20261125T220518Z",
+ "created_utc": "2026-11-25T22:05:18.048035Z",
+ "title": "Vulnerability digest — 25 Nov 2026, 23:05 CET",
+ "summarised": true,
+ "markdown": "- **CVE-2026-133323**, Mitel MiCollab, This vulnerability allows an unauthenticated attacker to execute arbitrary system commands via an OS command injection flaw in the Audio, Web, and Video Conferencing (AWV) component. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-133323](https://nvd.nist.gov/vuln/detail/CVE-2026-133323), [https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012](https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2023-25915**, Danfoss AK-SM 800A Series, This improper input validation vulnerability could allow a remote attacker to run arbitrary commands on the affected system. Links: [https://nvd.nist.gov/vuln/detail/CVE-2023-25915](https://nvd.nist.gov/vuln/detail/CVE-2023-25915), [https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01](https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2026-133469**, Vates Xen Orchestra, This vulnerability allows an unauthenticated attacker to bypass authentication and perform administrative actions using a crafted authentication token containing an empty JSON object. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-133469](https://nvd.nist.gov/vuln/detail/CVE-2026-133469), [https://docs.vates.tech/security-advisories/advisories/2026/vates-sa-2026-062/](https://docs.vates.tech/security-advisories/advisories/2026/vates-sa-2026-062/), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2023-25914**, Danfoss AK-SM 800A Series, This path traversal vulnerability could allow an attacker to access and read underlying server system files via the XML interface. Links: [https://nvd.nist.gov/vuln/detail/CVE-2023-25914](https://nvd.nist.gov/vuln/detail/CVE-2023-25914), [https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01](https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2026-133303**, Mitel MiCollab, This vulnerability permits an unauthenticated attacker to execute arbitrary commands using pre-staged malicious content via an XML injection flaw in the AWV component. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-133303](https://nvd.nist.gov/vuln/detail/CVE-2026-133303), [https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012](https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2025-41450**, Danfoss AK-SM 800A Series, This improper authentication vulnerability could allow an attacker to generate a web report exposing sensitive information such as internal IP addresses, usernames, and store names. Links: [https://nvd.nist.gov/vuln/detail/CVE-2025-41450](https://nvd.nist.gov/vuln/detail/CVE-2025-41450), [https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2025-03-01](https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2025-03-01), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2026-133324**, Mitel MiCollab, This vulnerability allows an unauthenticated attacker to bypass authentication controls and perform unauthorized actions due to a failure to fail securely in the AWV component. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-133324](https://nvd.nist.gov/vuln/detail/CVE-2026-133324), [https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012](https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2026-133311**, Mitel MiCollab, This weak authentication vulnerability in the AWV component could let an unauthenticated attacker access sensitive information using a specific system-generated random identifier or pre-staged content. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-133311](https://nvd.nist.gov/vuln/detail/CVE-2026-133311), [https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012](https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2026-133275**, Mitel MiCollab, This vulnerability enables an unauthenticated attacker to upload arbitrary files due to insufficient file type validation in the AWV component. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-133275](https://nvd.nist.gov/vuln/detail/CVE-2026-133275), [https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012](https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012), [https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk](https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk)\n- **CVE-2026-135227**, MongoDB Ruby Driver, This association-handling flaw allows structured input to be treated as an already-stored record, which can let an unauthenticated party modify or remove stored records and render individual records unreadable. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-135227](https://nvd.nist.gov/vuln/detail/CVE-2026-135227), [https://jira.mongodb.org/browse/MONGOID-5969](https://jira.mongodb.org/browse/MONGOID-5969)\n- **CVE-2026-135898**, MongoDB Python Driver, An out-of-bounds read in the native C BSON decoding extension can allow an unauthenticated party to terminate the application process using crafted BSON data and potentially leak process memory in error messages. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-135898](https://nvd.nist.gov/vuln/detail/CVE-2026-135898), [https://jira.mongodb.org/browse/PYTHON-6256](https://jira.mongodb.org/browse/PYTHON-6256)\n- **CVE-2026-135141**, MongoDB Ruby Driver, A query-building logic flaw causes model-level default restrictions to be silently discarded, enabling a user with basic application privileges to read, change, or remove records that should have been withheld. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-135141](https://nvd.nist.gov/vuln/detail/CVE-2026-135141), [https://jira.mongodb.org/browse/MONGOID-6025](https://jira.mongodb.org/browse/MONGOID-6025)\n- **CVE-2026-135226**, MongoDB Ruby Driver, A type-confusion weakness in the Extended JSON parsing component allows input to be read as additional or replacement document fields, which can cause unintended data modifications when untrusted data is parsed and stored. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-135226](https://nvd.nist.gov/vuln/detail/CVE-2026-135226), [https://jira.mongodb.org/browse/RUBY-3936](https://jira.mongodb.org/browse/RUBY-3936)\n- **CVE-2026-135146**, MongoDB Python Driver, An improper certificate revocation check in optional TLS support allows a network endpoint holding a revoked certificate to trick a client into accepting the connection, risking credential disclosure and response spoofing. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-135146](https://nvd.nist.gov/vuln/detail/CVE-2026-135146), [https://jira.mongodb.org/browse/PYTHON-6189](https://jira.mongodb.org/browse/PYTHON-6189)\n\n*Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — [Sources & licences](https://kochetovmike.github.io/omnibrief/about.html). This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.*",
+ "html": "<ul>\n<li><strong>CVE-2026-133323</strong>, Mitel MiCollab, This vulnerability allows an unauthenticated attacker to execute arbitrary system commands via an OS command injection flaw in the Audio, Web, and Video Conferencing (AWV) component. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-133323\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012\" rel=\"noopener noreferrer nofollow\">www.mitel.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2023-25915</strong>, Danfoss AK-SM 800A Series, This improper input validation vulnerability could allow a remote attacker to run arbitrary commands on the affected system. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2023-25915\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01\" rel=\"noopener noreferrer nofollow\">www.danfoss.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2026-133469</strong>, Vates Xen Orchestra, This vulnerability allows an unauthenticated attacker to bypass authentication and perform administrative actions using a crafted authentication token containing an empty JSON object. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-133469\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://docs.vates.tech/security-advisories/advisories/2026/vates-sa-2026-062/\" rel=\"noopener noreferrer nofollow\">docs.vates.tech</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2023-25914</strong>, Danfoss AK-SM 800A Series, This path traversal vulnerability could allow an attacker to access and read underlying server system files via the XML interface. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2023-25914\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01\" rel=\"noopener noreferrer nofollow\">www.danfoss.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2026-133303</strong>, Mitel MiCollab, This vulnerability permits an unauthenticated attacker to execute arbitrary commands using pre-staged malicious content via an XML injection flaw in the AWV component. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-133303\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012\" rel=\"noopener noreferrer nofollow\">www.mitel.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2025-41450</strong>, Danfoss AK-SM 800A Series, This improper authentication vulnerability could allow an attacker to generate a web report exposing sensitive information such as internal IP addresses, usernames, and store names. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2025-41450\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2025-03-01\" rel=\"noopener noreferrer nofollow\">www.danfoss.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2026-133324</strong>, Mitel MiCollab, This vulnerability allows an unauthenticated attacker to bypass authentication controls and perform unauthorized actions due to a failure to fail securely in the AWV component. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-133324\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012\" rel=\"noopener noreferrer nofollow\">www.mitel.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2026-133311</strong>, Mitel MiCollab, This weak authentication vulnerability in the AWV component could let an unauthenticated attacker access sensitive information using a specific system-generated random identifier or pre-staged content. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-133311\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012\" rel=\"noopener noreferrer nofollow\">www.mitel.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2026-133275</strong>, Mitel MiCollab, This vulnerability enables an unauthenticated attacker to upload arbitrary files due to insufficient file type validation in the AWV component. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-133275\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012\" rel=\"noopener noreferrer nofollow\">www.mitel.com</a>, <a href=\"https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk\" rel=\"noopener noreferrer nofollow\">www.cisa.gov</a></li>\n<li><strong>CVE-2026-135227</strong>, MongoDB Ruby Driver, This association-handling flaw allows structured input to be treated as an already-stored record, which can let an unauthenticated party modify or remove stored records and render individual records unreadable. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135227\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://jira.mongodb.org/browse/MONGOID-5969\" rel=\"noopener noreferrer nofollow\">jira.mongodb.org</a></li>\n<li><strong>CVE-2026-135898</strong>, MongoDB Python Driver, An out-of-bounds read in the native C BSON decoding extension can allow an unauthenticated party to terminate the application process using crafted BSON data and potentially leak process memory in error messages. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135898\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://jira.mongodb.org/browse/PYTHON-6256\" rel=\"noopener noreferrer nofollow\">jira.mongodb.org</a></li>\n<li><strong>CVE-2026-135141</strong>, MongoDB Ruby Driver, A query-building logic flaw causes model-level default restrictions to be silently discarded, enabling a user with basic application privileges to read, change, or remove records that should have been withheld. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135141\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://jira.mongodb.org/browse/MONGOID-6025\" rel=\"noopener noreferrer nofollow\">jira.mongodb.org</a></li>\n<li><strong>CVE-2026-135226</strong>, MongoDB Ruby Driver, A type-confusion weakness in the Extended JSON parsing component allows input to be read as additional or replacement document fields, which can cause unintended data modifications when untrusted data is parsed and stored. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135226\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://jira.mongodb.org/browse/RUBY-3936\" rel=\"noopener noreferrer nofollow\">jira.mongodb.org</a></li>\n<li><strong>CVE-2026-135146</strong>, MongoDB Python Driver, An improper certificate revocation check in optional TLS support allows a network endpoint holding a revoked certificate to trick a client into accepting the connection, risking credential disclosure and response spoofing. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135146\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://jira.mongodb.org/browse/PYTHON-6189\" rel=\"noopener noreferrer nofollow\">jira.mongodb.org</a></li>\n</ul>\n<p><em>Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — <a href=\"https://kochetovmike.github.io/omnibrief/about.html\" rel=\"noopener noreferrer nofollow\">Sources &amp; licences</a>. This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.</em></p>",
+ "items": [
+  {
+   "id": "CVE-2026-133323",
+   "aliases": [],
+   "title": "Mitel MiCollab OS Command Injection Vulnerability",
+   "product": "Mitel MiCollab",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.85725,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-133323",
+    "https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Mitel MiCollab OS Command Injection Vulnerability\nMitel MiCollab contains an improper neutralization of special elements used in an OS command (OS command injection) vulnerability in its Audio, Web, and Video Conferencing (AWV) component that could allow an unauthenticated attacker to execute arbitrary system commands.\nMitel MiCollab",
+   "core_text": "Mitel MiCollab\nMitel MiCollab OS Command Injection Vulnerability"
+  },
+  {
+   "id": "CVE-2023-25915",
+   "aliases": [],
+   "title": "Danfoss AK-SM 800A Series Improper Input Validation Vulnerability",
+   "product": "Danfoss AK-SM 800A Series",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.73235,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2023-25915",
+    "https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Danfoss AK-SM 800A Series Improper Input Validation Vulnerability\nDanfoss AK-SM 800A Series contains an improper input validation vulnerability that could allow a remote attacker to run arbitrary commands on the affected system.\nDanfoss AK-SM 800A Series",
+   "core_text": "Danfoss AK-SM 800A Series\nDanfoss AK-SM 800A Series Improper Input Validation Vulnerability"
+  },
+  {
+   "id": "CVE-2026-133469",
+   "aliases": [],
+   "title": "Vates Xen Orchestra Improper Validation of Specified Type of Input Vulnerability",
+   "product": "Vates Xen Orchestra",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.65258,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-133469",
+    "https://docs.vates.tech/security-advisories/advisories/2026/vates-sa-2026-062/",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Vates Xen Orchestra Improper Validation of Specified Type of Input Vulnerability\nVates Xen Orchestra contains an improper validation of specified type of input vulnerability that could allow an unauthenticated attacker to bypass authentication and perform actions with administrative privileges via a specially crafted authentication token containing an empty JSON object.\nVates Xen Orchestra",
+   "core_text": "Vates Xen Orchestra\nVates Xen Orchestra Improper Validation of Specified Type of Input Vulnerability"
+  },
+  {
+   "id": "CVE-2023-25914",
+   "aliases": [],
+   "title": "Danfoss AK-SM 800A Series Path Traversal Vulnerability",
+   "product": "Danfoss AK-SM 800A Series",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.64585,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2023-25914",
+    "https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2023-08-01",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Danfoss AK-SM 800A Series Path Traversal Vulnerability\nDanfoss AK-SM 800A Series contains a path traversal vulnerability that could allow an attacker to access and read underlying server system files via the XML interface.\nDanfoss AK-SM 800A Series",
+   "core_text": "Danfoss AK-SM 800A Series\nDanfoss AK-SM 800A Series Path Traversal Vulnerability"
+  },
+  {
+   "id": "CVE-2026-133303",
+   "aliases": [],
+   "title": "Mitel MiCollab XML Injection Vulnerability",
+   "product": "Mitel MiCollab",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.37111,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-133303",
+    "https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Mitel MiCollab XML Injection Vulnerability\nMitel MiCollab contains an XML injection vulnerability in its Audio, Web, and Video Conferencing (AWV) component that could allow an unauthenticated attacker to execute arbitrary commands using pre-staged malicious content.\nMitel MiCollab",
+   "core_text": "Mitel MiCollab\nMitel MiCollab XML Injection Vulnerability"
+  },
+  {
+   "id": "CVE-2025-41450",
+   "aliases": [],
+   "title": "Danfoss AK-SM 800A Series Improper Authentication Vulnerability",
+   "product": "Danfoss AK-SM 800A Series",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.37031,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2025-41450",
+    "https://www.danfoss.com/en/service-and-support/coordinated-vulnerability-disclosure/danfoss-security-advisories/dsa-2025-03-01",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Danfoss AK-SM 800A Series Improper Authentication Vulnerability\nDanfoss AK-SM 800A Series contains an improper authentication vulnerability that could allow an attacker to generate a web report exposing sensitive information, including internal IP addresses, usernames, and store names.\nDanfoss AK-SM 800A Series",
+   "core_text": "Danfoss AK-SM 800A Series\nDanfoss AK-SM 800A Series Improper Authentication Vulnerability"
+  },
+  {
+   "id": "CVE-2026-133324",
+   "aliases": [],
+   "title": "Mitel MiCollab Not Failing Securely Vulnerability",
+   "product": "Mitel MiCollab",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.273,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-133324",
+    "https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Mitel MiCollab Not Failing Securely Vulnerability\nMitel MiCollab contains a not failing securely vulnerability in the Audio, Web and Video Conferencing (AWV) component that could allow an unauthenticated attacker to bypass authentication controls and perform unauthorized actions.\nMitel MiCollab",
+   "core_text": "Mitel MiCollab\nMitel MiCollab Not Failing Securely Vulnerability"
+  },
+  {
+   "id": "CVE-2026-133311",
+   "aliases": [],
+   "title": "Mitel MiCollab Weak Authentication Vulnerability",
+   "product": "Mitel MiCollab",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.2537,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-133311",
+    "https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Mitel MiCollab Weak Authentication Vulnerability\nMitel MiCollab contains a weak authentication vulnerability in the Audio, Web and Video Conferencing (AWV) component that could allow an unauthenticated attacker to access sensitive information using a specific system-generated random identifier or pre-staged content.\nMitel MiCollab",
+   "core_text": "Mitel MiCollab\nMitel MiCollab Weak Authentication Vulnerability"
+  },
+  {
+   "id": "CVE-2026-133275",
+   "aliases": [],
+   "title": "Mitel MiCollab Unrestricted Upload of File with Dangerous Type Vulnerability",
+   "product": "Mitel MiCollab",
+   "severity": null,
+   "cvss": null,
+   "kev": true,
+   "epss_percentile": 0.1686,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-133275",
+    "https://www.mitel.com/support/security-advisories/mitel-product-security-advisory-misa-2026-0012",
+    "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk"
+   ],
+   "summarised": true,
+   "published": null,
+   "kev_date_added": "2026-11-25",
+   "match_text": "Mitel MiCollab Unrestricted Upload of File with Dangerous Type Vulnerability\nMitel MiCollab contains an unrestricted upload of file with dangerous type vulnerability in the Audio, Web and Video Conferencing (AWV) component due to insufficient file type validation that could allow an unauthenticated attacker to upload arbitrary files.\nMitel MiCollab",
+   "core_text": "Mitel MiCollab\nMitel MiCollab Unrestricted Upload of File with Dangerous Type Vulnerability"
+  },
+  {
+   "id": "CVE-2026-135227",
+   "aliases": [],
+   "title": "An improper restriction of dynamically determined object attributes in the object-document mapping library's association…",
+   "product": "MongoDB Ruby Driver",
+   "severity": "high",
+   "cvss": 8.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135227",
+    "https://jira.mongodb.org/browse/MONGOID-5969"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T18:18:51.020000Z",
+   "kev_date_added": null,
+   "match_text": "An improper restriction of dynamically determined object attributes in the object-document mapping library's association handling allows structured input supplied in place of a simple identifier value to be turned into an object that is treated as an already-stored record of a caller-chosen model class. In applications that pass unfiltered request data into the affected association handling, an unauthenticated party may cause unintended modification or removal of stored records, and may render an individual record unreadable through that association.\nMongoDB Ruby Driver",
+   "core_text": "MongoDB Ruby Driver"
+  },
+  {
+   "id": "CVE-2026-135898",
+   "aliases": [],
+   "title": "An out-of-bounds read in the native C BSON decoding extension of the MongoDB Python Driver may allow an unauthenticated …",
+   "product": "MongoDB Python Driver",
+   "severity": "high",
+   "cvss": 8.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135898",
+    "https://jira.mongodb.org/browse/PYTHON-6256"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T18:18:51.163000Z",
+   "kev_date_added": null,
+   "match_text": "An out-of-bounds read in the native C BSON decoding extension of the MongoDB Python Driver may allow an unauthenticated party who can supply crafted BSON data to the decoder to cause the application process to terminate. In some configurations, nearby process memory may be included in error messages, which may result in limited unintended disclosure of data.\nMongoDB Python Driver",
+   "core_text": "MongoDB Python Driver"
+  },
+  {
+   "id": "CVE-2026-135141",
+   "aliases": [],
+   "title": "A logic flaw in the query-building layer of the Mongoid object-document mapper causes a model-level default restriction …",
+   "product": "MongoDB Ruby Driver",
+   "severity": "high",
+   "cvss": 8.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135141",
+    "https://jira.mongodb.org/browse/MONGOID-6025"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T18:18:50.443000Z",
+   "kev_date_added": null,
+   "match_text": "A logic flaw in the query-building layer of the Mongoid object-document mapper causes a model-level default restriction that is meant to return no records to be silently discarded when it is combined into a query. A user with basic application privileges who sends an ordinary request may read, change, or remove records that the restriction was intended to withhold.\nMongoDB Ruby Driver",
+   "core_text": "MongoDB Ruby Driver"
+  },
+  {
+   "id": "CVE-2026-135226",
+   "aliases": [],
+   "title": "A type-confusion weakness in the Extended JSON parsing component of BSON for Ruby allows a party who can supply parser i…",
+   "product": "MongoDB Ruby Driver",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135226",
+    "https://jira.mongodb.org/browse/RUBY-3936"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T18:18:50.880000Z",
+   "kev_date_added": null,
+   "match_text": "A type-confusion weakness in the Extended JSON parsing component of BSON for Ruby allows a party who can supply parser input to influence how a serialized document is framed. Content placed in one value may be read back as additional or replacement document fields. An unauthenticated party supplying input to an application that parses untrusted Extended JSON and stores the result may cause unintended modification of stored data.\nMongoDB Ruby Driver",
+   "core_text": "MongoDB Ruby Driver"
+  },
+  {
+   "id": "CVE-2026-135146",
+   "aliases": [],
+   "title": "An improper certificate revocation check in the MongoDB Python Driver's optional TLS revocation-checking support allows …",
+   "product": "MongoDB Python Driver",
+   "severity": "high",
+   "cvss": 7.4,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135146",
+    "https://jira.mongodb.org/browse/PYTHON-6189"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T18:18:50.597000Z",
+   "kev_date_added": null,
+   "match_text": "An improper certificate revocation check in the MongoDB Python Driver's optional TLS revocation-checking support allows an unauthenticated party that operates the network endpoint a client connects to, and that holds a revoked but still-dated certificate trusted by that client, to have the connection accepted. This may result in unintended disclosure of application credentials and other session data, and in the client treating responses from that endpoint as genuine.\nMongoDB Python Driver",
+   "core_text": "MongoDB Python Driver"
+  }
+ ],
+ "sources": [
+  "cisa_kev",
+  "epss",
+  "nvd"
+ ],
+ "deliveries": {}
+}

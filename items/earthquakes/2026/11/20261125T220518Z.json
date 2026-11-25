@@ -1,0 +1,32 @@
+[
+ {
+  "topic": "earthquakes",
+  "key": "usgs:us6000udhb",
+  "source_ids": [
+   "usgs_fdsn"
+  ],
+  "title": "M4.4 earthquake — 5 km NNW of Itháki, Greece",
+  "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000udhb",
+  "published": "2026-11-25T18:07:59.725000Z",
+  "updated": "2026-11-25T18:50:40.040000Z",
+  "summary": null,
+  "severity": "low",
+  "geo": {
+   "lat": 38.4121,
+   "lon": 20.6921,
+   "depth_km": 49.971
+  },
+  "fields": {
+   "magnitude": 4.4,
+   "mag_type": "mb",
+   "place": "5 km NNW of Itháki, Greece",
+   "country": "Greece",
+   "depth_km": 49.971,
+   "tsunami_flag": false,
+   "alert": null,
+   "felt": null
+  },
+  "material_hash": "760e1c6448ee396db0fe2e5f77821337f3b1cc731439ea2df1a1a682130d29c3",
+  "status": "new"
+ }
+]
