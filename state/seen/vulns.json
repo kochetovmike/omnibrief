@@ -17,6 +17,15 @@
   "patched": [],
   "severity": null
  },
+ "CVE-2026-103406": {
+  "aliases": [],
+  "first_seen": "2026-11-25T15:05:19.253118Z",
+  "kev": true,
+  "last_material_change": "2026-11-25T15:05:19.253118Z",
+  "last_seen": "2026-11-25T15:05:19.253118Z",
+  "patched": [],
+  "severity": null
+ },
  "CVE-2026-107632": {
   "aliases": [],
   "first_seen": "2026-11-22T01:55:21.077131Z",
@@ -436,7 +445,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-25T14:05:15.674993Z",
+  "last_seen": "2026-11-25T15:05:19.253118Z",
   "patched": [],
   "severity": null
  },
@@ -445,7 +454,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-25T14:05:15.674993Z",
+  "last_seen": "2026-11-25T15:05:19.253118Z",
   "patched": [],
   "severity": null
  },
@@ -454,7 +463,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-25T14:05:15.674993Z",
+  "last_seen": "2026-11-25T15:05:19.253118Z",
   "patched": [],
   "severity": null
  },
@@ -490,7 +499,7 @@
   "first_seen": "2026-11-23T21:05:21.025926Z",
   "kev": true,
   "last_material_change": "2026-11-23T21:05:21.025926Z",
-  "last_seen": "2026-11-25T14:05:15.674993Z",
+  "last_seen": "2026-11-25T15:05:19.253118Z",
   "patched": [],
   "severity": null
  },
@@ -508,7 +517,7 @@
   "first_seen": "2026-11-23T21:05:21.025926Z",
   "kev": true,
   "last_material_change": "2026-11-23T21:05:21.025926Z",
-  "last_seen": "2026-11-25T14:05:15.674993Z",
+  "last_seen": "2026-11-25T15:05:19.253118Z",
   "patched": [],
   "severity": null
  },
