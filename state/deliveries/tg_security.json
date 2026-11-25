@@ -1,6 +1,6 @@
 {
  "held": 0,
- "last_attempt_utc": "2026-11-25T06:22:09.539299+00:00",
+ "last_attempt_utc": "2026-11-25T07:05:41.181167+00:00",
  "migrated_from": "telegram.json",
  "posted_last_run": 0,
  "reason": null,
@@ -124,6 +124,10 @@
   "vulns:brief:2026-11-24T07:00:00+00:00": {
    "message_id": 22,
    "sent_utc": "2026-11-24T19:05:57.293487+00:00"
+  },
+  "vulns:brief:2026-11-24T19:00:00+00:00": {
+   "at_utc": "2026-11-25T07:05:41.181167+00:00",
+   "skipped": "empty"
   }
  },
  "status": "ok"
