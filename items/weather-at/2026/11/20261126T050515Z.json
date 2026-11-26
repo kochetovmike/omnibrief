@@ -1,0 +1,30 @@
+[
+ {
+  "topic": "weather-at",
+  "key": "geosphere:w4876c7v4",
+  "source_ids": [
+   "geosphere_warnings"
+  ],
+  "title": "Orange snow warning — Niederösterreich, Wien",
+  "url": "https://warnungen.geosphere.at/",
+  "published": "2026-11-25T23:00:00Z",
+  "updated": null,
+  "summary": null,
+  "severity": "medium",
+  "geo": null,
+  "fields": {
+   "warn_type": "snow",
+   "level": 2,
+   "level_name": "orange",
+   "start": "2026-11-25T23:00:00Z",
+   "end": "2026-11-26T23:00:00Z",
+   "laender": [
+    "Niederösterreich",
+    "Wien"
+   ],
+   "municipalities": 105
+  },
+  "material_hash": "d3a95e8e3e05984cae2bdb06557fb5f658e5ca685633af89181a6061e43f06bb",
+  "status": "new"
+ }
+]
