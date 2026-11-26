@@ -4,7 +4,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -13,7 +13,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -31,7 +31,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -49,7 +49,7 @@
   "first_seen": "2026-11-25T15:05:19.253118Z",
   "kev": true,
   "last_material_change": "2026-11-25T15:05:19.253118Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -341,12 +341,57 @@
   "patched": [],
   "severity": null
  },
+ "CVE-2026-123903": {
+  "aliases": [],
+  "first_seen": "2026-11-26T12:05:21.862566Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T12:05:21.862566Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
+  "patched": [],
+  "severity": "critical"
+ },
+ "CVE-2026-123904": {
+  "aliases": [],
+  "first_seen": "2026-11-26T12:05:21.862566Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T12:05:21.862566Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-123905": {
+  "aliases": [],
+  "first_seen": "2026-11-26T12:05:21.862566Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T12:05:21.862566Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-123906": {
+  "aliases": [],
+  "first_seen": "2026-11-26T12:05:21.862566Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T12:05:21.862566Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-123907": {
+  "aliases": [],
+  "first_seen": "2026-11-26T12:05:21.862566Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T12:05:21.862566Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
+  "patched": [],
+  "severity": "high"
+ },
  "CVE-2026-124211": {
   "aliases": [],
   "first_seen": "2026-11-26T11:05:20.128289Z",
   "kev": false,
   "last_material_change": "2026-11-26T11:05:20.128289Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": "high"
  },
@@ -454,7 +499,7 @@
   "first_seen": "2026-11-26T11:05:20.128289Z",
   "kev": false,
   "last_material_change": "2026-11-26T11:05:20.128289Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": "high"
  },
@@ -463,7 +508,7 @@
   "first_seen": "2026-11-26T11:05:20.128289Z",
   "kev": false,
   "last_material_change": "2026-11-26T11:05:20.128289Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": "high"
  },
@@ -499,7 +544,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -508,7 +553,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -517,7 +562,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -535,7 +580,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -544,7 +589,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -553,7 +598,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -562,7 +607,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -571,7 +616,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -598,7 +643,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": null
  },
@@ -697,7 +742,7 @@
   "first_seen": "2026-11-26T11:05:20.128289Z",
   "kev": false,
   "last_material_change": "2026-11-26T11:05:20.128289Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": "high"
  },
@@ -751,7 +796,7 @@
   "first_seen": "2026-11-26T11:05:20.128289Z",
   "kev": false,
   "last_material_change": "2026-11-26T11:05:20.128289Z",
-  "last_seen": "2026-11-26T11:05:20.128289Z",
+  "last_seen": "2026-11-26T12:05:21.862566Z",
   "patched": [],
   "severity": "high"
  },
