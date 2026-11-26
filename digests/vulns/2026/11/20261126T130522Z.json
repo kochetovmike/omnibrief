@@ -1,0 +1,147 @@
+{
+ "topic": "vulns",
+ "run_id": "20261126T130522Z",
+ "created_utc": "2026-11-26T13:05:22.353757Z",
+ "title": "Vulnerability digest — 26 Nov 2026, 14:05 CET",
+ "summarised": true,
+ "markdown": "* **CVE-2026-131688**, cyberlord92 Secure MCP Server for Claude, ChatGPT, Gemini, Cursor and other AI Agents, The plugin is vulnerable to an authorization bypass allowing attackers with a valid MCP bearer token to escalate privileges to an Administrator role. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-131688](https://nvd.nist.gov/vuln/detail/CVE-2026-131688), [https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L225](https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L225), [https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L265](https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L265)\n* **CVE-2026-128111**, glenwpcoder Drag and Drop Multiple File Upload for Contact Form 7, The plugin is vulnerable to Stored Cross-Site Scripting via the 'upload-file' parameter due to insufficient input sanitization and output escaping. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-128111](https://nvd.nist.gov/vuln/detail/CVE-2026-128111), [https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/](https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/), [https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/tags/1.4.1/inc/dnd-upload-cf7.php#L1110](https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/tags/1.4.1/inc/dnd-upload-cf7.php#L1110)\n* **CVE-2026-131613**, techlabpro1 Classified Listing – AI-Powered Business Directory & Classified Ads, The plugin is vulnerable to Stored Cross-Site Scripting via the 'formData[description]' parameter due to insufficient input sanitization and output escaping. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-131613](https://nvd.nist.gov/vuln/detail/CVE-2026-131613), [https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L102](https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L102), [https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L211](https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L211)\n* **CVE-2026-131806**, cubewp1211 CubeWP Forms, The plugin is vulnerable to Stored Cross-Site Scripting via the 'cwp_custom_form[form_data_id]' parameter due to insufficient input sanitization and output escaping. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-131806](https://nvd.nist.gov/vuln/detail/CVE-2026-131806), [https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-data-table.php#L91](https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-data-table.php#L91), [https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-frontend-custom-form.php#L252](https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-frontend-custom-form.php#L252)\n* **CVE-2026-135655**, leopeo Easy SwipeBox, The plugin is vulnerable to Stored DOM-Based Cross-Site Scripting via the title attribute of `<a>` tags inside approved comments due to insufficient input sanitization and output escaping. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-135655](https://nvd.nist.gov/vuln/detail/CVE-2026-135655), [https://github.com/leopuleo/easy-swipebox/pull/16](https://github.com/leopuleo/easy-swipebox/pull/16), [https://plugins.trac.wordpress.org/browser/easy-swipebox/tags/1.1.2/includes/class-easy-swipebox.php#L115](https://plugins.trac.wordpress.org/browser/easy-swipebox/tags/1.1.2/includes/class-easy-swipebox.php#L115)\n* **CVE-2026-136519**, maartenbelmans Advanced Product Fields (Product Addons) for WooCommerce, The plugin is vulnerable to Stored Cross-Site Scripting via the 'wapf[field_<id>]' parameter due to insufficient input sanitization and output escaping. Links: [https://nvd.nist.gov/vuln/detail/CVE-2026-136519](https://nvd.nist.gov/vuln/detail/CVE-2026-136519), [https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/](https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/), [https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/tags/1.7.4/includes/classes/class-fields.php#L488](https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/tags/1.7.4/includes/classes/class-fields.php#L488)\n\n*Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — [Sources & licences](https://kochetovmike.github.io/omnibrief/about.html). This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.*",
+ "html": "<ul>\n<li><strong>CVE-2026-131688</strong>, cyberlord92 Secure MCP Server for Claude, ChatGPT, Gemini, Cursor and other AI Agents, The plugin is vulnerable to an authorization bypass allowing attackers with a valid MCP bearer token to escalate privileges to an Administrator role. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-131688\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L225\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L265\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-128111</strong>, glenwpcoder Drag and Drop Multiple File Upload for Contact Form 7, The plugin is vulnerable to Stored Cross-Site Scripting via the 'upload-file' parameter due to insufficient input sanitization and output escaping. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-128111\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/tags/1.4.1/inc/dnd-upload-cf7.php#L1110\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-131613</strong>, techlabpro1 Classified Listing – AI-Powered Business Directory &amp; Classified Ads, The plugin is vulnerable to Stored Cross-Site Scripting via the 'formData[description]' parameter due to insufficient input sanitization and output escaping. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-131613\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L102\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L211\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-131806</strong>, cubewp1211 CubeWP Forms, The plugin is vulnerable to Stored Cross-Site Scripting via the 'cwp_custom_form[form_data_id]' parameter due to insufficient input sanitization and output escaping. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-131806\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-data-table.php#L91\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-frontend-custom-form.php#L252\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-135655</strong>, leopeo Easy SwipeBox, The plugin is vulnerable to Stored DOM-Based Cross-Site Scripting via the title attribute of <code>&lt;a&gt;</code> tags inside approved comments due to insufficient input sanitization and output escaping. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135655\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/leopuleo/easy-swipebox/pull/16\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://plugins.trac.wordpress.org/browser/easy-swipebox/tags/1.1.2/includes/class-easy-swipebox.php#L115\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-136519</strong>, maartenbelmans Advanced Product Fields (Product Addons) for WooCommerce, The plugin is vulnerable to Stored Cross-Site Scripting via the 'wapf[field_]' parameter due to insufficient input sanitization and output escaping. Links: <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136519\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/tags/1.7.4/includes/classes/class-fields.php#L488\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n</ul>\n<p><em>Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — <a href=\"https://kochetovmike.github.io/omnibrief/about.html\" rel=\"noopener noreferrer nofollow\">Sources &amp; licences</a>. This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.</em></p>",
+ "items": [
+  {
+   "id": "CVE-2026-131688",
+   "aliases": [],
+   "title": "The Secure MCP Server for Claude, ChatGPT, Gemini, Cursor and other AI Agents plugin for WordPress is vulnerable to auth…",
+   "product": "cyberlord92 Secure MCP Server for Claude, ChatGPT, Gemini, Cursor and other AI Agents",
+   "severity": "high",
+   "cvss": 8.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-131688",
+    "https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L225",
+    "https://plugins.trac.wordpress.org/browser/miniorange-secure-mcp-server/tags/1.5.7/includes/common/controllers/mcp/class-rest-controller.php#L265"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T12:17:09.903000Z",
+   "kev_date_added": null,
+   "match_text": "The Secure MCP Server for Claude, ChatGPT, Gemini, Cursor and other AI Agents plugin for WordPress is vulnerable to authorization bypass in all versions up to, and including, 1.5.8 This is due to the plugin not properly verifying that a user is authorized to perform an action. This makes it possible for attackers (with access to a valid MCP bearer token) to escalate privileges to the token owner's Administrator role — bypassing NHI ability allow-list and scope restrictions entirely — by submitting any valid MCP bearer token (including scope-restricted connection-test tokens) to arbitrary WordPress endpoints such as admin-ajax.php. This requires possession of a valid MCP bearer token, which is routinely issued to any administrator who connects an MCP client to the site. Successful exploitation causes the attacker's own account to receive the complete Administrator role.\ncyberlord92 Secure MCP Server for Claude, ChatGPT, Gemini, Cursor and other AI Agents",
+   "core_text": "cyberlord92 Secure MCP Server for Claude, ChatGPT, Gemini, Cursor and other AI Agents"
+  },
+  {
+   "id": "CVE-2026-128111",
+   "aliases": [],
+   "title": "The Drag and Drop Multiple File Upload for Contact Form 7 plugin for WordPress is vulnerable to Stored Cross-Site Script…",
+   "product": "glenwpcoder Drag and Drop Multiple File Upload for Contact Form 7",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-128111",
+    "https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/",
+    "https://plugins.trac.wordpress.org/browser/drag-and-drop-multiple-file-upload-contact-form-7/tags/1.4.1/inc/dnd-upload-cf7.php#L1110"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T12:17:08.980000Z",
+   "kev_date_added": null,
+   "match_text": "The Drag and Drop Multiple File Upload for Contact Form 7 plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'upload-file' parameter in all versions up to, and including, 1.4.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This requires that the targeted contact form be configured to accept a non-script extension such as .gpx (or any extension outside the HTML/XML/PHP blocklist), and the uploaded file is served without a Content-Type header, causing browsers to MIME-sniff and execute it as text/html.\nglenwpcoder Drag and Drop Multiple File Upload for Contact Form 7",
+   "core_text": "glenwpcoder Drag and Drop Multiple File Upload for Contact Form 7"
+  },
+  {
+   "id": "CVE-2026-131613",
+   "aliases": [],
+   "title": "The Classified Listing – AI-Powered Business Directory & Classified Ads plugin for WordPress is vulnerable to Stored Cro…",
+   "product": "techlabpro1 Classified Listing – AI-Powered Business Directory & Classified Ads",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-131613",
+    "https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L102",
+    "https://plugins.trac.wordpress.org/browser/classified-listing/tags/6.3.0/app/Controllers/Ajax/FormBuilderAjax.php#L211"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T12:17:09.740000Z",
+   "kev_date_added": null,
+   "match_text": "The Classified Listing – AI-Powered Business Directory & Classified Ads plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'formData[description]' parameter in all versions up to, and including, 6.3.0 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation by unauthenticated attackers requires that the admin option 'post-for-unregister' is enabled (Functions::is_enable_post_for_unregister() returns true). On a default installation, where that is not configured, the vulnerability requires attackers with subscriber-level access and above.\ntechlabpro1 Classified Listing – AI-Powered Business Directory & Classified Ads",
+   "core_text": "techlabpro1 Classified Listing – AI-Powered Business Directory & Classified Ads"
+  },
+  {
+   "id": "CVE-2026-131806",
+   "aliases": [],
+   "title": "The CubeWP Forms plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'cwp_custom_form[form_data_id…",
+   "product": "cubewp1211 CubeWP Forms",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-131806",
+    "https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-data-table.php#L91",
+    "https://plugins.trac.wordpress.org/browser/cubewp-forms/tags/1.1.13/cube/classes/class-cubewp-forms-frontend-custom-form.php#L252"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T12:17:10.057000Z",
+   "kev_date_added": null,
+   "match_text": "The CubeWP Forms plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'cwp_custom_form[form_data_id]' parameter in all versions up to, and including, 1.1.13 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The nonce required by the submission handler is publicly emitted in the inline script data of any page rendering the cwpCustomForm shortcode, making it trivially obtainable by unauthenticated visitors and rendering the nonce check ineffective as an authentication barrier.\ncubewp1211 CubeWP Forms",
+   "core_text": "cubewp1211 CubeWP Forms"
+  },
+  {
+   "id": "CVE-2026-135655",
+   "aliases": [],
+   "title": "The Easy SwipeBox plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via the 'title attribute o…",
+   "product": "leopeo Easy SwipeBox",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135655",
+    "https://github.com/leopuleo/easy-swipebox/pull/16",
+    "https://plugins.trac.wordpress.org/browser/easy-swipebox/tags/1.1.2/includes/class-easy-swipebox.php#L115"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T12:17:12.210000Z",
+   "kev_date_added": null,
+   "match_text": "The Easy SwipeBox plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via the 'title attribute of <a> inside an approved comment' parameter in all versions up to, and including, 1.1.2 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The plugin's default-enabled image autodetection applies the Swipebox handler to all front-end anchor elements whose href matches an image extension — including those inside approved comments — meaning no non-default configuration is required to expose the attack surface. A first-time commenter's submission is held for moderator approval, but once approved the stored payload executes for any user who clicks the image link.\nleopeo Easy SwipeBox",
+   "core_text": "leopeo Easy SwipeBox"
+  },
+  {
+   "id": "CVE-2026-136519",
+   "aliases": [],
+   "title": "The Advanced Product Fields (Product Addons) for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scr…",
+   "product": "maartenbelmans Advanced Product Fields (Product Addons) for WooCommerce",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136519",
+    "https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/",
+    "https://plugins.trac.wordpress.org/browser/advanced-product-fields-for-woocommerce/tags/1.7.4/includes/classes/class-fields.php#L488"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T12:17:12.723000Z",
+   "kev_date_added": null,
+   "match_text": "The Advanced Product Fields (Product Addons) for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'wapf[field_<id>]' parameter in all versions up to, and including, 1.7.4 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The payload survives sanitization via a whitespace-prefixed tag gadget, is normalized into real HTML elements by wp_kses_post() and force_balance_tags() at render time, and is then executed by WordPress core's tags-box.js when it encounters the forged #tagsdiv-post_tag element on the order screen.\nmaartenbelmans Advanced Product Fields (Product Addons) for WooCommerce",
+   "core_text": "maartenbelmans Advanced Product Fields (Product Addons) for WooCommerce"
+  }
+ ],
+ "sources": [
+  "nvd"
+ ],
+ "deliveries": {}
+}
