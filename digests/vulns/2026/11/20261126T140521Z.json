@@ -1,0 +1,279 @@
+{
+ "topic": "vulns",
+ "run_id": "20261126T140521Z",
+ "created_utc": "2026-11-26T14:05:21.224157Z",
+ "title": "Vulnerability digest — 26 Nov 2026, 15:05 CET",
+ "summarised": true,
+ "markdown": "- **CVE-2026-110702**, nosilver4u EWWW Image Optimizer, The EWWW Image Optimizer plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 8.9.0 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-110702)\n  - [Source Code Reference (Lazy Load L1018)](https://plugins.trac.wordpress.org/browser/ewww-image-optimizer/tags/8.9.0/classes/class-lazy-load.php#L1018)\n  - [Source Code Reference (Lazy Load L595)](https://plugins.trac.wordpress.org/browser/ewww-image-optimizer/tags/8.9.0/classes/class-lazy-load.php#L595)\n- **CVE-2026-127113**, paoltaia GeoDirectory – WP Business Directory Plugin and Classified Listings Directory, The GeoDirectory – WP Business Directory Plugin and Classified Listings Directory plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_content' parameter in all versions up to, and including, 2.8.205 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-127113)\n  - [GitHub Commit](https://github.com/AyeCode/geodirectory/commit/6352d7438c18dc5703a8fbddb10e68429c52f74d)\n  - [Source Code Reference](https://plugins.trac.wordpress.org/browser/geodirectory/tags/2.8.205/assets/js/libraries/gd_lity.js#L286)\n- **CVE-2026-128097**, florianbrinkmann Lazy Loader, The Lazy Loader plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'author' parameter in all versions up to, and including, 8.2.0 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-128097)\n  - [Source Code Reference (Plugin.php L107)](https://plugins.trac.wordpress.org/browser/lazy-loading-responsive-images/tags/8.2.0/src/Plugin.php#L107)\n  - [Source Code Reference (Plugin.php L177)](https://plugins.trac.wordpress.org/browser/lazy-loading-responsive-images/tags/8.2.0/src/Plugin.php#L177)\n- **CVE-2026-129329**, oceanwp Ocean Extra, The Ocean Extra plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_title' parameter in all versions up to, and including, 2.6.3 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-129329)\n  - [Source Code Reference (recent-posts.php L120)](https://plugins.trac.wordpress.org/browser/ocean-extra/tags/2.6.3/includes/widgets/recent-posts.php#L120)\n  - [Source Code Reference (recent-posts.php L126)](https://plugins.trac.wordpress.org/browser/ocean-extra/tags/2.6.3/includes/widgets/recent-posts.php#L126)\n- **CVE-2026-131838**, moreconvert MoreConvert Wishlist for WooCommerce, The MoreConvert Wishlist for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'attribute_<custom_variation_name>' parameter in all versions up to, and including, 2.0.4 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-131838)\n  - [Source Code Reference (main.js)](https://plugins.trac.wordpress.org/browser/smart-wishlist-for-more-convert/tags/2.0.4/assets/frontend/js/main.js#L199)\n  - [Source Code Reference (modern-free-bundle.js)](https://plugins.trac.wordpress.org/browser/smart-wishlist-for-more-convert/tags/2.0.4/assets/frontend/js/modern/modern-free-bundle.js#L4740)\n- **CVE-2026-133409**, saeedfard Parsigate | درگاه پرداخت ووکامرس و وردپرس, The Parsigate plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'trackId (Zibal). Equivalent unauthenticated fields for other gateways (e.g. ZarinPal 'Authority', Sep 'RefNum') are logged the same way.' parameter in all versions up to, and including, 1.2.0 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-133409)\n  - [Source Code Reference (json-browse.js)](https://plugins.trac.wordpress.org/browser/parsigate/tags/1.2.0/assets/json-browse/json-browse.js#L17)\n  - [Source Code Reference (Gateway.php)](https://plugins.trac.wordpress.org/browser/parsigate/tags/1.2.0/inc/Gateway.php#L61)\n- **CVE-2026-135630**, premmerce Premmerce Brands for WooCommerce, The Premmerce Brands for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'product_brand' parameter in all versions up to, and including, 1.2.16 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-135630)\n  - [Plugin Download Link](https://downloads.wordpress.org/plugin/premmerce-woocommerce-brands.1.2.17.zip.)\n  - [Source Code Reference](https://plugins.trac.wordpress.org/browser/premmerce-woocommerce-brands/tags/1.2.16/src/Admin/Admin.php#L303)\n- **CVE-2026-135666**, jetmonsters JetFormBuilder — Dynamic Blocks Form Builder, The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via the 'f_body (mapped to post_content via fields_map)' parameter in all versions up to, and including, 3.6.8.2 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-135666)\n  - [Source Code Reference (calculated.field.js)](https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8.1/assets/build/frontend/calculated.field.js)\n  - [Source Code Reference (main.js)](https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8.1/assets/build/frontend/main.js)\n- **CVE-2026-135669**, wpeverest Everest Forms – Contact Form, Payment Form, Quiz, Survey & Custom Form Builder with AI, The Everest Forms – Contact Form, Payment Form, Quiz, Survey & Custom Form Builder with AI plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'everest_forms[form_fields][<wysiwyg field id>]' parameter in all versions up to, and including, 3.6.4 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-135669)\n  - [GitHub Commit](https://github.com/themegrill/everest-forms/commit/5d9d41bec72435fc2f091a258278ceee7e8973db)\n  - [Source Code Reference](https://plugins.trac.wordpress.org/browser/everest-forms/tags/3.6.4/assets/js/admin/admin.js#L490)\n- **CVE-2026-136221**, wpchill Strong Testimonials, The Strong Testimonials plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'custom textarea field name (admin-configured, e.g. 'wfx_note')' parameter in all versions up to, and including, 3.3.22 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-136221)\n  - [Source Code Reference (class-strong-testimonials-post-editor.php)](https://plugins.trac.wordpress.org/browser/strong-testimonials/tags/3.3.18/admin/class-strong-testimonials-post-editor.php#L165)\n  - [Source Code Reference (class-strong-testimonials-form.php)](https://plugins.trac.wordpress.org/browser/strong-testimonials/tags/3.3.18/includes/class-strong-testimonials-form.php#L277)\n- **CVE-2026-136459**, posimyththemes Nexter Extension – Security, Performance, Code Snippets & Site Toolkit, The Nexter Extension – Security, Performance, Code Snippets & Site Toolkit plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 4.9.1 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-136459)\n  - [Source Code Reference (class-content-seo.php L239)](https://plugins.trac.wordpress.org/browser/nexter-extension/tags/4.9.0/include/panel-settings/extensions/content-seo/class-content-seo.php#L239)\n  - [Source Code Reference (class-content-seo.php L353)](https://plugins.trac.wordpress.org/browser/nexter-extension/tags/4.9.0/include/panel-settings/extensions/content-seo/class-content-seo.php#L353)\n- **CVE-2026-137284**, jetmonsters JetFormBuilder — Dynamic Blocks Form Builder, The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the '<form-field-name> mapped via Insert/Update Post fields_map (e.g. payload → m_select)' parameter in all versions up to, and including, 3.6.8.2 due to insufficient input sanitization and output escaping.\n  - [NVD Record](https://nvd.nist.gov/vuln/detail/CVE-2026-137284)\n  - [Source Code Reference (main.js)](https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8/assets/build/frontend/main.js)\n  - [Source Code Reference (base.php)](https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8/includes/blocks/render/base.php#L301)\n\n*Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — [Sources & licences](https://kochetovmike.github.io/omnibrief/about.html). This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.*",
+ "html": "<ul>\n<li><strong>CVE-2026-110702</strong>, nosilver4u EWWW Image Optimizer, The EWWW Image Optimizer plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 8.9.0 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-110702\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/ewww-image-optimizer/tags/8.9.0/classes/class-lazy-load.php#L1018\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/ewww-image-optimizer/tags/8.9.0/classes/class-lazy-load.php#L595\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-127113</strong>, paoltaia GeoDirectory – WP Business Directory Plugin and Classified Listings Directory, The GeoDirectory – WP Business Directory Plugin and Classified Listings Directory plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_content' parameter in all versions up to, and including, 2.8.205 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-127113\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://github.com/AyeCode/geodirectory/commit/6352d7438c18dc5703a8fbddb10e68429c52f74d\" rel=\"noopener noreferrer nofollow\">github.com</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/geodirectory/tags/2.8.205/assets/js/libraries/gd_lity.js#L286\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-128097</strong>, florianbrinkmann Lazy Loader, The Lazy Loader plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'author' parameter in all versions up to, and including, 8.2.0 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-128097\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/lazy-loading-responsive-images/tags/8.2.0/src/Plugin.php#L107\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/lazy-loading-responsive-images/tags/8.2.0/src/Plugin.php#L177\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-129329</strong>, oceanwp Ocean Extra, The Ocean Extra plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_title' parameter in all versions up to, and including, 2.6.3 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-129329\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/ocean-extra/tags/2.6.3/includes/widgets/recent-posts.php#L120\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/ocean-extra/tags/2.6.3/includes/widgets/recent-posts.php#L126\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-131838</strong>, moreconvert MoreConvert Wishlist for WooCommerce, The MoreConvert Wishlist for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'attribute_' parameter in all versions up to, and including, 2.0.4 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-131838\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/smart-wishlist-for-more-convert/tags/2.0.4/assets/frontend/js/main.js#L199\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/smart-wishlist-for-more-convert/tags/2.0.4/assets/frontend/js/modern/modern-free-bundle.js#L4740\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-133409</strong>, saeedfard Parsigate | درگاه پرداخت ووکامرس و وردپرس, The Parsigate plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'trackId (Zibal). Equivalent unauthenticated fields for other gateways (e.g. ZarinPal 'Authority', Sep 'RefNum') are logged the same way.' parameter in all versions up to, and including, 1.2.0 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-133409\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/parsigate/tags/1.2.0/assets/json-browse/json-browse.js#L17\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/parsigate/tags/1.2.0/inc/Gateway.php#L61\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-135630</strong>, premmerce Premmerce Brands for WooCommerce, The Premmerce Brands for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'product_brand' parameter in all versions up to, and including, 1.2.16 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135630\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://downloads.wordpress.org/plugin/premmerce-woocommerce-brands.1.2.17.zip.\" rel=\"noopener noreferrer nofollow\">downloads.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/premmerce-woocommerce-brands/tags/1.2.16/src/Admin/Admin.php#L303\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-135666</strong>, jetmonsters JetFormBuilder — Dynamic Blocks Form Builder, The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via the 'f_body (mapped to post_content via fields_map)' parameter in all versions up to, and including, 3.6.8.2 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135666\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8.1/assets/build/frontend/calculated.field.js\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8.1/assets/build/frontend/main.js\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-135669</strong>, wpeverest Everest Forms – Contact Form, Payment Form, Quiz, Survey &amp; Custom Form Builder with AI, The Everest Forms – Contact Form, Payment Form, Quiz, Survey &amp; Custom Form Builder with AI plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'everest_forms[form_fields][]' parameter in all versions up to, and including, 3.6.4 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135669\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://github.com/themegrill/everest-forms/commit/5d9d41bec72435fc2f091a258278ceee7e8973db\" rel=\"noopener noreferrer nofollow\">github.com</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/everest-forms/tags/3.6.4/assets/js/admin/admin.js#L490\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-136221</strong>, wpchill Strong Testimonials, The Strong Testimonials plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'custom textarea field name (admin-configured, e.g. 'wfx_note')' parameter in all versions up to, and including, 3.3.22 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136221\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/strong-testimonials/tags/3.3.18/admin/class-strong-testimonials-post-editor.php#L165\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/strong-testimonials/tags/3.3.18/includes/class-strong-testimonials-form.php#L277\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-136459</strong>, posimyththemes Nexter Extension – Security, Performance, Code Snippets &amp; Site Toolkit, The Nexter Extension – Security, Performance, Code Snippets &amp; Site Toolkit plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 4.9.1 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136459\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/nexter-extension/tags/4.9.0/include/panel-settings/extensions/content-seo/class-content-seo.php#L239\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/nexter-extension/tags/4.9.0/include/panel-settings/extensions/content-seo/class-content-seo.php#L353\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-137284</strong>, jetmonsters JetFormBuilder — Dynamic Blocks Form Builder, The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the ' mapped via Insert/Update Post fields_map (e.g. payload → m_select)' parameter in all versions up to, and including, 3.6.8.2 due to insufficient input sanitization and output escaping.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-137284\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8/assets/build/frontend/main.js\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8/includes/blocks/render/base.php#L301\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n</ul>\n<p><em>Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — <a href=\"https://kochetovmike.github.io/omnibrief/about.html\" rel=\"noopener noreferrer nofollow\">Sources &amp; licences</a>. This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.</em></p>",
+ "items": [
+  {
+   "id": "CVE-2026-110702",
+   "aliases": [],
+   "title": "The EWWW Image Optimizer plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter i…",
+   "product": "nosilver4u EWWW Image Optimizer",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-110702",
+    "https://plugins.trac.wordpress.org/browser/ewww-image-optimizer/tags/8.9.0/classes/class-lazy-load.php#L1018",
+    "https://plugins.trac.wordpress.org/browser/ewww-image-optimizer/tags/8.9.0/classes/class-lazy-load.php#L595"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:35.260000Z",
+   "kev_date_added": null,
+   "match_text": "The EWWW Image Optimizer plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 8.9.0 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. WordPress core comment kses permits the payload's tag and attribute structure unchanged at save time, meaning the malicious content bypasses save-time sanitization and is only activated when the plugin's output-buffer filter processes the page on render.\nnosilver4u EWWW Image Optimizer",
+   "core_text": "nosilver4u EWWW Image Optimizer"
+  },
+  {
+   "id": "CVE-2026-127113",
+   "aliases": [],
+   "title": "The GeoDirectory – WP Business Directory Plugin and Classified Listings Directory plugin for WordPress is vulnerable to …",
+   "product": "paoltaia GeoDirectory – WP Business Directory Plugin and Classified Listings Directory",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-127113",
+    "https://github.com/AyeCode/geodirectory/commit/6352d7438c18dc5703a8fbddb10e68429c52f74d",
+    "https://plugins.trac.wordpress.org/browser/geodirectory/tags/2.8.205/assets/js/libraries/gd_lity.js#L286"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:38.830000Z",
+   "kev_date_added": null,
+   "match_text": "The GeoDirectory – WP Business Directory Plugin and Classified Listings Directory plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_content' parameter in all versions up to, and including, 2.8.205 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Unauthenticated exploitation requires the plugin's \"Allow posting without logging in\" (post_logged_out) option to be enabled; on default installs the vulnerability is exploitable by Subscriber-level users and above.\npaoltaia GeoDirectory – WP Business Directory Plugin and Classified Listings Directory",
+   "core_text": "paoltaia GeoDirectory – WP Business Directory Plugin and Classified Listings Directory"
+  },
+  {
+   "id": "CVE-2026-128097",
+   "aliases": [],
+   "title": "The Lazy Loader plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'author' parameter in all vers…",
+   "product": "florianbrinkmann Lazy Loader",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-128097",
+    "https://plugins.trac.wordpress.org/browser/lazy-loading-responsive-images/tags/8.2.0/src/Plugin.php#L107",
+    "https://plugins.trac.wordpress.org/browser/lazy-loading-responsive-images/tags/8.2.0/src/Plugin.php#L177"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:38.980000Z",
+   "kev_date_added": null,
+   "match_text": "The Lazy Loader plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'author' parameter in all versions up to, and including, 8.2.0 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. A first-time comment from a new email address is held for moderator approval under WordPress's default settings; however, once an administrator approves it, any visitor — including an administrator — loading the post will trigger execution, enabling full Administrator-level account creation.\nflorianbrinkmann Lazy Loader",
+   "core_text": "florianbrinkmann Lazy Loader"
+  },
+  {
+   "id": "CVE-2026-129329",
+   "aliases": [],
+   "title": "The Ocean Extra plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_title' parameter in all …",
+   "product": "oceanwp Ocean Extra",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-129329",
+    "https://plugins.trac.wordpress.org/browser/ocean-extra/tags/2.6.3/includes/widgets/recent-posts.php#L120",
+    "https://plugins.trac.wordpress.org/browser/ocean-extra/tags/2.6.3/includes/widgets/recent-posts.php#L126"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:39.733000Z",
+   "kev_date_added": null,
+   "match_text": "The Ocean Extra plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_title' parameter in all versions up to, and including, 2.6.3 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The shortcode-escape bracket syntax ([[...]]) additionally bypasses wptexturize's own quote conversion, providing an alternative payload path that preserves raw double-quote characters and breaks out of the title attribute on the anchor element rendered by the Recent Posts Thumbnails widget. Exploitation by unauthenticated attackers requires that a separate plugin providing a public guest-post form with a Featured Image field is installed and configured to accept anonymous submissions as published posts. On a default installation, where that is not configured, the vulnerability requires attackers with contributor-level access and above.\noceanwp Ocean Extra",
+   "core_text": "oceanwp Ocean Extra"
+  },
+  {
+   "id": "CVE-2026-131838",
+   "aliases": [],
+   "title": "The MoreConvert Wishlist for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'attr…",
+   "product": "moreconvert MoreConvert Wishlist for WooCommerce",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-131838",
+    "https://plugins.trac.wordpress.org/browser/smart-wishlist-for-more-convert/tags/2.0.4/assets/frontend/js/main.js#L199",
+    "https://plugins.trac.wordpress.org/browser/smart-wishlist-for-more-convert/tags/2.0.4/assets/frontend/js/modern/modern-free-bundle.js#L4740"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:40.317000Z",
+   "kev_date_added": null,
+   "match_text": "The MoreConvert Wishlist for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'attribute_<custom_variation_name>' parameter in all versions up to, and including, 2.0.4 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This vulnerability only affects shops that have at least one published variable product using a custom product-level attribute (non-taxonomy, non-pa_ prefixed) marked as Used for Variations; stores using only global taxonomy attributes follow a different code path and are not exploitable.\nmoreconvert MoreConvert Wishlist for WooCommerce",
+   "core_text": "moreconvert MoreConvert Wishlist for WooCommerce"
+  },
+  {
+   "id": "CVE-2026-133409",
+   "aliases": [],
+   "title": "The Parsigate plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'trackId (Zibal). Equivalent una…",
+   "product": "saeedfard Parsigate | درگاه پرداخت ووکامرس و وردپرس",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-133409",
+    "https://plugins.trac.wordpress.org/browser/parsigate/tags/1.2.0/assets/json-browse/json-browse.js#L17",
+    "https://plugins.trac.wordpress.org/browser/parsigate/tags/1.2.0/inc/Gateway.php#L61"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:40.613000Z",
+   "kev_date_added": null,
+   "match_text": "The Parsigate plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'trackId (Zibal). Equivalent unauthenticated fields for other gateways (e.g. ZarinPal 'Authority', Sep 'RefNum') are logged the same way.' parameter in all versions up to, and including, 1.2.0 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires the non-default 'ParsiGate Log' option to be enabled in plugin settings, at least one WooCommerce order placed via a Parsigate gateway (e.g. Zibal) that remains in a pending state, and an administrator to subsequently view the Tools > ParsiGate Log page.\nsaeedfard Parsigate | درگاه پرداخت ووکامرس و وردپرس",
+   "core_text": "saeedfard Parsigate | درگاه پرداخت ووکامرس و وردپرس"
+  },
+  {
+   "id": "CVE-2026-135630",
+   "aliases": [],
+   "title": "The Premmerce Brands for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'product_…",
+   "product": "premmerce Premmerce Brands for WooCommerce",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135630",
+    "https://downloads.wordpress.org/plugin/premmerce-woocommerce-brands.1.2.17.zip.",
+    "https://plugins.trac.wordpress.org/browser/premmerce-woocommerce-brands/tags/1.2.16/src/Admin/Admin.php#L303"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:43.140000Z",
+   "kev_date_added": null,
+   "match_text": "The Premmerce Brands for WooCommerce plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'product_brand' parameter in all versions up to, and including, 1.2.16 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The exploit is reachable by unauthenticated visitors because WooCommerce's anonymous checkout AJAX endpoint triggers the save_post action, which the plugin processes without any authentication gate, allowing the attacker-supplied product_brand value to be persisted as a new taxonomy term whose name is later echoed unescaped into an HTML attribute on the publicly accessible Brands page.\npremmerce Premmerce Brands for WooCommerce",
+   "core_text": "premmerce Premmerce Brands for WooCommerce"
+  },
+  {
+   "id": "CVE-2026-135666",
+   "aliases": [],
+   "title": "The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scrip…",
+   "product": "jetmonsters JetFormBuilder — Dynamic Blocks Form Builder",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135666",
+    "https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8.1/assets/build/frontend/calculated.field.js",
+    "https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8.1/assets/build/frontend/main.js"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:43.763000Z",
+   "kev_date_added": null,
+   "match_text": "The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via the 'f_body (mapped to post_content via fields_map)' parameter in all versions up to, and including, 3.6.8.2 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This requires that at least one form on the site contains a Calculated Field block, ensuring the calculated.field.js gadget is enqueued on pages where the stored post content is rendered.\njetmonsters JetFormBuilder — Dynamic Blocks Form Builder",
+   "core_text": "jetmonsters JetFormBuilder — Dynamic Blocks Form Builder"
+  },
+  {
+   "id": "CVE-2026-135669",
+   "aliases": [],
+   "title": "The Everest Forms – Contact Form, Payment Form, Quiz, Survey & Custom Form Builder with AI plugin for WordPress is vulne…",
+   "product": "wpeverest Everest Forms – Contact Form, Payment Form, Quiz, Survey & Custom Form Builder with AI",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135669",
+    "https://github.com/themegrill/everest-forms/commit/5d9d41bec72435fc2f091a258278ceee7e8973db",
+    "https://plugins.trac.wordpress.org/browser/everest-forms/tags/3.6.4/assets/js/admin/admin.js#L490"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:43.913000Z",
+   "kev_date_added": null,
+   "match_text": "The Everest Forms – Contact Form, Payment Form, Quiz, Survey & Custom Form Builder with AI plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'everest_forms[form_fields][<wysiwyg field id>]' parameter in all versions up to, and including, 3.6.4 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires the targeted form to contain a WYSIWYG field with entry storage enabled; while both are default-available, no form with a WYSIWYG field exists on a stock installation, so an administrator must have manually added such a field to a published form.\nwpeverest Everest Forms – Contact Form, Payment Form, Quiz, Survey & Custom Form Builder with AI",
+   "core_text": "wpeverest Everest Forms – Contact Form, Payment Form, Quiz, Survey & Custom Form Builder with AI"
+  },
+  {
+   "id": "CVE-2026-136221",
+   "aliases": [],
+   "title": "The Strong Testimonials plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'custom textarea field…",
+   "product": "wpchill Strong Testimonials",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136221",
+    "https://plugins.trac.wordpress.org/browser/strong-testimonials/tags/3.3.18/admin/class-strong-testimonials-post-editor.php#L165",
+    "https://plugins.trac.wordpress.org/browser/strong-testimonials/tags/3.3.18/includes/class-strong-testimonials-form.php#L277"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:44.360000Z",
+   "kev_date_added": null,
+   "match_text": "The Strong Testimonials plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'custom textarea field name (admin-configured, e.g. 'wfx_note')' parameter in all versions up to, and including, 3.3.22 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Successful exploitation requires the vendor's paid Strong Testimonials: Custom Fields extension (or another plugin hooking wpmtst_default_fields) to be active and an administrator to have added a custom textarea field to a publicly accessible submission form.\nwpchill Strong Testimonials",
+   "core_text": "wpchill Strong Testimonials"
+  },
+  {
+   "id": "CVE-2026-136459",
+   "aliases": [],
+   "title": "The Nexter Extension – Security, Performance, Code Snippets & Site Toolkit plugin for WordPress is vulnerable to Stored …",
+   "product": "posimyththemes Nexter Extension – Security, Performance, Code Snippets & Site Toolkit",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136459",
+    "https://plugins.trac.wordpress.org/browser/nexter-extension/tags/4.9.0/include/panel-settings/extensions/content-seo/class-content-seo.php#L239",
+    "https://plugins.trac.wordpress.org/browser/nexter-extension/tags/4.9.0/include/panel-settings/extensions/content-seo/class-content-seo.php#L353"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:44.513000Z",
+   "kev_date_added": null,
+   "match_text": "The Nexter Extension – Security, Performance, Code Snippets & Site Toolkit plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 4.9.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This requires the site administrator to have enabled the plugin's SEO module (available via a persistent admin notice), after which the nofollow_comments option is on by default; with comments open, a single unauthenticated POST to wp-comments-post.php is sufficient to plant the payload.\nposimyththemes Nexter Extension – Security, Performance, Code Snippets & Site Toolkit",
+   "core_text": "posimyththemes Nexter Extension – Security, Performance, Code Snippets & Site Toolkit"
+  },
+  {
+   "id": "CVE-2026-137284",
+   "aliases": [],
+   "title": "The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via t…",
+   "product": "jetmonsters JetFormBuilder — Dynamic Blocks Form Builder",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-137284",
+    "https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8/assets/build/frontend/main.js",
+    "https://plugins.trac.wordpress.org/browser/jetformbuilder/tags/3.6.8/includes/blocks/render/base.php#L301"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T13:16:44.840000Z",
+   "kev_date_added": null,
+   "match_text": "The JetFormBuilder — Dynamic Blocks Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the '<form-field-name> mapped via Insert/Update Post fields_map (e.g. payload → m_select)' parameter in all versions up to, and including, 3.6.8.2 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires that a site administrator has configured an Insert/Update Post action with a fields_map entry and a Radio or Checkbox field whose option source reads back that post meta key — all standard first-party editor controls — and that at least one field on the page has a macro Default Value so that dynamic.value.js is enqueued.\njetmonsters JetFormBuilder — Dynamic Blocks Form Builder",
+   "core_text": "jetmonsters JetFormBuilder — Dynamic Blocks Form Builder"
+  }
+ ],
+ "sources": [
+  "nvd"
+ ],
+ "deliveries": {}
+}
