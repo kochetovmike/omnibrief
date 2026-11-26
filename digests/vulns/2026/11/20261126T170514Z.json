@@ -1,0 +1,301 @@
+{
+ "topic": "vulns",
+ "run_id": "20261126T170514Z",
+ "created_utc": "2026-11-26T17:05:14.478845Z",
+ "title": "Vulnerability digest — 26 Nov 2026, 18:05 CET",
+ "summarised": true,
+ "markdown": "- **CVE-2026-76075**, themagnifico52 Warehouse Cargo, allows authenticated users with Subscriber-level access and above to upload arbitrary files on the affected site's server.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-76075](https://nvd.nist.gov/vuln/detail/CVE-2026-76075)\n  - [https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L600](https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L600)\n  - [https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L627](https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L627)\n\n- **CVE-2026-103886**, appcheap App Builder – Create Native Android & iOS Apps On The Flight, enables authentication bypass due to failure in validating the audience claim of the supplied Google ID Token and resolving accounts solely by email.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-103886](https://nvd.nist.gov/vuln/detail/CVE-2026-103886)\n  - [https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L42](https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L42)\n  - [https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L89](https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L89)\n\n- **CVE-2026-109586**, renehermi WP STAGING – Backups & Restore, Migration & Clone Plugin – Cloud Backups, Scheduled Backups, is vulnerable to authorization bypass via the `REQUEST_URI` query parameter due to a parser-differential flaw in `showLoginForm()`.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-109586](https://nvd.nist.gov/vuln/detail/CVE-2026-109586)\n  - [https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L42](https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L42)\n  - [https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L59](https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L59)\n\n- **CVE-2026-92251**, zarinpal افزونه پرداخت امن زرین‌پال برای ووکامرس (ZarinPal for WooCommerce), is vulnerable to insecure direct object reference via the `Return_from_ZarinPal_Gateway()` handler, allowing unauthenticated attackers to harvest order keys for arbitrary orders.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-92251](https://nvd.nist.gov/vuln/detail/CVE-2026-92251)\n  - [https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L391](https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L391)\n  - [https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L400](https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L400)\n\n- **CVE-2026-97345**, sumup SumUp Payment Gateway For WooCommerce, is vulnerable to insecure direct object reference via a query parameter handled by redirect flow functions, enabling unauthenticated attackers to enumerate order IDs and harvest order keys.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-97345](https://nvd.nist.gov/vuln/detail/CVE-2026-97345)\n  - [https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1794](https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1794)\n  - [https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1877](https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1877)\n\n- **CVE-2026-119153**, swte Swift Performance Lite, is vulnerable to stored cross-site scripting via the `REQUEST_URI` parameter due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-119153](https://nvd.nist.gov/vuln/detail/CVE-2026-119153)\n  - [https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/includes/cache-status/cache-status.php#L198](https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/includes/cache-status/cache-status.php#L198)\n  - [https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/modules/cache/cache.php#L2111](https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/modules/cache/cache.php#L2111)\n\n- **CVE-2026-119159**, johndarrel Hide My WP Ghost – Security & Firewall, is vulnerable to stored cross-site scripting via the `comment` parameter due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-119159](https://nvd.nist.gov/vuln/detail/CVE-2026-119159)\n  - [https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/classes/Tools.php#L1022](https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/classes/Tools.php#L1022)\n  - [https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/controllers/Rewrite.php#L510](https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/controllers/Rewrite.php#L510)\n\n- **CVE-2026-122039**, wpeverest User Registration & Membership – Free & Paid Memberships, Subscriptions, Content Restriction, User Profile, Custom User Registration & Login Builder, is vulnerable to stored cross-site scripting via checkbox field name parameters due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-122039](https://nvd.nist.gov/vuln/detail/CVE-2026-122039)\n  - [https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L364](https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L364)\n  - [https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L80](https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L80)\n\n- **CVE-2026-124072**, wedevs User Frontend – Membership, User Registration, User Profile, User Directory & Content Restriction with Frontend Post Submission, is vulnerable to stored cross-site scripting via the `post_title` parameter due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-124072](https://nvd.nist.gov/vuln/detail/CVE-2026-124072)\n  - [https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/admin/form-builder/views/post-form-settings.php#L475](https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/admin/form-builder/views/post-form-settings.php#L475)\n  - [https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/assets/js/wpuf-form-builder.js#L667](https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/assets/js/wpuf-form-builder.js#L667)\n\n- **CVE-2026-126342**, smub WPForms – AI Form Builder for WordPress – Contact Forms, Payment Forms, Survey Form, Quiz & More, is vulnerable to stored cross-site scripting via the Multiple Choice field's 'Other' option value on payment forms due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-126342](https://nvd.nist.gov/vuln/detail/CVE-2026-126342)\n  - [https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L771](https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L771)\n  - [https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L845](https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L845)\n\n- **CVE-2026-131803**, kitae-park Mang Board, is vulnerable to stored cross-site scripting via the `content` parameter due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-131803](https://nvd.nist.gov/vuln/detail/CVE-2026-131803)\n  - [https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/api/mb-board.php#L30](https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/api/mb-board.php#L30)\n  - [https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/includes/functions/func.board.php#L245](https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/includes/functions/func.board.php#L245)\n\n- **CVE-2026-85412**, hassantafreshi Easy Form Builder by WhiteStudio – Drag & Drop Form Builder, is vulnerable to stored cross-site scripting via the `address` parameter due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-85412](https://nvd.nist.gov/vuln/detail/CVE-2026-85412)\n  - [https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/admin/assets/js/pro_els-efb.js#L1415](https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/admin/assets/js/pro_els-efb.js#L1415)\n  - [https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/class-Emsfb-public.php#L111](https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/class-Emsfb-public.php#L111)\n\n- **CVE-2026-85416**, yonifre Lenix Leads Collector, is vulnerable to stored cross-site scripting via Form Field Names due to insufficient input sanitization and output escaping.\n  - [https://nvd.nist.gov/vuln/detail/CVE-2026-85416](https://nvd.nist.gov/vuln/detail/CVE-2026-85416)\n  - [https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L20](https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L20)\n  - [https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L61](https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L61)\n\n*Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — [Sources & licences](https://kochetovmike.github.io/omnibrief/about.html). This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.*",
+ "html": "<ul>\n<li><strong>CVE-2026-76075</strong>, themagnifico52 Warehouse Cargo, allows authenticated users with Subscriber-level access and above to upload arbitrary files on the affected site's server.</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-76075\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L600\" rel=\"noopener noreferrer nofollow\">themes.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L627\" rel=\"noopener noreferrer nofollow\">themes.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-103886</strong>, appcheap App Builder – Create Native Android &amp; iOS Apps On The Flight, enables authentication bypass due to failure in validating the audience claim of the supplied Google ID Token and resolving accounts solely by email.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-103886\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L42\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L89\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-109586</strong>, renehermi WP STAGING – Backups &amp; Restore, Migration &amp; Clone Plugin – Cloud Backups, Scheduled Backups, is vulnerable to authorization bypass via the <code>REQUEST_URI</code> query parameter due to a parser-differential flaw in <code>showLoginForm()</code>.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-109586\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L42\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L59\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-92251</strong>, zarinpal افزونه پرداخت امن زرین‌پال برای ووکامرس (ZarinPal for WooCommerce), is vulnerable to insecure direct object reference via the <code>Return_from_ZarinPal_Gateway()</code> handler, allowing unauthenticated attackers to harvest order keys for arbitrary orders.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-92251\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L391\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L400\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-97345</strong>, sumup SumUp Payment Gateway For WooCommerce, is vulnerable to insecure direct object reference via a query parameter handled by redirect flow functions, enabling unauthenticated attackers to enumerate order IDs and harvest order keys.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-97345\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1794\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1877\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-119153</strong>, swte Swift Performance Lite, is vulnerable to stored cross-site scripting via the <code>REQUEST_URI</code> parameter due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-119153\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/includes/cache-status/cache-status.php#L198\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/modules/cache/cache.php#L2111\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-119159</strong>, johndarrel Hide My WP Ghost – Security &amp; Firewall, is vulnerable to stored cross-site scripting via the <code>comment</code> parameter due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-119159\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/classes/Tools.php#L1022\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/controllers/Rewrite.php#L510\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-122039</strong>, wpeverest User Registration &amp; Membership – Free &amp; Paid Memberships, Subscriptions, Content Restriction, User Profile, Custom User Registration &amp; Login Builder, is vulnerable to stored cross-site scripting via checkbox field name parameters due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-122039\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L364\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L80\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-124072</strong>, wedevs User Frontend – Membership, User Registration, User Profile, User Directory &amp; Content Restriction with Frontend Post Submission, is vulnerable to stored cross-site scripting via the <code>post_title</code> parameter due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-124072\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/admin/form-builder/views/post-form-settings.php#L475\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/assets/js/wpuf-form-builder.js#L667\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-126342</strong>, smub WPForms – AI Form Builder for WordPress – Contact Forms, Payment Forms, Survey Form, Quiz &amp; More, is vulnerable to stored cross-site scripting via the Multiple Choice field's 'Other' option value on payment forms due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-126342\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L771\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L845\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-131803</strong>, kitae-park Mang Board, is vulnerable to stored cross-site scripting via the <code>content</code> parameter due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-131803\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/api/mb-board.php#L30\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/includes/functions/func.board.php#L245\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-85412</strong>, hassantafreshi Easy Form Builder by WhiteStudio – Drag &amp; Drop Form Builder, is vulnerable to stored cross-site scripting via the <code>address</code> parameter due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-85412\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/admin/assets/js/pro_els-efb.js#L1415\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li>\n<p><a href=\"https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/class-Emsfb-public.php#L111\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-85416</strong>, yonifre Lenix Leads Collector, is vulnerable to stored cross-site scripting via Form Field Names due to insufficient input sanitization and output escaping.</p>\n</li>\n<li><a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-85416\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L20\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><a href=\"https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L61\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n</ul>\n<p><em>Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — <a href=\"https://kochetovmike.github.io/omnibrief/about.html\" rel=\"noopener noreferrer nofollow\">Sources &amp; licences</a>. This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.</em></p>",
+ "items": [
+  {
+   "id": "CVE-2026-76075",
+   "aliases": [],
+   "title": "The Warehouse Cargo theme for WordPress is vulnerable to Arbitrary File Upload in versions up to, and including, 2.7.4 v…",
+   "product": "themagnifico52 Warehouse Cargo",
+   "severity": "high",
+   "cvss": 8.8,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-76075",
+    "https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L600",
+    "https://themes.trac.wordpress.org/browser/warehouse-cargo/2.6.9/functions.php#L627"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:18:11.853000Z",
+   "kev_date_added": null,
+   "match_text": "The Warehouse Cargo theme for WordPress is vulnerable to Arbitrary File Upload in versions up to, and including, 2.7.4 via the warehouse_cargo_install_and_activate_plugin() AJAX handler. The handler is registered on wp_ajax_ but performs no nonce verification and no capability check, allowing any authenticated user to supply an attacker-controlled URL that the server fetches, writes into wp-content/plugins/ with file_put_contents(), extracts with unzip_file() (which does not filter file extensions), and then activates via activate_plugin(). This makes it possible for authenticated attackers, with Subscriber-level access and above, to upload arbitrary files on the affected site's server which makes remote code execution possible.\nthemagnifico52 Warehouse Cargo",
+   "core_text": "themagnifico52 Warehouse Cargo"
+  },
+  {
+   "id": "CVE-2026-103886",
+   "aliases": [],
+   "title": "The App Builder – Create Native Android & iOS Apps On The Flight plugin for WordPress is vulnerable to Authentication By…",
+   "product": "appcheap App Builder – Create Native Android & iOS Apps On The Flight",
+   "severity": "high",
+   "cvss": 8.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-103886",
+    "https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L42",
+    "https://plugins.trac.wordpress.org/browser/app-builder/tags/5.7.0/includes/Di/Service/Auth/Login/LoginGoogle.php#L89"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:48.097000Z",
+   "kev_date_added": null,
+   "match_text": "The App Builder – Create Native Android & iOS Apps On The Flight plugin for WordPress is vulnerable to Authentication Bypass via Google ID Token Audience Validation Bypass in all versions up to, and including, 5.7.1. This is due to the `LoginGoogle::login()` function failing to validate the `aud` (audience) claim of the supplied `idToken` against any OAuth client ID belonging to the WordPress site, failing to verify the `email_verified` claim, and resolving WordPress accounts solely by the email claim without binding to the Google `sub` (subject) identifier — while the `/app-builder/v1/login` REST endpoint is registered with a `permission_callback` that unconditionally returns `true`, leaving it fully reachable by unauthenticated requesters. This makes it possible for unauthenticated attackers to authenticate as any existing WordPress user — including Administrators — whose email address is known, by supplying a Google-signed ID token obtained from an entirely unrelated OAuth client containing the target user's email claim, which causes the plugin to issue a signed App Builder JWT granting that user's full privileges. Exploitation requires the attacker to obtain a valid Google-signed ID token carrying the target user's email address, which can be achieved by operating a separate Google OAuth client and inducing the target user to authenticate through it.\nappcheap App Builder – Create Native Android & iOS Apps On The Flight",
+   "core_text": "appcheap App Builder – Create Native Android & iOS Apps On The Flight"
+  },
+  {
+   "id": "CVE-2026-109586",
+   "aliases": [],
+   "title": "The WP STAGING – Backups & Restore, Migration & Clone Plugin – Cloud Backups, Scheduled Backups plugin for WordPress is …",
+   "product": "renehermi WP STAGING – Backups & Restore, Migration & Clone Plugin – Cloud Backups, Scheduled Backups",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-109586",
+    "https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L42",
+    "https://plugins.trac.wordpress.org/browser/wp-staging/tags/4.17.0/Framework/Rest/Rest.php#L59"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:48.960000Z",
+   "kev_date_added": null,
+   "match_text": "The WP STAGING – Backups & Restore, Migration & Clone Plugin – Cloud Backups, Scheduled Backups plugin for WordPress is vulnerable to Authorization Bypass in all versions up to, and including, 4.17.0 via the `REQUEST_URI` query parameter. This is due to a parser-differential flaw in `showLoginForm()`: the plugin's `isRestUrl()` function performs an unanchored `strpos()` prefix match against the full `REQUEST_URI` — including the query string — and short-circuits all authorization checks (including `isStagingSite()` and `current_user_can('manage_options')`) whenever it detects a REST-like URL, while WordPress core only treats a request as a REST API call when the `rest_route` query variable is non-empty. This makes it possible for unauthenticated attackers to bypass the staging-site login gate entirely by appending an empty `rest_route` parameter (e.g. `/wp-json/?rest_route=`), causing the plugin to skip its gate while core proceeds to render the ordinary theme front end, exposing the full theme-rendered contents of the staging site — including private post content, page-builder output, WooCommerce pages, and site search results over the staging database. This bypass only affects staging sites where the login gate is active, which is the default state for any site cloned by the plugin when the `wpstg_is_staging_site` option is set to `true` or the `.wp-staging` marker file is present in `ABSPATH`.\nrenehermi WP STAGING – Backups & Restore, Migration & Clone Plugin – Cloud Backu",
+   "core_text": "renehermi WP STAGING – Backups & Restore, Migration & Clone Plugin – Cloud Backups, Scheduled Backups"
+  },
+  {
+   "id": "CVE-2026-92251",
+   "aliases": [],
+   "title": "The ZarinPal Payment Gateway for WooCommerce plugin for WordPress is vulnerable to Insecure Direct Object Reference in v…",
+   "product": "zarinpal افزونه پرداخت امن زرین‌پال برای ووکامرس (ZarinPal for WooCommerce)",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-92251",
+    "https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L391",
+    "https://plugins.trac.wordpress.org/browser/zarinpal-woocommerce-payment-gateway/tags/5.1.1/class-wc-gateway-zarinpal.php#L400"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:18:12.753000Z",
+   "kev_date_added": null,
+   "match_text": "The ZarinPal Payment Gateway for WooCommerce plugin for WordPress is vulnerable to Insecure Direct Object Reference in versions up to, and including, 5.1.1 via the `Return_from_ZarinPal_Gateway()` handler registered on the `woocommerce_api_wc_zpal` (`?wc-api=wc_zpal`) endpoint. The handler accepts a `wc_order` parameter from the query string, loads the corresponding WooCommerce order without any authentication, nonce, session, capability, or ownership check, and — when the order is paid — issues a 302 redirect to `get_return_url($order)`, whose `Location` header embeds the order's secret `order_key`. This makes it possible for unauthenticated attackers to harvest order keys for arbitrary orders (regardless of payment method) and then use those keys against the WooCommerce order-received, order-pay and download endpoints to read the associated customer's PII, including billing name, street address, phone number, email, purchased items, and totals.\nzarinpal افزونه پرداخت امن زرین‌پال برای ووکامرس (ZarinPal for WooCommerce)",
+   "core_text": "zarinpal افزونه پرداخت امن زرین‌پال برای ووکامرس (ZarinPal for WooCommerce)"
+  },
+  {
+   "id": "CVE-2026-97345",
+   "aliases": [],
+   "title": "The SumUp Payment Gateway For WooCommerce plugin for WordPress is vulnerable to Insecure Direct Object Reference in vers…",
+   "product": "sumup SumUp Payment Gateway For WooCommerce",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-97345",
+    "https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1794",
+    "https://plugins.trac.wordpress.org/browser/sumup-payment-gateway-for-woocommerce/tags/2.17.1/includes/class-wc-sumup-gateway.php#L1877"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:18:12.910000Z",
+   "kev_date_added": null,
+   "match_text": "The SumUp Payment Gateway For WooCommerce plugin for WordPress is vulnerable to Insecure Direct Object Reference in versions up to, and including, 2.17.1 via the 'sumup-validate-order' query parameter handled by the check_redirect_flow() / resolve_payment_redirect_validation() functions. The template_redirect handler accepts an arbitrary numeric order ID from an unauthenticated GET request and, without any ownership or capability check, loads the corresponding WooCommerce order and issues a 302 redirect whose Location header is built by get_return_url(), disclosing the target order's secret order_key. This makes it possible for unauthenticated attackers to enumerate order IDs, harvest each order's WooCommerce order_key, and use those keys against the plugin's create_checkout endpoint and WooCommerce's own order-received/order-pay pages to read customer PII (name, email, phone, billing address, order total) for any order in the store.\nsumup SumUp Payment Gateway For WooCommerce",
+   "core_text": "sumup SumUp Payment Gateway For WooCommerce"
+  },
+  {
+   "id": "CVE-2026-119153",
+   "aliases": [],
+   "title": "The Swift Performance Lite plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'REQUEST_URI (gated…",
+   "product": "swte Swift Performance Lite",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-119153",
+    "https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/includes/cache-status/cache-status.php#L198",
+    "https://plugins.trac.wordpress.org/browser/swift-performance-lite/trunk/modules/cache/cache.php#L2111"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:49.680000Z",
+   "kev_date_added": null,
+   "match_text": "The Swift Performance Lite plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'REQUEST_URI (gated by $_GET['force-cache'])' parameter in all versions up to, and including, 2.3.7.5 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The payload is planted via a single unauthenticated GET request to any URL with ?force-cache=1 and a URL-encoded HTML payload in the path, which the plugin decodes and creates as a literal filesystem directory name; the script fires the next time an administrator opens the Swift Performance dashboard.\nswte Swift Performance Lite",
+   "core_text": "swte Swift Performance Lite"
+  },
+  {
+   "id": "CVE-2026-119159",
+   "aliases": [],
+   "title": "The Hide My WP Ghost – Security & Firewall plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'co…",
+   "product": "johndarrel Hide My WP Ghost – Security & Firewall",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-119159",
+    "https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/classes/Tools.php#L1022",
+    "https://plugins.trac.wordpress.org/browser/hide-my-wp/tags/7.0.14/controllers/Rewrite.php#L510"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:49.830000Z",
+   "kev_date_added": null,
+   "match_text": "The Hide My WP Ghost – Security & Firewall plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 7.0.15 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Successful exploitation requires that the plugin's URL rewriting mode is active (hmwp_mode set to a non-default value) and that the attacker has one previously approved comment from the same author/email address, after which WordPress auto-approves the attack comment without moderator intervention.\njohndarrel Hide My WP Ghost – Security & Firewall",
+   "core_text": "johndarrel Hide My WP Ghost – Security & Firewall"
+  },
+  {
+   "id": "CVE-2026-122039",
+   "aliases": [],
+   "title": "The User Registration & Membership – Free & Paid Memberships, Subscriptions, Content Restriction, User Profile, Custom U…",
+   "product": "wpeverest User Registration & Membership – Free & Paid Memberships, Subscriptions, Content Restriction, User Profile, Custom User Registration & Login Builder",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-122039",
+    "https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L364",
+    "https://plugins.trac.wordpress.org/browser/user-registration/tags/5.3.1/includes/admin/class-ur-admin-profile.php#L80"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:49.987000Z",
+   "kev_date_added": null,
+   "match_text": "The User Registration & Membership – Free & Paid Memberships, Subscriptions, Content Restriction, User Profile, Custom User Registration & Login Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'user_registration_<checkbox_field_name>[]' parameter in all versions up to, and including, 5.3.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The self-registration endpoint (wp_ajax_nopriv_user_registration_user_form_submit) requires no nonce, allowing an unauthenticated attacker to create a Subscriber account and then supply the malicious checkbox value through the authenticated profile-update action using a legitimately obtained nonce.\nwpeverest User Registration & Membership – Free & Paid Memberships, Subscriptions, Content Restriction, User Profile, Custom User Registration & Login Builder",
+   "core_text": "wpeverest User Registration & Membership – Free & Paid Memberships, Subscriptions, Content Restriction, User Profile, Custom User Registration & Login Builder"
+  },
+  {
+   "id": "CVE-2026-124072",
+   "aliases": [],
+   "title": "The User Frontend – Membership, User Registration, User Profile, User Directory & Content Restriction with Frontend Post…",
+   "product": "wedevs User Frontend – Membership, User Registration, User Profile, User Directory & Content Restriction with Frontend Post Submission",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-124072",
+    "https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/admin/form-builder/views/post-form-settings.php#L475",
+    "https://plugins.trac.wordpress.org/browser/wp-user-frontend/tags/4.3.14/assets/js/wpuf-form-builder.js#L667"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:50.160000Z",
+   "kev_date_added": null,
+   "match_text": "The User Frontend – Membership, User Registration, User Profile, User Directory & Content Restriction with Frontend Post Submission plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_title' parameter in all versions up to, and including, 4.3.14 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires that an administrator has configured a wpuf Post Form with guest post submission enabled and placed its shortcode on a public page, from which an unauthenticated attacker can scrape the required nonce before submitting the malicious payload.\nwedevs User Frontend – Membership, User Registration, User Profile, User Directory & Content Restriction with Frontend Post Submission",
+   "core_text": "wedevs User Frontend – Membership, User Registration, User Profile, User Directory & Content Restriction with Frontend Post Submission"
+  },
+  {
+   "id": "CVE-2026-126342",
+   "aliases": [],
+   "title": "The WPForms (Contact Form by WPForms / wpforms-lite) plugin for WordPress is vulnerable to Stored Cross-Site Scripting v…",
+   "product": "smub WPForms – AI Form Builder for WordPress – Contact Forms, Payment Forms, Survey Form, Quiz & More",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-126342",
+    "https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L771",
+    "https://plugins.trac.wordpress.org/browser/wpforms-lite/tags/2.0.2.2/includes/fields/class-radio.php#L845"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:50.467000Z",
+   "kev_date_added": null,
+   "match_text": "The WPForms (Contact Form by WPForms / wpforms-lite) plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the Multiple Choice field's 'Other' option value on payment forms in all versions up to, and including, 2.0.4 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a privileged user such as an administrator accesses the injected payment entry on the WPForms > Payments details page. The submitted value is stored via sanitize_text_field(), which preserves a space-separated pseudo-tag (e.g. '< i class=\"wpforms-single-payment-tooltip\" data-tooltip-content=\"&lt;img src=x onerror=...&gt;\">x< /i>') because strip_tags() ignores a '<' followed by whitespace; on the admin Payments entry page the value is output through wp_kses() with the 'post' allowlist, which normalizes it into a live <i> element retaining its class and data-* attributes, and the bundled Tooltipster initialization (contentAsHTML + contentCloning) then renders the attribute's HTML, executing the script on page load without any hover.\nsmub WPForms – AI Form Builder for WordPress – Contact Forms, Payment Forms, Survey Form, Quiz & More",
+   "core_text": "smub WPForms – AI Form Builder for WordPress – Contact Forms, Payment Forms, Survey Form, Quiz & More"
+  },
+  {
+   "id": "CVE-2026-131803",
+   "aliases": [],
+   "title": "The Mang Board plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'content' parameter in all vers…",
+   "product": "kitae-park Mang Board",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-131803",
+    "https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/api/mb-board.php#L30",
+    "https://plugins.trac.wordpress.org/browser/mangboard/tags/2.4.8/includes/functions/func.board.php#L245"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:17:50.923000Z",
+   "kev_date_added": null,
+   "match_text": "The Mang Board plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'content' parameter in all versions up to, and including, 2.4.9 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The post-sanitization decode step preserves percent-encoded characters such as %22 through HTMLPurifier, then decodes them to literal double-quotes at render time, allowing an attacker-supplied src attribute to break out of its context and inject event-handler attributes such as onerror into the img tag.\nkitae-park Mang Board",
+   "core_text": "kitae-park Mang Board"
+  },
+  {
+   "id": "CVE-2026-85412",
+   "aliases": [],
+   "title": "The Easy Form Builder by WhiteStudio – Drag & Drop Form Builder plugin for WordPress is vulnerable to Stored Cross-Site …",
+   "product": "hassantafreshi Easy Form Builder by WhiteStudio – Drag & Drop Form Builder",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-85412",
+    "https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/admin/assets/js/pro_els-efb.js#L1415",
+    "https://plugins.trac.wordpress.org/browser/easy-form-builder/tags/4.0.10/includes/class-Emsfb-public.php#L111"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:18:12.280000Z",
+   "kev_date_added": null,
+   "match_text": "The Easy Form Builder by WhiteStudio – Drag & Drop Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'address' parameter in all versions up to, and including, 4.2.0 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. A valid nonce required for form submission can be freely obtained by any unauthenticated visitor via the publicly accessible REST route 'Emsfb/v1/nonce/refresh', which is registered with no permission check, enabling the full attack chain without any credentials.\nhassantafreshi Easy Form Builder by WhiteStudio – Drag & Drop Form Builder",
+   "core_text": "hassantafreshi Easy Form Builder by WhiteStudio – Drag & Drop Form Builder"
+  },
+  {
+   "id": "CVE-2026-85416",
+   "aliases": [],
+   "title": "The Lenix Leads Collector plugin for WordPress is vulnerable to Stored Cross-Site Scripting via Form Field Name in all v…",
+   "product": "yonifre Lenix Leads Collector",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-85416",
+    "https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L20",
+    "https://plugins.trac.wordpress.org/browser/lenix-elementor-leads-addon/tags/2.0.0/inc/cf7-integration.php#L61"
+   ],
+   "summarised": true,
+   "published": "2026-11-26T16:18:12.440000Z",
+   "kev_date_added": null,
+   "match_text": "The Lenix Leads Collector plugin for WordPress is vulnerable to Stored Cross-Site Scripting via Form Field Name in all versions up to, and including, 2.0.0 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This is exploitable because the plugin's CF7 integration accepts and stores any extra field name not defined in the CF7 form — including HTML/JS payloads — submitted by an unauthenticated user via a public CF7 form submission, with the raw field name later echoed unescaped in two separate admin-side sinks.\nyonifre Lenix Leads Collector",
+   "core_text": "yonifre Lenix Leads Collector"
+  }
+ ],
+ "sources": [
+  "nvd"
+ ],
+ "deliveries": {}
+}
