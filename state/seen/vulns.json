@@ -4,7 +4,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -13,7 +13,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -31,7 +31,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -49,7 +49,7 @@
   "first_seen": "2026-11-25T15:05:19.253118Z",
   "kev": true,
   "last_material_change": "2026-11-25T15:05:19.253118Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -472,7 +472,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -481,7 +481,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -490,7 +490,7 @@
   "first_seen": "2026-11-24T19:05:23.983155Z",
   "kev": true,
   "last_material_change": "2026-11-24T19:05:23.983155Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -508,7 +508,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -517,7 +517,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -526,7 +526,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -535,7 +535,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -544,7 +544,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -571,7 +571,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": null
  },
@@ -625,7 +625,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": false,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": "high"
  },
@@ -652,7 +652,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": false,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": "high"
  },
@@ -697,7 +697,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": false,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": "high"
  },
@@ -706,7 +706,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": false,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": "high"
  },
@@ -1372,7 +1372,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": false,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-25T23:05:28.522119Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": "high"
  },
@@ -1382,6 +1382,116 @@
   "kev": false,
   "last_material_change": "2026-11-24T14:05:36.324755Z",
   "last_seen": "2026-11-24T19:05:23.983155Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136500": {
+  "aliases": [
+   "GHSA-2rjm-67gc-54r4"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136501": {
+  "aliases": [
+   "GHSA-38cc-jj5v-wrg6"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136502": {
+  "aliases": [
+   "GHSA-4392-6j85-5q2q"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136503": {
+  "aliases": [
+   "GHSA-48v4-hjc5-hx8w"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136505": {
+  "aliases": [
+   "GHSA-4g4f-phc4-3qh7"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136506": {
+  "aliases": [
+   "GHSA-63r4-gjcj-f69v"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136507": {
+  "aliases": [
+   "GHSA-7638-f7xp-wv22"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136509": {
+  "aliases": [
+   "GHSA-98mx-57hv-xjpr"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136512": {
+  "aliases": [
+   "GHSA-c66p-8p63-p7mr"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
+  "patched": [],
+  "severity": "high"
+ },
+ "CVE-2026-136515": {
+  "aliases": [
+   "GHSA-pw7w-x92p-r3q2"
+  ],
+  "first_seen": "2026-11-26T00:05:14.786357Z",
+  "kev": false,
+  "last_material_change": "2026-11-26T00:05:14.786357Z",
+  "last_seen": "2026-11-26T00:05:14.786357Z",
   "patched": [],
   "severity": "high"
  },

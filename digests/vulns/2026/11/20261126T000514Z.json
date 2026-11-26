@@ -1,0 +1,255 @@
+{
+ "topic": "vulns",
+ "run_id": "20261126T000514Z",
+ "created_utc": "2026-11-26T00:05:14.786357Z",
+ "title": "Vulnerability digest — 26 Nov 2026, 01:05 CET",
+ "summarised": true,
+ "markdown": "- **CVE-2026-136500**, PostgreSQL psqlODBC, psqlODBC mishandled certain multibyte character encodings and aliases, allowing users who control a bound parameter or catalog function name to run unintended SQL.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136500](https://nvd.nist.gov/vuln/detail/CVE-2026-136500), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-2rjm-67gc-54r4](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-2rjm-67gc-54r4), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136502**, PostgreSQL psqlODBC, Differences in statement text scanning and parsing between psqlODBC and the server could cause data to be executed as SQL or misroute positioned writes.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136502](https://nvd.nist.gov/vuln/detail/CVE-2026-136502), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4392-6j85-5q2q](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4392-6j85-5q2q), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136507**, PostgreSQL psqlODBC, Flaws in parsing and building connection strings could lead to early termination of values and buffer overflows in the XA library on Windows with MSDTC.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136507](https://nvd.nist.gov/vuln/detail/CVE-2026-136507), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-7638-f7xp-wv22](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-7638-f7xp-wv22), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136503**, PostgreSQL psqlODBC, Memory management flaws such as use-after-free and double-free issues occurred during nested clean-up operations and notice callbacks.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136503](https://nvd.nist.gov/vuln/detail/CVE-2026-136503), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-48v4-hjc5-hx8w](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-48v4-hjc5-hx8w), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136505**, PostgreSQL psqlODBC, Unchecked sizes, counts, and integer types too small for their data caused stack and heap buffer overflows or out-of-bounds writes.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136505](https://nvd.nist.gov/vuln/detail/CVE-2026-136505), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4g4f-phc4-3qh7](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4g4f-phc4-3qh7), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136506**, PostgreSQL psqlODBC, psqlODBC built internal queries from unescaped or unqualified names, leading to improper query construction.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136506](https://nvd.nist.gov/vuln/detail/CVE-2026-136506), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-63r4-gjcj-f69v](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-63r4-gjcj-f69v), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136509**, PostgreSQL psqlODBC, Failure to validate that server replies match sent queries allowed hostile servers or network attackers to corrupt application memory.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136509](https://nvd.nist.gov/vuln/detail/CVE-2026-136509), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-98mx-57hv-xjpr](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-98mx-57hv-xjpr), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136512**, PostgreSQL psqlODBC, Type discrepancies between expected and actual column types caused psqlODBC to write larger types into smaller application buffers, corrupting memory.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136512](https://nvd.nist.gov/vuln/detail/CVE-2026-136512), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-c66p-8p63-p7mr](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-c66p-8p63-p7mr), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136515**, PostgreSQL psqlODBC, Flaws in tracking positions during statement text rewrites for keyset-driven cursors and ODBC escapes resulted in out-of-bounds operations.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136515](https://nvd.nist.gov/vuln/detail/CVE-2026-136515), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-pw7w-x92p-r3q2](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-pw7w-x92p-r3q2), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n- **CVE-2026-136501**, PostgreSQL psqlODBC, Name matching discrepancies between psqlODBC and the server during catalog lookups caused the driver to interact with unintended tables or columns.\n  [https://nvd.nist.gov/vuln/detail/CVE-2026-136501](https://nvd.nist.gov/vuln/detail/CVE-2026-136501), [https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-38cc-jj5v-wrg6](https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-38cc-jj5v-wrg6), [https://odbc.postgresql.org/changelog/](https://odbc.postgresql.org/changelog/)\n\n*Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — [Sources & licences](https://kochetovmike.github.io/omnibrief/about.html). This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.*",
+ "html": "<ul>\n<li>\n<p><strong>CVE-2026-136500</strong>, PostgreSQL psqlODBC, psqlODBC mishandled certain multibyte character encodings and aliases, allowing users who control a bound parameter or catalog function name to run unintended SQL.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136500\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-2rjm-67gc-54r4\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136502</strong>, PostgreSQL psqlODBC, Differences in statement text scanning and parsing between psqlODBC and the server could cause data to be executed as SQL or misroute positioned writes.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136502\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4392-6j85-5q2q\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136507</strong>, PostgreSQL psqlODBC, Flaws in parsing and building connection strings could lead to early termination of values and buffer overflows in the XA library on Windows with MSDTC.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136507\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-7638-f7xp-wv22\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136503</strong>, PostgreSQL psqlODBC, Memory management flaws such as use-after-free and double-free issues occurred during nested clean-up operations and notice callbacks.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136503\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-48v4-hjc5-hx8w\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136505</strong>, PostgreSQL psqlODBC, Unchecked sizes, counts, and integer types too small for their data caused stack and heap buffer overflows or out-of-bounds writes.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136505\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4g4f-phc4-3qh7\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136506</strong>, PostgreSQL psqlODBC, psqlODBC built internal queries from unescaped or unqualified names, leading to improper query construction.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136506\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-63r4-gjcj-f69v\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136509</strong>, PostgreSQL psqlODBC, Failure to validate that server replies match sent queries allowed hostile servers or network attackers to corrupt application memory.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136509\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-98mx-57hv-xjpr\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136512</strong>, PostgreSQL psqlODBC, Type discrepancies between expected and actual column types caused psqlODBC to write larger types into smaller application buffers, corrupting memory.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136512\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-c66p-8p63-p7mr\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136515</strong>, PostgreSQL psqlODBC, Flaws in tracking positions during statement text rewrites for keyset-driven cursors and ODBC escapes resulted in out-of-bounds operations.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136515\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-pw7w-x92p-r3q2\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n<li>\n<p><strong>CVE-2026-136501</strong>, PostgreSQL psqlODBC, Name matching discrepancies between psqlODBC and the server during catalog lookups caused the driver to interact with unintended tables or columns.\n  <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-136501\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-38cc-jj5v-wrg6\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://odbc.postgresql.org/changelog/\" rel=\"noopener noreferrer nofollow\">odbc.postgresql.org</a></p>\n</li>\n</ul>\n<p><em>Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — <a href=\"https://kochetovmike.github.io/omnibrief/about.html\" rel=\"noopener noreferrer nofollow\">Sources &amp; licences</a>. This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.</em></p>",
+ "items": [
+  {
+   "id": "CVE-2026-136500",
+   "aliases": [
+    "GHSA-2rjm-67gc-54r4"
+   ],
+   "title": "To escape a bound parameter, or a name passed to a catalog function, psqlODBC has to know where each multibyte character…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 8.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136500",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-2rjm-67gc-54r4",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:22.937000Z",
+   "kev_date_added": null,
+   "match_text": "To escape a bound parameter, or a name passed to a catalog function, psqlODBC has to know where each multibyte character of the client encoding ends. It treated a client encoding named by an alias the server accepts, such as WIN950, Windows950 or big-5 for BIG5, as single-byte, and it accepted too narrow a range of lead bytes for JOHAB, EUC_TW, EUC_CN and EUC_KR. A quote byte that the server reads as part of such a character was then not doubled, or a quote the server reads on its own was taken for part of a character, and the literal ended early.\n\nAn end user who controls one bound character parameter, or a name the application passes to a catalog function such as SQLTables(), can run SQL with the rights of the application's database role. This requires a connection that is not in UTF-8: the ANSI driver, or the ANSI entry points, with one of these client encodings. For bound parameters the driver must also be substituting parameters itself, as it does with UseServerSidePrepare=0 or a cursor type other than forward-only.\n\nVersions up to and including psqlODBC 18.00.0006 are affected.\nPostgreSQL psqlODBC",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136502",
+   "aliases": [
+    "GHSA-4392-6j85-5q2q"
+   ],
+   "title": "psqlODBC scans statement text itself to substitute parameters, translate ODBC escapes, join batched statements and rewri…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 8.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136502",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4392-6j85-5q2q",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:23.180000Z",
+   "kev_date_added": null,
+   "match_text": "psqlODBC scans statement text itself to substitute parameters, translate ODBC escapes, join batched statements and rewrite queries for updatable cursors. Where it read the text differently from the server, text the driver took for data ran as SQL, or a positioned write went to another table:\n\n- An escape string constant written e'…' in lower case was not recognised as one, and '…' after a keyword ending in E, as in LIKE'…', was taken for one.\n- A } inside a quoted literal ended an ODBC {d …}, {t …}, {ts …} or {escape …} sequence.\n- Dollar-quote tags containing _ were not recognised, and an identifier starting with _ followed by $, such as _$$, was taken for the start of a dollar quote, so a parameter marker inside a literal was substituted.\n- A trailing -- comment in one statement of a batched parameter array swallowed the next statement.\n- Comments, literals longer than 255 bytes and escape strings were misread when the driver located the FROM and WHERE clauses of a query for an updatable cursor, and the text copied into the cursor's own queries could include SQL from inside a literal.\n- A table name containing $ was cut at the $, and a quoted table name starting with , or ; ended the table list, so positioned updates, inserts and deletes went to another table.\n- An integer parameter with an embedded NUL byte cut the query short.\n- /*/ was taken for a comment that opens and closes, while the server reads it as one that only opens.\n- ConnSettings was split at every semicolon,",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136507",
+   "aliases": [
+    "GHSA-7638-f7xp-wv22"
+   ],
+   "title": "psqlODBC parsed and built connection strings in ways that let a value end early:\n\n- In a braced value, such as PWD={…}, …",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 8.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136507",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-7638-f7xp-wv22",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:23.830000Z",
+   "kev_date_added": null,
+   "match_text": "psqlODBC parsed and built connection strings in ways that let a value end early:\n\n- In a braced value, such as PWD={…}, a trailing byte 0x7d of a GBK, Big5 or SJIS character was taken for the closing brace.\n- A braced value that ended right after an escaped }} was not reported as unterminated, and its contents were parsed as further keywords.\n- SQLConnectW(), SQLDriverConnectW() and SQLBrowseConnectW() cut a connection string whose UTF-8 form is longer than 32767 bytes, which changes how the rest of it is parsed.\n- On Windows with MSDTC, the password and user name were put into the XA open string without escaping, and the XA library copied each item of that string into a 64-byte stack buffer.\n- Percent-encoding a long password wrote one byte past a 4096-byte stack buffer.\n\nAn end user who supplies a password, or another value the application puts into the connection string, can set other connection keywords, for example to connect the application to a server of their choosing. The MSDTC case can also overflow a stack buffer in the process that loads the XA library.\n\nVersions up to and including psqlODBC 18.00.0006 are affected.\nPostgreSQL psqlODBC",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136503",
+   "aliases": [
+    "GHSA-48v4-hjc5-hx8w"
+   ],
+   "title": "psqlODBC frees memory that is still in use, frees it twice, or writes outside an application buffer in these cases:\n\n- T…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136503",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-48v4-hjc5-hx8w",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:23.307000Z",
+   "kev_date_added": null,
+   "match_text": "psqlODBC frees memory that is still in use, frees it twice, or writes outside an application buffer in these cases:\n\n- The clean-up the driver runs at commit and rollback sends queries of its own, and the reply to one of them can start the clean-up again while it is running. The nested run frees the rollback log, or the list of cursors and prepared statements to close, and the outer run uses and frees it again.\n- The callback through which libpq delivers notices could run that clean-up, and close the connection, while libpq was still using the connection.\n- Freeing a statement whose result holds several cursors (FetchRefcursors=1, or UseDeclareFetch=1) used the freed first result while the later cursors were closed.\n- With UseDeclareFetch=1, after a rollback closed an updatable cursor, rows added or deleted through it were counted but not stored, so freeing the statement freed uninitialised pointers, and adding a row wrote past the keyset.\n- After a multi-row fetch failed on a row other than the first of its rowset, SQLGetData() wrote at an offset past the buffer the application passed.\n- SQLProcedureColumns() freed the result of its catalog query twice when the query failed.\n- In a process named sqlservr (SQL Server linked servers), a server version below 8.4 made the statement parser free a buffer twice.\n- A failed SQLPutData in the middle of a SQLSetPos() or SQLBulkOperations() data-at-execution sequence left the whole operation pending, with the internal statement still a",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136505",
+   "aliases": [
+    "GHSA-4g4f-phc4-3qh7"
+   ],
+   "title": "psqlODBC uses sizes and counts without checking their range, or keeps them in types too small for them:\n\n- A row array s…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136505",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-4g4f-phc4-3qh7",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:23.570000Z",
+   "kev_date_added": null,
+   "match_text": "psqlODBC uses sizes and counts without checking their range, or keeps them in types too small for them:\n\n- A row array size of 0, set with SQLSetStmtAttr() or on the ARD, makes SQLSetPos() with SQL_REFRESH write past the bound arrays.\n- SQL_DESC_COUNT above 32767 on an APD or IPD writes before the start of a heap buffer.\n- A numeric parameter with a negative scale overflows a stack buffer.\n- SQLGetData() of a text value of 2 GiB or more into a wide-character buffer computes a wrapped size and overflows the heap.\n- The 16-bit reference count and size of the statement parser's column-information cache wrap, which frees a cache entry still in use or overflows the cache, and a statement with more than 32768 columns overflows the parser's field array.\n- An updatable cursor that records more than 65535 changes in one transaction wraps the 16-bit capacity of its rollback log, which overflows it and frees it twice.\n- A statement with 32769 or more parameter markers overflows a 16-bit parameter count.\n- A wide-character string of more than 2 GiB wraps the size of its UTF-8 conversion, which is then written below the start of a heap buffer.\n- SQLGetDiagField() and SQLGetDiagFieldW() always stored the five-character SQLSTATE plus its terminator and checked BufferLength only afterwards, overrunning a buffer shorter than six bytes.\n- The ANSI SQLSetDescField(SQL_DESC_NAME) on an IPD ignored BufferLength and copied the name with strdup(), reading a name passed as pointer plus length past i",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136506",
+   "aliases": [
+    "GHSA-63r4-gjcj-f69v"
+   ],
+   "title": "psqlODBC builds queries of its own from names, and put these names into them without escaping or qualification:\n\n- the d…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136506",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-63r4-gjcj-f69v",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:23.703000Z",
+   "kev_date_added": null,
+   "match_text": "psqlODBC builds queries of its own from names, and put these names into them without escaping or qualification:\n\n- the database name in SQLForeignKeys();\n- the current schema name in catalog functions;\n- the table name in the currtid2() call that re-reads rows of updatable cursors;\n- column names in the inserts and updates of SQLSetPos() and SQLBulkOperations();\n- cursor names set with SQLSetCursorName() or returned as refcursors (FetchRefcursors=1);\n- parameter names (SQL_DESC_NAME) in procedure calls;\n- the = operator in an OID comparison in SQLColumns(), which the server resolves through search_path.\n\nThe column names of the fourth item are a variant of CVE-2026-120065 (GHSA-9cg8-r57h-h6jj). The fix for that advisory, in 18.00.0006, doubles \" in the stored row-identifier name, which the keyset queries and the WHERE clause of the positioned statements use. The column names that SQLSetPos() and SQLBulkOperations() put into the SET list of their UPDATE and into the column list of their SQL_ADD INSERT come from the catalog and were not covered by it, so a driver patched to 18.00.0006 is still affected by this one.\n\nA database user who can create a database, schema, table, column or operator with a crafted name, or an end user who supplies a cursor or parameter name to the application, can run SQL with the rights of the application's database role.\n\nVersions up to and including psqlODBC 18.00.0006 are affected.\nPostgreSQL psqlODBC",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136509",
+   "aliases": [
+    "GHSA-98mx-57hv-xjpr"
+   ],
+   "title": "psqlODBC did not check that a server reply matches the query it sent: that a FETCH returns no more rows than it asked fo…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136509",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-98mx-57hv-xjpr",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:24.077000Z",
+   "kev_date_added": null,
+   "match_text": "psqlODBC did not check that a server reply matches the query it sent: that a FETCH returns no more rows than it asked for, that each row has the described number of columns, that one query produces one result, and that a COPY, a transaction or the connection ends where the protocol says. By sending replies that do not match, a hostile or compromised server, or anyone on the network path of a connection that does not use sslmode=verify-full (the default is disable) can corrupt memory in the application:\n\n- A FETCH reply with more rows than requested overflows the row cache.\n- Extra results in reply to a FETCH, or to the queries of a keyset-driven cursor, are freed while still in use.\n- A key query of a keyset-driven cursor answered with extra columns, or a re-read row with fewer columns, overflows the row cache.\n- Replies without columns or rows, or with NULL values, to the driver's internal queries at connect time and in catalog functions are dereferenced.\n- A malformed relacl value in SQLTablePrivileges() makes the driver write past a buffer.\n- On Windows with MSDTC, a long transaction name returned by the server overflows a buffer during recovery.\n- Values in replies to the driver's internal queries are used without checking their range: an empty column name, a parameter count, a large-object size, a function's or trigger's argument count, and a result of exactly 32767 columns. They are dereferenced, read past, returned to the application or sent back to the server as stack",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136512",
+   "aliases": [
+    "GHSA-c66p-8p63-p7mr"
+   ],
+   "title": "With SQL_C_DEFAULT, the C type of a bound column or parameter follows its SQL type. An application sizes its buffer from…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136512",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-c66p-8p63-p7mr",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:24.500000Z",
+   "kev_date_added": null,
+   "match_text": "With SQL_C_DEFAULT, the C type of a bound column or parameter follows its SQL type. An application sizes its buffer from the type it was told when it described the statement. When the column had another type at fetch time, because the server reported another type, the table was altered, or an output parameter's result column had another type, psqlODBC wrote the larger type into the smaller buffer: 12 bytes past a 4-byte buffer for a uuid, and more in multi-row fetches, where the driver also steps through the array by the larger size.\n\nOther conversions wrote past the application's buffer as well:\n\n- With Int8As set to a smaller type, an int8 column fetched as SQL_C_DEFAULT was still written as 8 bytes.\n- An int2vector column fetched as SQL_C_DEFAULT returned unterminated binary data instead of text.\n- An output parameter that the application discards by binding a NULL buffer overflowed a stack buffer in the driver.\n- SQLGetData() with BufferLength 0 on a column the driver reads as a large object wrote a NUL byte past the buffer.\n- Adding a row with SQLBulkOperations(SQL_ADD) on a static updatable cursor before the first fetch, then changing that row, rolling back and fetching it, made the keyset index arithmetic free a pointer that was never allocated and corrupt the heap.\n\nThis can be triggered by a hostile or compromised server, or anyone on the network path of a connection that does not use sslmode=verify-full (the default is disable), and by the owner of a table the appli",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136515",
+   "aliases": [
+    "GHSA-pw7w-x92p-r3q2"
+   ],
+   "title": "psqlODBC rewrites statement text for keyset-driven cursors and ODBC escapes using positions it found in the text. These …",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136515",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-pw7w-x92p-r3q2",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:24.887000Z",
+   "kev_date_added": null,
+   "match_text": "psqlODBC rewrites statement text for keyset-driven cursors and ODBC escapes using positions it found in the text. These positions could lie outside the text or describe another statement:\n\n- After SQLExecDirect() failed on a statement handle, the FROM and WHERE positions of the failed statement were applied to the next, shorter statement on that handle.\n- The parser could record a FROM position with no text after it, and the rewrite then copied a negative length.\n- An {fn …} escape whose arguments contain FOR UPDATE, ; or INTO … FROM made the driver remove a cursor prefix from the wrong buffer.\n- {fn CONVERT(?, …)} with an output parameter produced a negative argument length.\n- An unclosed {fn …} escape made the driver read past the statement, and a few thousand nested ones exhausted the stack.\n- Translating @@identity in long statement text read an uninitialised pointer, and {? = call …} with nothing bound for the return value dereferenced NULL.\n\nWhoever supplies the text of a statement that an application opens on a keyset-driven or dynamic cursor with a concurrency other than read-only, or calls with an output parameter, can corrupt the application's heap and end it. That includes the users of query tools, report builders and other applications that run SQL their users type. Code execution has not been demonstrated.\n\nVersions up to and including psqlODBC 18.00.0006 are affected.\nPostgreSQL psqlODBC",
+   "core_text": "PostgreSQL psqlODBC"
+  },
+  {
+   "id": "CVE-2026-136501",
+   "aliases": [
+    "GHSA-38cc-jj5v-wrg6"
+   ],
+   "title": "To build positioned updates and to describe columns, psqlODBC matches the names in a statement against the catalog. Wher…",
+   "product": "PostgreSQL psqlODBC",
+   "severity": "high",
+   "cvss": 7.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-136501",
+    "https://github.com/postgresql-interfaces/psqlodbc/security/advisories/GHSA-38cc-jj5v-wrg6",
+    "https://odbc.postgresql.org/changelog/"
+   ],
+   "summarised": true,
+   "published": "2026-11-25T23:17:23.060000Z",
+   "kev_date_added": null,
+   "match_text": "To build positioned updates and to describe columns, psqlODBC matches the names in a statement against the catalog. Where it matched differently from the server, it used another table or column:\n\n- Table and schema names were compared case-insensitively in its column-information cache, so users could be taken for another user's \"Users\", and the driver then evaluated that table's column default to answer @@IDENTITY.\n- In FROM ONLY t, ONLY was taken for the table name.\n- Column names were compared case-insensitively, so with Parse=1 the type of another column could decide the size of the application's buffer, which a fetch then overflowed.\n- In a database whose encoding is single-byte, such as LATIN1 or SQL_ASCII, the server folds the accented letters of an unquoted name by its own locale, while the driver folded only A-Z, so ÉTAT could be taken for another user's \"État\" instead of état.\n- On systems other than Windows, in a Turkish or Azeri locale, an unquoted I was not folded to i, and keywords and ODBC function names did not match.\n- Without a schema name, SQLSpecialColumns() could report the key columns of another user's same-named temporary table, and SQLPrimaryKeys() could take another user's index named <table>_pkey for the primary key of a table without one.\n- After search_path changed other than through a plain SET statement, positioned writes went to the same-named table in the previously current schema.\n- SQLBulkOperations() trusted the ctid stored inside a variable-",
+   "core_text": "PostgreSQL psqlODBC"
+  }
+ ],
+ "sources": [
+  "nvd"
+ ],
+ "deliveries": {}
+}
