@@ -1,12 +1,12 @@
 {
  "degraded_sources": [],
  "included": 0,
- "last_run_utc": "2026-11-26T22:05:19.890335+00:00",
- "last_success_utc": "2026-11-26T22:05:19.890335+00:00",
+ "last_run_utc": "2026-11-26T23:05:18.094834+00:00",
+ "last_success_utc": "2026-11-26T23:05:18.094834+00:00",
  "llm": {
   "vulns": "skipped"
  },
- "new_records": 171,
+ "new_records": 51,
  "publishers": {
   "atom": "ok",
   "telegram": "ok"
