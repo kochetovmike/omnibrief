@@ -1,0 +1,147 @@
+{
+ "topic": "vulns",
+ "run_id": "20261127T030517Z",
+ "created_utc": "2026-11-27T03:05:17.205983Z",
+ "title": "Vulnerability digest — 27 Nov 2026, 04:05 CET",
+ "summarised": true,
+ "markdown": "- **CVE-2026-106125**, Sneeit Sneeit Framework, The Sneeit Framework plugin for WordPress is vulnerable to Remote Code Execution in versions up to, and including, 8.7 via the 'callback' parameter of the sneeit_compact_menu_mega_content AJAX action. [https://nvd.nist.gov/vuln/detail/CVE-2026-106125](https://nvd.nist.gov/vuln/detail/CVE-2026-106125), [https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/lib/lib-utilities.php#L2-L12](https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/lib/lib-utilities.php#L2-L12), [https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/menus/menus-compact.php#L141-L142](https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/menus/menus-compact.php#L141-L142)\n- **CVE-2026-115867**, crmperks Database for Contact Form 7, WPforms, Elementor forms, The Database for Contact Form 7, WPforms, Elementor forms plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 1.5.5 via the copy_files function. [https://nvd.nist.gov/vuln/detail/CVE-2026-115867](https://nvd.nist.gov/vuln/detail/CVE-2026-115867), [https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L108](https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L108), [https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L1383](https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L1383)\n- **CVE-2026-113774**, magazine3 Schema & Structured Data for WP & AMP, The Schema & Structured Data for WP & AMP plugin for WordPress is vulnerable to PHP Object Injection in versions up to, and including, 1.68. [https://nvd.nist.gov/vuln/detail/CVE-2026-113774](https://nvd.nist.gov/vuln/detail/CVE-2026-113774), [https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/admin_section/common-function.php#L270](https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/admin_section/common-function.php#L270), [https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/modules/reviews/class-saswp-reviews-form.php#L170](https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/modules/reviews/class-saswp-reviews-form.php#L170)\n- **CVE-2026-137702**, Exim Exim, Exim before 4.100.2 allows attackers to send SMTP traffic that triggers a heap out-of-bounds write in expansion code running as root. [https://nvd.nist.gov/vuln/detail/CVE-2026-137702](https://nvd.nist.gov/vuln/detail/CVE-2026-137702), [https://lists.exim.org/lurker/message/20261125.130455.f06c6601.en.html](https://lists.exim.org/lurker/message/20261125.130455.f06c6601.en.html), [https://www.exim.org/static/doc/security/EXIM-Security-2026-11-19.1/EXIM-Security-2026-11-19.1.txt](https://www.exim.org/static/doc/security/EXIM-Security-2026-11-19.1/EXIM-Security-2026-11-19.1.txt)\n- **CVE-2026-135616**, boldgrid W3 Total Cache, The W3 Total Cache plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 2.11.0 via deserialization of untrusted input that is injected into the Memcached object cache through request Host header key truncation. [https://nvd.nist.gov/vuln/detail/CVE-2026-135616](https://nvd.nist.gov/vuln/detail/CVE-2026-135616), [https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache.php#L56](https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache.php#L56), [https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache_Memcache.php#L133](https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache_Memcache.php#L133)\n- **CVE-2026-126717**, remyb92 Translate WordPress with Weglot 2.0 – Multilingual AI Translation, The Translate WordPress with Weglot 2.0 – Multilingual AI Translation plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 6.4.3 due to insufficient input sanitization and output escaping. [https://nvd.nist.gov/vuln/detail/CVE-2026-126717](https://nvd.nist.gov/vuln/detail/CVE-2026-126717), [https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L167](https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L167), [https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L81](https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L81)\n\n*Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — [Sources & licences](https://kochetovmike.github.io/omnibrief/about.html). This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.*",
+ "html": "<ul>\n<li><strong>CVE-2026-106125</strong>, Sneeit Sneeit Framework, The Sneeit Framework plugin for WordPress is vulnerable to Remote Code Execution in versions up to, and including, 8.7 via the 'callback' parameter of the sneeit_compact_menu_mega_content AJAX action. <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-106125\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/lib/lib-utilities.php#L2-L12\" rel=\"noopener noreferrer nofollow\">github.com</a>, <a href=\"https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/menus/menus-compact.php#L141-L142\" rel=\"noopener noreferrer nofollow\">github.com</a></li>\n<li><strong>CVE-2026-115867</strong>, crmperks Database for Contact Form 7, WPforms, Elementor forms, The Database for Contact Form 7, WPforms, Elementor forms plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 1.5.5 via the copy_files function. <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-115867\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L108\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L1383\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-113774</strong>, magazine3 Schema &amp; Structured Data for WP &amp; AMP, The Schema &amp; Structured Data for WP &amp; AMP plugin for WordPress is vulnerable to PHP Object Injection in versions up to, and including, 1.68. <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-113774\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/admin_section/common-function.php#L270\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/modules/reviews/class-saswp-reviews-form.php#L170\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-137702</strong>, Exim Exim, Exim before 4.100.2 allows attackers to send SMTP traffic that triggers a heap out-of-bounds write in expansion code running as root. <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-137702\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://lists.exim.org/lurker/message/20261125.130455.f06c6601.en.html\" rel=\"noopener noreferrer nofollow\">lists.exim.org</a>, <a href=\"https://www.exim.org/static/doc/security/EXIM-Security-2026-11-19.1/EXIM-Security-2026-11-19.1.txt\" rel=\"noopener noreferrer nofollow\">www.exim.org</a></li>\n<li><strong>CVE-2026-135616</strong>, boldgrid W3 Total Cache, The W3 Total Cache plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 2.11.0 via deserialization of untrusted input that is injected into the Memcached object cache through request Host header key truncation. <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-135616\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache.php#L56\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache_Memcache.php#L133\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n<li><strong>CVE-2026-126717</strong>, remyb92 Translate WordPress with Weglot 2.0 – Multilingual AI Translation, The Translate WordPress with Weglot 2.0 – Multilingual AI Translation plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 6.4.3 due to insufficient input sanitization and output escaping. <a href=\"https://nvd.nist.gov/vuln/detail/CVE-2026-126717\" rel=\"noopener noreferrer nofollow\">nvd.nist.gov</a>, <a href=\"https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L167\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a>, <a href=\"https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L81\" rel=\"noopener noreferrer nofollow\">plugins.trac.wordpress.org</a></li>\n</ul>\n<p><em>Data from CISA KEV, NVD, the GitHub Advisory Database and EPSS — <a href=\"https://kochetovmike.github.io/omnibrief/about.html\" rel=\"noopener noreferrer nofollow\">Sources &amp; licences</a>. This product uses the NVD API but is not endorsed or certified by the NVD. Summaries are machine-generated by Omnibrief and may contain errors; always check the linked original.</em></p>",
+ "items": [
+  {
+   "id": "CVE-2026-106125",
+   "aliases": [],
+   "title": "The Sneeit Framework plugin for WordPress is vulnerable to Remote Code Execution in versions up to, and including, 8.7 v…",
+   "product": "Sneeit Sneeit Framework",
+   "severity": "critical",
+   "cvss": 9.8,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-106125",
+    "https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/lib/lib-utilities.php#L2-L12",
+    "https://github.com/tiennguyenvan/sneeit-framework/blob/main/includes/menus/menus-compact.php#L141-L142"
+   ],
+   "summarised": true,
+   "published": "2026-11-27T02:16:43.460000Z",
+   "kev_date_added": null,
+   "match_text": "The Sneeit Framework plugin for WordPress is vulnerable to Remote Code Execution in versions up to, and including, 8.7 via the 'callback' parameter of the sneeit_compact_menu_mega_content AJAX action. The handler sneeit_compact_menu_mega_content_callback() is registered on the wp_ajax_nopriv_ hook and passes the attacker-supplied 'callback' value directly into call_user_func() after only a function_exists() check, with the single argument also attacker-controlled via a JSON-decoded 'args' parameter. There is no authentication, no capability check, no nonce, and no allow-list of callable functions. This makes it possible for unauthenticated attackers to execute arbitrary existing PHP/WordPress functions with controlled arguments.\nSneeit Sneeit Framework",
+   "core_text": "Sneeit Sneeit Framework"
+  },
+  {
+   "id": "CVE-2026-115867",
+   "aliases": [],
+   "title": "The Database for Contact Form 7, WPforms, Elementor forms plugin for WordPress is vulnerable to Arbitrary File Upload in…",
+   "product": "crmperks Database for Contact Form 7, WPforms, Elementor forms",
+   "severity": "critical",
+   "cvss": 9.8,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-115867",
+    "https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L108",
+    "https://plugins.trac.wordpress.org/browser/contact-form-entries/tags/1.5.5/contact-form-entries.php#L1383"
+   ],
+   "summarised": true,
+   "published": "2026-11-27T02:16:43.770000Z",
+   "kev_date_added": null,
+   "match_text": "The Database for Contact Form 7, WPforms, Elementor forms plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 1.5.5 via the copy_files function. This is due to missing file extension validation in the copy_files function, which accepts attacker-controlled stream wrapper URIs as the file source and derives the destination filename without restricting executable extensions. This makes it possible for unauthenticated attackers to upload files that may be executable, which makes remote code execution possible. The plugin places an .htaccess file in its uploads directory to block PHP execution, but this mitigation is ineffective on Nginx, LiteSpeed in certain configurations, and Apache servers with AllowOverride None, and the file is not restored if deleted.\ncrmperks Database for Contact Form 7, WPforms, Elementor forms",
+   "core_text": "crmperks Database for Contact Form 7, WPforms, Elementor forms"
+  },
+  {
+   "id": "CVE-2026-113774",
+   "aliases": [],
+   "title": "The Schema & Structured Data for WP & AMP plugin for WordPress is vulnerable to PHP Object Injection in versions up to, …",
+   "product": "magazine3 Schema & Structured Data for WP & AMP",
+   "severity": "high",
+   "cvss": 8.8,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-113774",
+    "https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/admin_section/common-function.php#L270",
+    "https://plugins.trac.wordpress.org/browser/schema-and-structured-data-for-wp/tags/1.68/modules/reviews/class-saswp-reviews-form.php#L170"
+   ],
+   "summarised": true,
+   "published": "2026-11-27T02:16:43.613000Z",
+   "kev_date_added": null,
+   "match_text": "The Schema & Structured Data for WP & AMP plugin for WordPress is vulnerable to PHP Object Injection in versions up to, and including, 1.68. This is due to deserialization of untrusted input via the admin export (saswp_export_all_settings_and_schema) which calls unrestricted unserialize() on every raw post meta value, combined with saswp_review_form_process_data() which stores unauthenticated-visitor-supplied reviewer-name data through update_post_meta — the plugin sanitizes with sanitize_text_field(), which does not recognise PHP serialization syntax or the NUL property-name delimiters, and WordPress's maybe_serialize/is_serialized has no case for the legacy PHP 'C' custom-serialization token (ArrayObject), so the payload is persisted byte-for-byte and never wrapped in a protective extra serialize layer. This makes it possible for unauthenticated attackers to inject a PHP Object into the processing of the plugin. No known POP chain is present in the vulnerable plugin itself, but if a suitable chain exists via an additional plugin or theme installed on the blog, it could be used to delete arbitrary files, or achieve other impacts. Successful exploitation additionally requires an action by an administrator — the attacker cannot trigger the vulnerability on their own.\nmagazine3 Schema & Structured Data for WP & AMP",
+   "core_text": "magazine3 Schema & Structured Data for WP & AMP"
+  },
+  {
+   "id": "CVE-2026-137702",
+   "aliases": [],
+   "title": "Exim before 4.100.2 allows attackers to send SMTP traffic that triggers a heap out-of-bounds write in expansion code run…",
+   "product": "Exim Exim",
+   "severity": "high",
+   "cvss": 8.1,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-137702",
+    "https://lists.exim.org/lurker/message/20261125.130455.f06c6601.en.html",
+    "https://www.exim.org/static/doc/security/EXIM-Security-2026-11-19.1/EXIM-Security-2026-11-19.1.txt"
+   ],
+   "summarised": true,
+   "published": "2026-11-27T02:16:45.470000Z",
+   "kev_date_added": null,
+   "match_text": "Exim before 4.100.2 allows attackers to send SMTP traffic that triggers a heap out-of-bounds write in expansion code running as root.\nExim Exim",
+   "core_text": "Exim Exim"
+  },
+  {
+   "id": "CVE-2026-135616",
+   "aliases": [],
+   "title": "The W3 Total Cache plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 2.11…",
+   "product": "boldgrid W3 Total Cache",
+   "severity": "high",
+   "cvss": 7.5,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-135616",
+    "https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache.php#L56",
+    "https://plugins.trac.wordpress.org/browser/w3-total-cache/tags/2.11.0/Cache_Memcache.php#L133"
+   ],
+   "summarised": true,
+   "published": "2026-11-27T02:16:45.160000Z",
+   "kev_date_added": null,
+   "match_text": "The W3 Total Cache plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 2.11.0 via deserialization of untrusted input that is injected into the Memcached object cache through request Host header key truncation. This allows authenticated attackers, with subscriber-level access and above, to inject a PHP Object. The additional presence of a POP chain (the bundled Guzzle FileCookieJar, reached through the W3TC\\CdnEngine_S3 autoload bridge) allows attackers to write arbitrary files and execute code. This requires the Object Cache to be enabled with the Memcached method backed by the pecl memcache extension and Minify to be enabled; using the same key collision, the attacker first escalates from Subscriber to Administrator.\nboldgrid W3 Total Cache",
+   "core_text": "boldgrid W3 Total Cache"
+  },
+  {
+   "id": "CVE-2026-126717",
+   "aliases": [],
+   "title": "The Translate WordPress with Weglot 2.0 – Multilingual AI Translation plugin for WordPress is vulnerable to Stored Cross…",
+   "product": "remyb92 Translate WordPress with Weglot 2.0 – Multilingual AI Translation",
+   "severity": "high",
+   "cvss": 7.2,
+   "kev": false,
+   "epss_percentile": null,
+   "status": "new",
+   "changes": [],
+   "links": [
+    "https://nvd.nist.gov/vuln/detail/CVE-2026-126717",
+    "https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L167",
+    "https://plugins.trac.wordpress.org/browser/weglot/tags/6.4.3/src/services/class-translate-service-weglot.php#L81"
+   ],
+   "summarised": true,
+   "published": "2026-11-27T02:16:44.237000Z",
+   "kev_date_added": null,
+   "match_text": "The Translate WordPress with Weglot 2.0 – Multilingual AI Translation plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'comment' parameter in all versions up to, and including, 6.4.3 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Successful exploitation requires the target site to permit anonymous comment posting (comment_registration disabled) and have at least one Weglot destination language active; on sites with comment moderation enabled, an administrator must approve the carrier and trigger comments before the injected script executes for subsequent visitors.\nremyb92 Translate WordPress with Weglot 2.0 – Multilingual AI Translation",
+   "core_text": "remyb92 Translate WordPress with Weglot 2.0 – Multilingual AI Translation"
+  }
+ ],
+ "sources": [
+  "nvd"
+ ],
+ "deliveries": {}
+}
