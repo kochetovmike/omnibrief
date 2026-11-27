@@ -4,7 +4,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -13,7 +13,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -31,7 +31,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -49,7 +49,7 @@
   "first_seen": "2026-11-25T15:05:19.253118Z",
   "kev": true,
   "last_material_change": "2026-11-25T15:05:19.253118Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -832,7 +832,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -841,7 +841,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -850,7 +850,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -859,7 +859,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -868,7 +868,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -904,7 +904,7 @@
   "first_seen": "2026-11-25T22:05:18.048035Z",
   "kev": true,
   "last_material_change": "2026-11-25T22:05:18.048035Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": null
  },
@@ -967,7 +967,7 @@
   "first_seen": "2026-11-27T15:05:14.072995Z",
   "kev": false,
   "last_material_change": "2026-11-27T15:05:14.072995Z",
-  "last_seen": "2026-11-27T17:05:15.467709Z",
+  "last_seen": "2026-11-27T18:05:19.773366Z",
   "patched": [],
   "severity": "high"
  },
