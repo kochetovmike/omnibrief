@@ -1,8 +1,8 @@
 {
  "held": 0,
- "last_attempt_utc": "2026-11-27T06:05:45.436513+00:00",
+ "last_attempt_utc": "2026-11-27T07:05:59.919325+00:00",
  "migrated_from": "telegram.json",
- "posted_last_run": 0,
+ "posted_last_run": 2,
  "reason": null,
  "sent": {
   "vulns:alert:20261120T193201Z:CVE-2026-123890": {
@@ -97,6 +97,10 @@
    "message_id": 34,
    "sent_utc": "2026-11-26T12:05:58.341683+00:00"
   },
+  "vulns:alert:20261127T070516Z:CVE-2026-137738": {
+   "message_id": 36,
+   "sent_utc": "2026-11-27T07:05:59.919325+00:00"
+  },
   "vulns:brief:2026-11-20T07:00:00+00:00": {
    "at_utc": "2026-11-20T19:32:37.011174+00:00",
    "skipped": "empty"
@@ -148,6 +152,10 @@
   "vulns:brief:2026-11-26T07:00:00+00:00": {
    "message_id": 35,
    "sent_utc": "2026-11-26T19:05:53.235191+00:00"
+  },
+  "vulns:brief:2026-11-26T19:00:00+00:00": {
+   "message_id": 37,
+   "sent_utc": "2026-11-27T07:05:59.919325+00:00"
   }
  },
  "status": "ok"
