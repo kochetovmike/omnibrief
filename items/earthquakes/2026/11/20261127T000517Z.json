@@ -1,0 +1,32 @@
+[
+ {
+  "topic": "earthquakes",
+  "key": "usgs:us6000udt4",
+  "source_ids": [
+   "usgs_fdsn"
+  ],
+  "title": "M4.1 earthquake — 64 km SSE of Kaş, Turkey",
+  "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000udt4",
+  "published": "2026-11-26T23:31:07.918000Z",
+  "updated": "2026-11-27T00:01:55.040000Z",
+  "summary": null,
+  "severity": "low",
+  "geo": {
+   "lat": 35.6479,
+   "lon": 29.8422,
+   "depth_km": 31.156
+  },
+  "fields": {
+   "magnitude": 4.1,
+   "mag_type": "mb",
+   "place": "64 km SSE of Kaş, Turkey",
+   "country": "Turkey",
+   "depth_km": 31.156,
+   "tsunami_flag": false,
+   "alert": null,
+   "felt": null
+  },
+  "material_hash": "25f31c03e0ac84d113e6da000e6217e2916a6c37cd693d46fa7cd3334464bc97",
+  "status": "new"
+ }
+]
