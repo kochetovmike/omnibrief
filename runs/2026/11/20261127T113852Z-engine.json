@@ -1,0 +1,27 @@
+{
+ "due": {
+  "arxiv-ai": "skipped: done for this period",
+  "earthquakes": "skipped: not yet",
+  "safety-gate": "skipped: done for this period",
+  "space-weather": "skipped: not yet",
+  "tenders": "skipped: done for this period",
+  "vulns": "skipped: not yet",
+  "weather-at": "skipped: not yet"
+ },
+ "finished_utc": "2026-11-27T11:38:52.323373+00:00",
+ "llm_calls": 0,
+ "run_id": "20261127T113852Z",
+ "sinks": {},
+ "started_utc": "2026-11-27T11:38:52.168016+00:00",
+ "static": {
+  "arxiv-ai": "ok",
+  "earthquakes": "ok",
+  "safety-gate": "ok",
+  "space-weather": "ok",
+  "tenders": "ok",
+  "vulns": "ok",
+  "weather-at": "ok"
+ },
+ "status": "ok",
+ "topics": {}
+}
